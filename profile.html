@@ -1,0 +1,64 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.css" />
+	<link rel="stylesheet"  href="./css/mobilejquerysite.css" />
+	<script src="./js/jquery-1.7.1.min.js"></script>
+    <script src="./js/jquery.mobile-1.2.0-rc.2.min.js"></script>
+	<script src="./js/cordova-2.1.0.js"></script>
+	<script src="./js/profile.js"></script>
+</head>
+<body>
+    <div data-role="header">
+		<a href="#" onClick="backButtonClicked()">Back</a>
+		<h1>PROFILE</h1>
+		<a href="./index.html" data-icon="home" data-ajax="false" class="ui-btn-right">Home</a>
+	</div>
+	<div data-role="content" id="profile_content">
+        <div class="header_logo">
+            <img src="./images/mobile/mobile_header.png" />
+        </div>
+        <div id="profile_info"></div>
+        <a href="./profilechangefavorites.html" rel="external"><img src="./images/mobile/ChangeFavorites.png" /></a>
+        <div class="mobile_hr"></div>
+        <p>Profile Image:</p>
+        <div id="profile_image_holder"><img src="" id="profile_image" /></div>
+        <p><a href="./profilechangeimage.html" rel="external"><img src="./images/mobile/ChangeImage.png" /></a></p>
+		<div class="mobile_hr"></div>
+        <p>Member Score:</p>
+        <p id="beer_score">Beer Score: </p>
+        <p id="drink_score">Drink Score: </p>
+        <p id="total_score">Total Score: </p>
+		<div class="mobile_hr"></div>
+        <p>Top 5 Beers:</p>
+        <ul id="mobile_profile_beers_ul"></ul>
+		<div class="mobile_hr"></div>
+        <p>Top 3 Drinks:</p>
+        <div id="add_favorite_drink_button"></div>
+        <ul id="mobile_profile_drinks_ul"></ul>
+    </div>
+<script>
+function destClicked(chosendest) {
+	window.localStorage.setItem("chosendest", chosendest); 
+	return true;
+}
+function beerClicked(chosenbeer) {
+	window.localStorage.setItem("chosenbeer", chosenbeer); 
+	return true;
+}
+function drinkClicked(chosendrink) {
+	window.localStorage.setItem("chosendrink", chosendrink); 
+	return true;
+}
+function barClicked(chosenbar) {
+	window.localStorage.setItem("chosenbar", chosenbar); 
+	return true;
+}
+function backButtonClicked() {
+    history.go(-1);
+}
+</script>
+</body>
+</html>

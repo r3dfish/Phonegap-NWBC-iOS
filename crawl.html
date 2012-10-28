@@ -1,0 +1,141 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.css" />
+	<link rel="stylesheet"  href="./css/mobilejquerysite.css" />
+	<style>
+		#mobile_crawl_stops_table td {width:100px;text-align:center;}
+		.crawl_info_header {color:#FFFFFF;}
+	</style>
+    
+	<script src="./js/jquery-1.7.1.min.js"></script>
+    <script src="./js/jquery.mobile-1.2.0-rc.2.min.js"></script>
+	<script>
+	// Check Login Status
+	//
+	// variable to hold if the user is logged in or not
+	var isAuthenticated = localStorage.getItem("isAuthenticated");
+	// check if the user is authenticated
+	$(document).ready(function() {
+		// make sure the user is authenticated
+		if (isAuthenticated != "1") {
+			// redirect to login.html
+			window.location.href="login.html";
+		}
+	});
+	</script>
+	<script>
+	// variable to hold selected crawl for URL
+	var selectedCrawl = localStorage.getItem("chosencrawl");
+	$(document).ready(function() {
+		$.get("http://nationwidebarcrawl.com/mobilenative/crawls/" + selectedCrawl + "/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			crawl = parsed_data['crawl'];
+			$('#mobile_crawls_ul').append('<li><p class="crawls_list_name">' + crawl['title'] + '</p><p>' + crawl['destination'] + '</p><p class="crawls_list_date">' + crawl['date'] + '</p><p>Creator:</p><p><img src="http://nationwidebarcrawl.com/mobilenative/profile/avatar/' + crawl['creator'] + '/" /></p></li>');
+
+			// if crawl is public or invite only
+			if (crawl['isPublic']) {
+				$('#mobile_crawls_ul').append('<li><p>Crawl is Public</p></li>');
+			} else {
+				$('#mobile_crawls_ul').append('<li><p>Crawl is Invite Only</p></li>');
+			}
+			
+			// add bar stops
+			$.each(parsed_data['bars'], function() {
+				var timestamp = this['timestamp'];
+				timestamp = timestamp.substring(timestamp.indexOf(" "));
+				timestamp = timestamp.substring(1, timestamp.lastIndexOf(":"));
+				hours = timestamp.substring(0, timestamp.indexOf(":"));
+				if (hours == 00) {
+					hours = 12;
+					timestamp = hours + timestamp.substring(timestamp.indexOf(":")) + " AM";
+				}
+				if (hours < 12) {
+					// remove leading 0 from 1 digit hours
+					if (hours.charAt(0) == 0) {
+						hours = hours.charAt(1);
+					}
+					timestamp = hours + timestamp.substring(timestamp.indexOf(":")) + " AM";
+				}
+				if (hours > 12) {
+					hours = hours - 12;
+					timestamp = hours + timestamp.substring(timestamp.indexOf(":")) + " PM";
+				}
+				$('#mobile_crawl_stops_table').append('<tr><td>' + this['bar'] + '</td><td>' + timestamp + '</td><td>' + this['duration'] + '</td></tr>');
+				//$('#mobile_crawl_stops_ul').append('<li><p>' + this['bar'] + '</p><p>' + timestamp + '</p><p>' + this['duration'] + '</p></li>');
+			});
+			
+			// if isCreator, add 'Add Another Stop' button
+			if (crawl['isCreator']) {
+				$('#crawl_stops').append('<p><a href="./crawladdstop.html" rel="external" onClick="addStopClicked(\'' + crawl['destination'] + '\')"><img src="./images/mobile/AddAnotherStop.png" /></a></p>');
+			}
+						
+			// add attending members
+			$.each(parsed_data['members'], function() {
+				if(this['status'] == "y") {
+					$('#crawl_members_ul_y').append('<li><img src="http://nationwidebarcrawl.com/mobilenative/profile/avatar/' + this['member'] + '/" /></li>');
+				}
+				if(this['status'] == "u") {
+					$('#crawl_members_ul_u').append('<li><img src="http://nationwidebarcrawl.com/mobilenative/profile/avatar/' + this['member'] + '/" /></li>');
+				}
+				if(this['status'] == "n") {
+					$('#crawl_members_ul_n').append('<li><img src="http://nationwidebarcrawl.com/mobilenative/profile/avatar/' + this['member'] + '/" /></li>');
+				}
+			});
+			
+			// if isCreator, add 'Edit Crawl Settings' button
+			if (crawl['isCreator']) {
+				$('#crawl_edit').append('<div class="hr_white"></div><p><a href="./crawledit.html" rel="external"><img src="./images/mobile/EditCrawlSettings.png" /></a></p>');
+			}
+			
+		});
+	});
+	</script>
+</head>
+<body>
+    <div data-role="header">
+        <a href="#" onClick="backButtonClicked()">Back</a>
+        <h1>CRAWL DETAILS</h1>
+        <a href="./index.html" data-icon="home" data-ajax="false" class="ui-btn-right">Home</a>
+    </div>
+    <div data-role="content">
+        <div class="header_logo">
+            <img src="./images/mobile/mobile_header.png" />
+        </div>
+        <ul data-role="listview" data-theme="g" id="state_list_ul">
+        </ul>
+    </div>
+<div>
+        <ul id="mobile_crawls_ul"></ul>
+</div>
+<div id="crawl_info"></div>
+<div id="crawl_stops">
+	<table id="mobile_crawl_stops_table">
+	<tr><td class="crawl_info_header">Bar</td><td class="crawl_info_header">Time</td><td class="crawl_info_header">Duration</td></tr>
+	</table>
+</div>
+<div class="hr_white"></div>
+<div id="crawl_members">
+    <p>Attending:</p>
+    <ul id="crawl_members_ul_y" class="drinking_buddies_thumb"></ul>
+    <div class="hr_white"></div>
+    <p>Undecided:</p>
+    <ul id="crawl_members_ul_u" class="drinking_buddies_thumb"></ul>
+    <div class="hr_white"></div>
+    <p>Not Attending:</p>
+    <ul id="crawl_members_ul_n" class="drinking_buddies_thumb"></ul>
+</div>
+<div id="crawl_edit"></div>
+<script>
+function addStopClicked(chosendest) {
+	window.localStorage.setItem("chosendest", chosendest); 
+	return true;
+}
+function backButtonClicked() {
+	history.go(-1);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.css" />
+	<link rel="stylesheet"  href="./css/mobilejquerysite.css" />
+	<script src="./js/jquery-1.7.1.min.js"></script>
+    <script src="./js/jquery.mobile-1.2.0-rc.2.min.js"></script>
+	<script>
+	// Check Login Status
+	//
+	// variable to hold if the user is logged in or not
+	var isAuthenticated = localStorage.getItem("isAuthenticated");
+	// check if the user is authenticated
+	$(document).ready(function() {
+		// make sure the user is authenticated
+		if (isAuthenticated != "1") {
+			// redirect to login.html
+			window.location.href="login.html";
+		}
+	});
+	</script>
+	<script>
+	$(document).ready(function() {
+		$.get("http://nationwidebarcrawl.com/mobilenative/crawls/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			$.each(parsed_data, function() {
+				$('#mobile_crawls_ul').append('<li><p class="crawls_list_name"><a href="./crawl.html" onClick="crawlClicked(\'' + this['pk'] + '\')" rel="external">' + this['title'] + '</a></p><p>' + this['destination'] + '</p><p>' + this['attending'] + '</p><p class="crawls_list_date">' + this['date'] + '</p></li>');
+			});
+		});
+	});
+	</script>
+</head>
+<body>
+	<div data-role="header">
+		<a href="#" onClick="backButtonClicked()">Back</a>
+		<h1>CRAWLS</h1>
+		<a href="./index.html" data-icon="home" data-ajax="false" class="ui-btn-right">Home</a>
+	</div>
+	<div data-role="content">
+		<div class="header_logo">
+			<img src="./images/mobile/mobile_header.png" />
+		</div>
+    </div>
+    <div>
+        <a href="./crawlspublicstates.html" rel="external"><img src="./images/mobile/ViewPublicCrawls.png" /></a>
+    </div>
+    <div class="hr_white"></div>
+    <div>
+        <a href="./crawlcreate.html" rel="external"><img src="./images/mobile/CreateACrawl.png" /></a>
+    </div>
+    <div class="hr_white"></div>
+    <div>
+        <ul id="mobile_crawls_ul"></ul>
+    </div>
+    <div id="crawl_info"></div>
+<script>
+function crawlClicked(chosencrawl) {
+	localStorage.setItem("chosencrawl", chosencrawl); 
+	return true;
+}
+function backButtonClicked() {
+    history.go(-1);
+}
+</script>
+</body>
+</html>

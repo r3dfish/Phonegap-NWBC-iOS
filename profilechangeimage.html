@@ -1,0 +1,66 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="stylesheet" type="text/css" href="./css/nwbcmobilesite.css"/>
+	<script src="./js/jquery-1.7.1.min.js"></script>
+	<script src="./js/jquery.mobile-1.1.1.min.js"></script>
+	<script src="./js/cordova-2.1.0.js"></script>
+	<script src="./js/profile.js"></script>
+</head>
+<body>
+<div id="mobile_header">
+	<img src="./images/mobile/mobile_header.png" />
+</div>
+<div id="mobile_header_title">CHANGE IMAGE</div>
+<div>
+	<p><a href="#" onClick="changeImage()">Take a Picture</a></p>
+	<p><a href="#" onClick="galleryImage()">Choose from Gallery</a></p>
+</div>
+<script>
+// function to pop the camera
+function changeImage() {
+	navigator.camera.getPicture(captureSuccess, captureError, {sourceType: Camera.PictureSourceType.CAMERA, destinationType: Camera.DestinationType.FILE_URI});
+}
+
+// function to pop the gallery
+function galleryImage() {
+	navigator.camera.getPicture(captureSuccess, captureError, {sourceType: Camera.PictureSourceType.PHOTOLIBRARY, destinationType: Camera.DestinationType.FILE_URI});
+}
+
+function captureSuccess(mediaFiles) {
+	window.resolveLocalFileSystemURI(mediaFiles, gotFilePath, null);
+}
+
+function gotFilePath(fileEntry) {
+	alert('path: ' + fileEntry.fullPath);
+	var options = new FileUploadOptions();
+	options.fileKey="image";
+	options.chunkedMode=false;
+	var ft = new FileTransfer();
+	ft.upload(fileEntry.fullPath, 'http://nationwidebarcrawl.com/mobilenative/profile/changeimage/', uploadSuccess, uploadFail, options);
+	//$.post('http://nationwidebarcrawl.com/mobilenative/profile/changeimage/', { image: mediaFiles});
+	alert('post successful');
+}
+
+function uploadSuccess() {
+	// reset the profile database
+	localStorage.setItem("profiledbCreated", "0");
+	// redirect to the profile page
+	history.go(-1);
+}
+
+function uploadFail(error) {
+	alert('error code: ' + error.code);
+	alert('error source: ' + error.source);
+	alert('error target: ' + error.target);
+	alert('error http_status: ' + error.http_status);
+}
+
+function captureError(error) {
+	alert('captureError');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.css" />
+	<link rel="stylesheet"  href="./css/mobilejquerysite.css" />
+	<script src="./js/jquery-1.7.1.min.js"></script>
+    <script src="./js/jquery.mobile-1.2.0-rc.2.min.js"></script>
+	<script src="./js/cordova-2.1.0.js"></script>
+	<script src="./js/photosphoto.js"></script>
+	<style>
+	#photos_photo_holder img {
+		width: 100%;
+	}
+	</style>
+</head>
+<body>
+    <div data-role="header">
+		<a href="#" onClick="backButtonClicked()">Back</a>
+		<h1>GALLERY</h1>
+		<a href="./index.html" data-icon="home" data-ajax="false" class="ui-btn-right">Home</a>
+	</div>
+	<div data-role="content">
+        <div class="header_logo">
+            <img src="./images/mobile/mobile_header.png" />
+        </div>
+    </div>
+    <div id="photos_photo_holder"></div>
+    <div id="photo_tagged_bar"></div>
+    <div id="photo_drinks_holder"></div>
+    <ul id="photo_drinks_tags_ul" class="drink_thumb"></ul>
+    <div id="photo_beers_holder"></div>
+    <ul id="photo_beers_tags_ul" class="drink_thumb"></ul>
+<script>
+function barClicked(chosenbar) {
+	window.localStorage.setItem("chosenbar", chosenbar); 
+	return true;
+}
+function removeBarTag(chosenphoto) {
+	// GET to remove bar tag from chosen photo
+	$.get("http://nationwidebarcrawl.com/mobilenative/photos/removebartag/" + chosenphoto + "/", function(response) {
+		// redirect to photo page
+        window.location.href="photosphoto.html";
+	});
+}
+function removeBeerTag(chosenbeer) {
+	var chosenphoto = localStorage.getItem("chosenphoto");
+	// GET to remove beer tag from chosen photo
+	$.get("http://nationwidebarcrawl.com/mobilenative/photos/removebeertag/" + chosenphoto + "/" + chosenbeer + "/", function(response) {
+		// redirect to photo page
+        window.location.href="photosphoto.html";
+	});
+}
+function removeDrinkTag(chosendrink) {
+	var chosenphoto = localStorage.getItem("chosenphoto");
+	// GET to remove beer tag from chosen photo
+	$.get("http://nationwidebarcrawl.com/mobilenative/photos/removedrinktag/" + chosenphoto + "/" + chosendrink + "/", function(response) {
+		// redirect to photo page
+        window.location.href="photosphoto.html";
+	});
+}
+function backButtonClicked() {
+    history.go(-1);
+}
+</script>
+</body>
+</html>

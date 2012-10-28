@@ -1,0 +1,306 @@
+body {
+    text-align: center;
+	color: #DC0000;
+}
+
+a {
+	color: #FFFFFF;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.mobile_hr {
+	height: 2px;
+	width: 90%;
+	margin: 5px auto;
+	background-color: #DC0000;
+	clear: both;
+}
+
+.hr_white {
+	width: 100%;
+	height: 2px;
+	background-color: #FFFFFF;
+	margin: 0 0 10px;
+	float: left;
+}
+
+.header_logo {
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.drinking_buddies_thumb {
+	margin: 0;
+	padding: 0;
+	list-style: none outside none;
+    width: 100%;
+    float: left;
+}
+
+.drinking_buddies_thumb li {
+	float: left;
+	margin: 0 4px;
+}
+
+#bar_detail_name {
+	color: #DC0000;
+	font-size: 24px;
+	margin: 0;
+	font-weight: bold;
+}
+
+#bar_detail_description {
+	margin: 0;
+}
+
+#bar_detail_address {
+	color: #DC0000;
+}
+
+#bar_beerlist_ul {
+	margin: 0;
+	padding: 0;
+	list-style: none outside none;
+}
+
+#bar_beerlist_ul li {
+	float: left;
+	margin-right: 5px;
+}
+
+#bar_bottlelist_ul {
+	margin: 0;
+	padding: 0;
+	list-style: none outside none;
+}
+
+#bar_bottlelist_ul li {
+	float: left;
+	margin-right: 5px;
+}
+
+#bar_members {
+	margin: 0;
+	padding: 0;
+	list-style: none outside none;
+}
+
+#bar_members li {
+	float: left;
+	margin-right: 5px;
+}
+
+#drinksphotos {
+	margin: 0;
+	padding: 0;
+	list-style: none outside none;
+}
+
+#drinksphotos li {
+	float: left;
+	margin-right: 5px;
+}
+
+#beerphotos {
+	margin: 0;
+	padding: 0;
+	list-style: none outside none;
+}
+
+#beerphotos li {
+	float: left;
+	margin-right: 5px;
+}
+
+#bar_photos {
+	margin: 0;
+	padding: 0;
+	list-style: none outside none;
+}
+
+#bar_photos li {
+	float: left;
+	margin-right: 5px;
+}
+
+#drink_image {
+	float: left;
+}
+
+#singleDrink_float_left {
+	float: left;
+}
+
+.drink_name {
+	color: #FFFFFF;
+	font-weight: bold;
+	margin: 0;
+}
+
+.drink_type {
+	color: #FFFFFF;
+	margin: 0;
+}
+
+.drink_glass_title {
+	color: #DC0000;
+	margin: 10px 0 0;
+	font-weight: bold;
+}
+
+.drink_glass {
+	color: #FFFFFF;
+	font-weight: bold;
+	margin: 0;
+}
+
+#beer_image {
+	float: left;
+	margin-right: 20px;
+}
+
+input {
+	color: #000000;
+}
+
+#profile_name {
+	color: #FFFFFF;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#profile_info p a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+#mobile_profile_beers_ul {
+	list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+#mobile_profile_beers_ul li {
+	float: left;
+}
+
+#mobile_profile_drinks_ul {
+	margin: 0;
+	padding: 0;
+	list-style: none outside none;
+    display: inline-block;
+}
+
+#mobile_profile_drinks_ul li {
+	width: 100px;
+	float: left;
+}
+
+#profile_content {
+    text-align: center;
+}
+
+#mobile_galleries_ul {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+
+#mobile_galleries_ul li {
+	background: url(../images/mobile/polaroid.png) no-repeat scroll 0 0 transparent;
+	width: 73px;
+	height: 100px;
+	padding: 5px 15px 0 12px;
+}
+
+#mobile_galleries_ul li img {
+	float: left;
+	border: 0 none;
+}
+
+#mobile_galleries_ul li p {
+	float: left;
+	text-align: left;
+	font-size: 8px;
+	margin: 0;
+    color: #DC0000;
+}
+
+#mobile_single_gallery_ul {
+	margin: 0;
+	padding: 0;
+	list-style: none outside none;
+}
+
+#mobile_single_gallery_ul li {
+	float: left;
+	width: 100px;
+	height: 100px;
+	margin: 3px;
+}
+
+.mobile_left {
+	float: left;
+}
+
+.mobile_right {
+	float: right;
+}
+
+.drink_thumb {
+	margin: 0;
+	padding: 0;
+	list-style: none outside none;
+}
+
+.drink_thumb li {
+	text-align: center;
+	margin: 0 5px;
+}
+
+#single_crawl_stops_ul {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+
+#crawl_title {
+	color: #FFFFFF;
+	font-size: 24px;
+	margin: 0;
+}
+
+#crawl_date {
+	margin: 0 0 10px;
+}
+
+.crawls_list_name a {
+	font-size: 24px;
+	color: #FFFFFF;
+}
+
+.crawls_list_date a {
+	font-size: 18px;
+	color: #DC0000;
+}
+
+#mobile_crawls_ul {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+
+#mobile_crawls_ul li {
+	margin: 0 auto 10px;
+	border-bottom: 2px solid #FFFFFF;
+}
+
+#mobile_crawls_ul li a {
+	text-decoration: none;
+}
+
+#mobile_crawls_ul li p {
+	margin: 0;
+}

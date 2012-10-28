@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="./css/nwbcmobilesite.css"/>
+	<script src="./js/jquery-1.7.1.min.js"></script>
+	<script src="./js/cordova-2.1.0.js"></script>
+</head>
+<body>
+<div id="mobile_header">
+        <img src="./images/mobile/mobile_header.png" />
+</div>
+<div id="mobile_header_title">HOME</div>
+<div id="mobile_home_left">
+<ul class="mobile_index_ul">
+        <li class="mobile_index_menu"><a href="./crawls.html"><img src="./images/mobile/crawl.png" /></a></li>
+        <li class="mobile_index_menu"><a href="./beersmain.html"><img src="./images/mobile/beers.png" /></a></li>
+        <li class="mobile_index_menu"><a href="./beerrandom.html"><img src="./images/mobile/randombeer.png" /></a></li>
+        <li class="mobile_index_menu"><a href="./profile.html"><img src="./images/mobile/profile.png" /></a></li>
+</ul>
+</div>
+<div id="mobile_home_right">
+<ul class="mobile_index_ul">
+        <li class="mobile_index_menu"><a href="./photos.html"><img src="./images/mobile/picture.png" /></a></li>
+        <li class="mobile_index_menu"><a href="./drinksmain.html"><img src="./images/mobile/mixedDrink.png" /></a></li>
+        <li class="mobile_index_menu"><a href="./drinkrandom.html"><img src="./images/mobile/random.png" /></a></li>
+        <li class="mobile_index_menu"><a href="./barstates.html"><img src="./images/mobile/bars.png" /></a></li>
+</ul>
+</div>
+<div id="logout_holder"></div>
+<script>
+	var auth_info = localStorage.getItem("isAuthenticated");
+	if (auth_info == "1") {
+		$('#logout_holder').append('<p><a href="#" onClick="logoutbutton()"><img src="./images/mobile/logout.png" /></p>');
+	}
+	function logoutbutton(){
+		$.get("http://nationwidebarcrawl.com/m/logout/");
+		localStorage.setItem("isAuthenticated", "0");
+		localStorage.setItem("profiledbCreated", "0");
+		window.location.href="./index.html";
+	}
+</script>
+</body>
+</html>

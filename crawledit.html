@@ -1,0 +1,70 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<style>
+		#mobile_crawl_stops_table td {width:100px;text-align:center;}
+		.crawl_info_header {color:#FFFFFF;}
+	</style>
+	<link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.css" />
+	<link rel="stylesheet"  href="./css/mobilejquerysite.css" />
+	<script src="./js/jquery-1.7.1.min.js"></script>
+	<script src="./js/jquery.mobile-1.1.1.min.js"></script>
+	<script src="./js/cordova-2.1.0.js"></script>	<script>
+	// Check Login Status
+	//
+	// variable to hold if the user is logged in or not
+	var isAuthenticated = localStorage.getItem("isAuthenticated");
+	// check if the user is authenticated
+	$(document).ready(function() {
+		// make sure the user is authenticated
+		if (isAuthenticated != "1") {
+			// redirect to login.html
+			window.location.href="login.html";
+		}
+	});
+	</script>
+	<script>
+	// variable to hold selected crawl for URL
+	var selectedCrawl = localStorage.getItem("chosencrawl");
+	$(document).ready(function() {
+		$.get("http://nationwidebarcrawl.com/mobilenative/crawls/" + selectedCrawl + "/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			crawl = parsed_data['crawl'];
+			$('#mobile_crawls_ul').append('<li><p class="crawls_list_name">' + crawl['title'] + '</p><p>' + crawl['destination'] + '</p><p class="crawls_list_date">' + crawl['date'] + '</p><p>Creator:</p><p><img src="http://nationwidebarcrawl.com/mobilenative/profile/avatar/' + crawl['creator'] + '/" /></p></li>');
+
+			// select is public or invite only
+			if (crawl['isPublic']) {
+				alert('value is public');
+				$('#id_isPublic').val("p").trigger("create");
+			}
+		});
+	});
+	</script>
+</head>
+<body>
+	<div data-role="header">
+        <a href="#" onClick="backButtonClicked()">Back</a>
+		<h1>EDIT CRAWL SETTINGS</h1>
+		<a href="./index.html" data-icon="home" data-ajax="false" class="ui-btn-right">Home</a>
+	</div>
+	<div data-role="content">
+		<div class="header_logo">
+			<img src="./images/mobile/mobile_header.png" />
+		</div>
+		<form>
+		<select name="isPublic" id="id_isPublic" data-role="slider">
+			<option value="i">Invite Only</option>
+			<option value="p">Public</option>
+		</select>
+		</form>
+		<p><a href="crawleditdelete.html" data-rel="dialog">Delete this Crawl</a></p>
+	</div>
+<script>
+function backButtonClicked() {
+	history.go(-1);
+}
+</script>
+</body>
+</html>
