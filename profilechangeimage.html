@@ -1,8 +1,6 @@
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="./css/nwbcmobilesite.css"/>
 	<script src="./js/jquery-1.7.1.min.js"></script>
 	<script src="./js/jquery.mobile-1.1.1.min.js"></script>
@@ -48,7 +46,7 @@ function uploadSuccess() {
 	// reset the profile database
 	localStorage.setItem("profiledbCreated", "0");
 	// redirect to the profile page
-	history.go(-1);
+	navigator.app.backHistory();
 }
 
 function uploadFail(error) {

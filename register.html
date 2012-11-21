@@ -1,12 +1,10 @@
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.css" />
 	<link rel="stylesheet"  href="./css/mobilejquerysite.css" />
 	<script src="./js/jquery-1.7.1.min.js"></script>
-	<script src="./js/jquery.mobile-1.2.0-rc.2.min.js"></script>
+	<script src="./js/jquery.mobile-1.1.1.min.js"></script>
 	<script src="./js/cordova-2.1.0.js"></script>
 </head>
 <body>
@@ -83,6 +81,8 @@
 			<option value="30">30</option>
 			<option value="31">31</option>
 		</select>
+
+		
 		<select name="year" id="id_year">
 			<option value="1991">1991</option>
 			<option value="1990">1990</option>
@@ -118,11 +118,11 @@
 			<option value="1960">1960</option>
 		</select>
 		</fieldset>
-        <p>I have read and agree to the <a data-rel="dialog" data-transition="pop" href="./tos.html">Terms of Service</a></p>
-        <select name="TOSAgreed" id="id_tosagreed" data-role="slider">
-            <option value="n">Do Not Agree</option>
-            <option value="y">Agree</option>
-        </select>
+		<p>I have read and agree to the <a href="./tos.html">Terms of Service</a></p>
+		<select name="TOSAgreed" id="id_tosagreed" data-role="slider">
+			<option value="y">Agree</option>
+			<option value="n">Do Not Agree</option>
+		</select>
 		<p style="display:none;"><input id="id_birthday" type="text" name="birthday"></p>		
 				
         <input value="REGISTER" type="submit">
@@ -133,7 +133,7 @@
 // Listen for any attempts to call changePage().
 $(document).bind( "pagebeforechange", function( e, data ) {
 	if ( typeof data.toPage === "string" ) {
-		//e.preventDefault();
+		e.preventDefault();
 	}
 });
 
@@ -180,11 +180,11 @@ $('#login_form').submit(function(event) {
             }
             // form did not validate
             if (auth_info['status'] == 7) {
-            	alert('Error: ' + auth_info['errors']);
+            	alert('Sorry Buddy, you\'re missing a field.  Are you sure you\'re using a valid registration code?');
             }
             // did not accept TOS
-               if (auth_info['status'] == 8) {
-               alert('Error: You must agree to the Terms of Service to register.');
+            if (auth_info['status'] == 8) {
+            	alert('Error: You must agree to the Terms of Service to register.');
             }
         });
     return false;
@@ -192,7 +192,7 @@ $('#login_form').submit(function(event) {
 </script>
 <script>
 function backButtonClicked() {
-		history.go(-1);
+		navigator.app.backHistory();
 	}
 </script>
 </body>

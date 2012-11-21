@@ -1,26 +1,17 @@
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.css" />
-	<link rel="stylesheet"  href="./css/mobilejquerysite.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="./css/nwbcmobilesite.css"/>
 	<script src="./js/jquery-1.7.1.min.js"></script>
-	<script src="./js/jquery.mobile-1.2.0-rc.2.min.js"></script>
+	<script src="./js/jquery.mobile-1.1.1.min.js"></script>
 	<script src="./js/cordova-2.1.0.js"></script>
 	<script src="./js/profile.js"></script>
 </head>
 <body>
-    <div data-role="header">
-		<a href="#" onClick="backButtonClicked()">Back</a>
-		<h1>UPLOAD PHOTO</h1>
-		<a href="./index.html" data-icon="home" data-ajax="false" class="ui-btn-right">Home</a>
-	</div>
-	<div data-role="content">
-        <div class="header_logo">
-            <img src="./images/mobile/mobile_header.png" />
-        </div>
-    </div>
+<div id="mobile_header">
+	<img src="./images/mobile/mobile_header.png" />
+</div>
+<div id="mobile_header_title">UPLOAD IMAGE</div>
 <div>
 	<p><a href="#" onClick="changeImage()"><img src="./images/mobile/camera-btn.png" /></a></p>
 	<p><a href="#" onClick="galleryImage()"><img src="./images/mobile/gallery-btn.png" /></a></p>
@@ -41,6 +32,7 @@ function captureSuccess(mediaFiles) {
 }
 
 function gotFilePath(fileEntry) {
+	alert('path: ' + fileEntry.fullPath);
 	var options = new FileUploadOptions();
 	options.fileKey="image";
 	options.chunkedMode=false;
@@ -53,20 +45,19 @@ function uploadSuccess() {
 	// reset the profile database
 	localStorage.setItem("profiledbCreated", "0");
 	// redirect to the profile page
-	history.go(-1);
+	navigator.app.backHistory();
 }
 
 function uploadFail(error) {
 	alert('error code: ' + error.code);
+	alert('error source: ' + error.source);
+	alert('error target: ' + error.target);
+	alert('error http_status: ' + error.http_status);
 }
 
 function captureError(error) {
 	alert('captureError');
 }
-    
-function backButtonClicked() {
-	history.go(-1);
-}	
 </script>
 </body>
 </html>

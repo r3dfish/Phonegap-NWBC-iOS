@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.css" />
+    <link rel="stylesheet"  href="./css/mobilejquerysite.css" />
+    <script type="text/javascript" src="./js/cordova-2.1.0.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.mobile-1.1.1.min.js"></script>
+    <script>
+    // Wait for Cordova to load
+	//
+	document.addEventListener("deviceready", onDeviceReady, true);
+	
+	function onDeviceReady() {
+            var selecteddest = window.localStorage.getItem("specialsdestslug");
+            if (selecteddest == null) {
+				navigator.notification.alert('Please pick a destination for Drink Specials', null, '', 'Select Destination');
+				window.location.href="specialsstates.html";
+			}
+            var selectedday = window.localStorage.getItem("specialsday");
+            $.get("http://nationwidebarcrawl.com/mobilenative/specials/" + selecteddest + "/" + selectedday + "/", function(response) {
+                  var parsed_data = $.parseJSON(response);
+                  $.each(parsed_data, function() {
+                         $('#specials_list').append('<p class="specials_bar_name">' + this['bar'] + '</p><p>' + this['special'] + '</p><div class="mobile_hr"></div>');
+                         });
+                  });
+    }
+    </script>
+</head>
+<body>
+        <div data-role="header">
+                <a href="#" onClick="backButtonClicked()">Back</a>
+                <h1>Specials</h1>
+                <a href="./index.html" data-icon="home" data-ajax="false" class="ui-btn-right">Home</a>
+        </div>
+        <div data-role="content">
+        	<div class="header_logo">
+       	       <img src="./images/mobile/mobile_header.png" />
+        	</div>
+        	<div id="specials_list"></div>
+        </div>
+    <script>
+	function destClicked(chosendest) {
+		window.localStorage.setItem("chosendest", chosendest); 
+		return true;
+	}
+	function backButtonClicked() {
+		navigator.app.backHistory();
+	}
+	</script>
+</body>
+</html>

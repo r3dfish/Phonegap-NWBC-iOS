@@ -1,0 +1,59 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.css" />
+    <link rel="stylesheet"  href="./css/mobilejquerysite.css" />
+    <script src="./js/jquery-1.7.1.min.js"></script>
+    <script src="./js/jquery.mobile-1.1.1.min.js"></script>
+    <script>
+        window.onload = function() {
+            var selecteddest = window.localStorage.getItem("chosendest");
+            var selectedday = window.localStorage.getItem("chosenday");
+            $.get("http://nationwidebarcrawl.com/mobilenative/weekly-polls/", function(response) {
+                  var parsed_data = $.parseJSON(response);
+                  $.each(parsed_data, function() {
+                         $('#specials_list').append('<p class="poll_name">' + this['name'] + '</p><div class="poll_vote_left"><img src="http://nationwidebarcrawl.com' + this['beer1image'] + '" /><p><a href="#" onClick="voteButtonClicked(' + this['pollpk' ] + ', ' + this['beer1pk'] + ')">VOTE</a></p><p>Votes: ' + this['beer1counter'] + '</p></div><div class="poll_vote_right"><img src="http://nationwidebarcrawl.com' + this['beer2image'] + '" /><p><a href="#" onClick="voteButtonClicked(' + this['pollpk' ] + ', ' + this['beer2pk'] + ')">VOTE</a></p><p>Votes: ' + this['beer2counter'] + '</p></div><div class="mobile_hr"></div>');
+                         });
+                  });
+        }
+        </script>
+</head>
+<body>
+        <div data-role="header">
+                <a href="#" onClick="backButtonClicked()">Back</a>
+                <h1>WEEKLY POLL</h1>
+                <a href="./index.html" data-icon="home" data-ajax="false" class="ui-btn-right">Home</a>
+        </div>
+        <div data-role="content">
+        	<div class="header_logo">
+       	       <img src="./images/mobile/mobile_header.png" />
+        	</div>
+        	<div id="specials_list"></div>
+        </div>
+    <script>
+	function destClicked(chosendest) {
+		window.localStorage.setItem("chosendest", chosendest); 
+		return true;
+	}
+	function backButtonClicked() {
+		navigator.app.backHistory();
+	}
+	function voteButtonClicked(chosenpollpk, chosenbeerpk) {
+		alert("vote clicked");
+		$.post("http://nationwidebarcrawl.com/mobilenative/weekly-polls/", {}, function(response) {
+			alert(response);
+		}, "json");
+		//$.ajax({
+		//	url: "http://nationwidebarcrawl.com/mobilenative/weekly-polls/",
+		//	type: "post",
+		//	success: function(response) {
+		//		alert(response);
+		//	}
+		//});
+		alert("vote done");
+	}
+	</script>
+</body>
+</html>

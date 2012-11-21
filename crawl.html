@@ -1,17 +1,12 @@
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.css" />
-	<link rel="stylesheet"  href="./css/mobilejquerysite.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="./css/nwbcmobilesite.css"/>
 	<style>
 		#mobile_crawl_stops_table td {width:100px;text-align:center;}
 		.crawl_info_header {color:#FFFFFF;}
 	</style>
-    
 	<script src="./js/jquery-1.7.1.min.js"></script>
-    <script src="./js/jquery.mobile-1.2.0-rc.2.min.js"></script>
 	<script>
 	// Check Login Status
 	//
@@ -95,18 +90,10 @@
 	</script>
 </head>
 <body>
-    <div data-role="header">
-        <a href="#" onClick="backButtonClicked()">Back</a>
-        <h1>CRAWL DETAILS</h1>
-        <a href="./index.html" data-icon="home" data-ajax="false" class="ui-btn-right">Home</a>
-    </div>
-    <div data-role="content">
-        <div class="header_logo">
-            <img src="./images/mobile/mobile_header.png" />
-        </div>
-        <ul data-role="listview" data-theme="g" id="state_list_ul">
-        </ul>
-    </div>
+<div id="mobile_header">
+	<img src="./images/mobile/mobile_header.png" />
+</div>
+<div id="mobile_header_title">CRAWL DETAILS</div>
 <div>
         <ul id="mobile_crawls_ul"></ul>
 </div>
@@ -118,23 +105,20 @@
 </div>
 <div class="hr_white"></div>
 <div id="crawl_members">
-    <p>Attending:</p>
-    <ul id="crawl_members_ul_y" class="drinking_buddies_thumb"></ul>
-    <div class="hr_white"></div>
-    <p>Undecided:</p>
-    <ul id="crawl_members_ul_u" class="drinking_buddies_thumb"></ul>
-    <div class="hr_white"></div>
-    <p>Not Attending:</p>
-    <ul id="crawl_members_ul_n" class="drinking_buddies_thumb"></ul>
+<p>Attending:</p>
+<ul id="crawl_members_ul_y" class="drinking_buddies_thumb"></ul>
+<div class="hr_white"></div>
+<p>Undecided:</p>
+<ul id="crawl_members_ul_u" class="drinking_buddies_thumb"></ul>
+<div class="hr_white"></div>
+<p>Not Attending:</p>
+<ul id="crawl_members_ul_n" class="drinking_buddies_thumb"></ul>
 </div>
 <div id="crawl_edit"></div>
 <script>
 function addStopClicked(chosendest) {
 	window.localStorage.setItem("chosendest", chosendest); 
 	return true;
-}
-function backButtonClicked() {
-	history.go(-1);
 }
 </script>
 </body>

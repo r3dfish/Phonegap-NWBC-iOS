@@ -75,9 +75,10 @@ function queryDB(tx) {
 function querySuccess(tx, results) {
     var bar = results.rows.item(0);
 	$('#bar_info').append('<p id="bar_detail_name">' + bar.name + '</p>');
+	//$('#bar_info').append('<p id="bar_detail_description">' + bar.description + '</p>');
 	$('#bar_info').append('<p id="bar_detail_address">' + bar.address + '</p>');
 	$('#bar_info').append('<p id="bar_detail_phone"><a href="tel:' + bar.phone + '">' + bar.phone + '</a></p>');
-	$('#bar_info').append('<p id="bar_detail_website">' + bar.website + '</p>');
+	$('#bar_info').append('<p id="bar_detail_website"><a href="' + bar.website + '">' + bar.website + '</a></p>');
 }
 
 // Query the beers list success callback

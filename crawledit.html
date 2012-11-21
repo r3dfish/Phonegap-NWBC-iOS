@@ -1,8 +1,6 @@
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
 		#mobile_crawl_stops_table td {width:100px;text-align:center;}
 		.crawl_info_header {color:#FFFFFF;}
@@ -36,7 +34,6 @@
 
 			// select is public or invite only
 			if (crawl['isPublic']) {
-				alert('value is public');
 				$('#id_isPublic').val("p").trigger("create");
 			}
 		});
@@ -63,7 +60,7 @@
 	</div>
 <script>
 function backButtonClicked() {
-	history.go(-1);
+	navigator.app.backHistory();
 }
 </script>
 </body>

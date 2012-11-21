@@ -1,8 +1,3 @@
-body {
-    text-align: center;
-	color: #DC0000;
-}
-
 a {
 	color: #FFFFFF;
 	text-decoration: none;
@@ -17,14 +12,6 @@ a {
 	clear: both;
 }
 
-.hr_white {
-	width: 100%;
-	height: 2px;
-	background-color: #FFFFFF;
-	margin: 0 0 10px;
-	float: left;
-}
-
 .header_logo {
 	text-align: center;
 	margin-bottom: 15px;
@@ -34,8 +21,6 @@ a {
 	margin: 0;
 	padding: 0;
 	list-style: none outside none;
-    width: 100%;
-    float: left;
 }
 
 .drinking_buddies_thumb li {
@@ -177,9 +162,9 @@ input {
 
 #mobile_profile_beers_ul {
 	list-style: none outside none;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
 }
 
 #mobile_profile_beers_ul li {
@@ -190,7 +175,7 @@ input {
 	margin: 0;
 	padding: 0;
 	list-style: none outside none;
-    display: inline-block;
+	display: inline-block;
 }
 
 #mobile_profile_drinks_ul li {
@@ -199,108 +184,27 @@ input {
 }
 
 #profile_content {
-    text-align: center;
+	text-align: center;
 }
 
-#mobile_galleries_ul {
-	list-style: none outside none;
-	margin: 0;
-	padding: 0;
+.specials_bar_name {
+    color: #DC0000;
+    font-weight: bold;
 }
 
-#mobile_galleries_ul li {
-	background: url(../images/mobile/polaroid.png) no-repeat scroll 0 0 transparent;
-	width: 73px;
-	height: 100px;
-	padding: 5px 15px 0 12px;
+.poll_name {
+	color: #DC0000;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
 }
 
-#mobile_galleries_ul li img {
-	float: left;
-	border: 0 none;
-}
-
-#mobile_galleries_ul li p {
+.poll_vote_left {
 	float: left;
 	text-align: left;
-	font-size: 8px;
-	margin: 0;
-    color: #DC0000;
 }
 
-#mobile_single_gallery_ul {
-	margin: 0;
-	padding: 0;
-	list-style: none outside none;
-}
-
-#mobile_single_gallery_ul li {
-	float: left;
-	width: 100px;
-	height: 100px;
-	margin: 3px;
-}
-
-.mobile_left {
-	float: left;
-}
-
-.mobile_right {
+.poll_vote_right {
 	float: right;
-}
-
-.drink_thumb {
-	margin: 0;
-	padding: 0;
-	list-style: none outside none;
-}
-
-.drink_thumb li {
-	text-align: center;
-	margin: 0 5px;
-}
-
-#single_crawl_stops_ul {
-	list-style: none outside none;
-	margin: 0;
-	padding: 0;
-}
-
-#crawl_title {
-	color: #FFFFFF;
-	font-size: 24px;
-	margin: 0;
-}
-
-#crawl_date {
-	margin: 0 0 10px;
-}
-
-.crawls_list_name a {
-	font-size: 24px;
-	color: #FFFFFF;
-}
-
-.crawls_list_date a {
-	font-size: 18px;
-	color: #DC0000;
-}
-
-#mobile_crawls_ul {
-	list-style: none outside none;
-	margin: 0;
-	padding: 0;
-}
-
-#mobile_crawls_ul li {
-	margin: 0 auto 10px;
-	border-bottom: 2px solid #FFFFFF;
-}
-
-#mobile_crawls_ul li a {
-	text-decoration: none;
-}
-
-#mobile_crawls_ul li p {
-	margin: 0;
+	text-align: right;
 }

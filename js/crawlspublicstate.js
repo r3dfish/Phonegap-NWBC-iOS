@@ -91,7 +91,7 @@ function querySuccess(tx, results) {
     var len = results.rows.length;
     for (var i=0; i<len; i++){
         var bar = results.rows.item(i);
-        $('#state_list_ul').append('<li><a href="./crawlspublicdest.html" data-transition="slide" rel="external" onClick="destClicked(\'' + bar.destination_slug + '\')">' + bar.destination + ' - ' + bar.city + '</a></li>');
+        $('#state_list_ul').append('<li><a href="./index.html" data-transition="slide" rel="external" onClick="destClicked(\'' + bar.destination + '\', \'' + bar.destination_slug + '\')">' + bar.destination + ' - ' + bar.city + '</a></li>');
     }
     $('#state_list_ul').append().trigger('create');
 	$('#state_list_ul').listview('refresh');

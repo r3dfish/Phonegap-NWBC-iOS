@@ -1,9 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.css" />
 	<link rel="stylesheet"  href="./css/mobilejquerysite.css" />
 	<script src="./js/jquery-1.7.1.min.js"></script>
@@ -138,7 +136,7 @@
 	</div>
 	<script>
 	function backButtonClicked() {
-		history.go(-1);
+		navigator.app.backHistory();
 	}
 	</script>
 <script>
@@ -170,7 +168,8 @@ $('#crawl_form').submit(function(event) {
             //parse the response string into an object
             var crawl_info = $.parseJSON(response);
             localStorage.setItem("chosencrawl", crawl_info['crawlpk']);
-            window.location.href="crawl.html";
+            // TODO: call index.html and call crawlClicked() to show the new crawl
+            window.location.href="index.html";
 		});
 });
 

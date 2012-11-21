@@ -1,42 +1,918 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">	
 	<link rel="stylesheet" type="text/css" href="./css/nwbcmobilesite.css"/>
-	<script src="./js/jquery-1.7.1.min.js"></script>
-	<script src="./js/cordova-2.1.0.js"></script>
+	<script type="text/javascript" src="./js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="./js/cordova-2.1.0.js"></script>
+	<script type="text/javascript" src="./js/iscroll.js"></script>
+	<script type="text/javascript" src="./js/appInit.js"></script>
+	<script type="text/javascript" src="./js/profile3.js"></script>
+	<script type="text/javascript" src="./js/photosphoto2.js"></script>
+	<script type="text/javascript">
+		var myScroll;
+		function loaded() {
+			myScroll = new iScroll('wrapper');
+		}
+		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+	</script>
 </head>
 <body>
-<div id="mobile_header">
-        <img src="./images/mobile/mobile_header.png" />
+<div id="header_logo"><img src="./images/mobile/header_logo.png" /></div>
+<div id="wrapper">
+	<div id="scroller">
+		<div class="hidden transparentbg" id="grid_screen">
+			<ul class="mobile_index_ul">
+    		    <li class="mobile_index_menu"><a href="#" onClick="showCrawls()"><img src="./images/mobile/grid/crawls.png" /></a></li>
+ 			    <li class="mobile_index_menu"><a href="#" onClick="profileClicked()"><img src="./images/mobile/grid/profile.png" /></a></li>
+				<li class="mobile_index_menu"><a href="#" onClick="showPhotosPage()"><img src="./images/mobile/grid/photos.png" /></a></li>
+		    	<li class="mobile_index_menu"><a href="./barstates.html"><img src="./images/mobile/grid/bars.png" /></a></li>
+			</ul>
+			<ul class="mobile_index_ul">
+    		    <li class="mobile_index_menu"><a href="./beersmain.html"><img src="./images/mobile/grid/beers.png" /></a></li>
+		     	<li class="mobile_index_menu"><a href="./drinksmain.html"><img src="./images/mobile/grid/mixed_drinks.png" /></a></li>
+	  		    <li class="mobile_index_menu"><a href="./beerrandom.html"><img src="./images/mobile/grid/random_beer.png" /></a></li>
+ 		    	<li class="mobile_index_menu"><a href="./drinkrandom.html"><img src="./images/mobile/grid/random_drink.png" /></a></li>
+			</ul>
+			<ul class="mobile_index_ul">
+    		    <li class="mobile_index_menu"><a href="#" onClick="showSlotMachine()"><img src="./images/mobile/grid/slot_machine.png" /></a></li>
+		     	<li class="mobile_index_menu"><a href="#" onClick="showWeeklyPoll()"><img src="./images/mobile/grid/weekly_poll.png" /></a></li>
+    		    <li class="mobile_index_menu"><a href="#" onClick="showSpecials()"><img src="./images/mobile/grid/specials.png" /></a></li>
+    		    <li class="mobile_index_menu"><a href="#" onClick="showDrinkingBuddies()"><img src="./images/mobile/grid/drinking_buddies.png" /></a></li>
+			</ul>
+			<div id="logout_holder"></div>
+		</div>
+		<div class="hidden transparentbg" id="slot_machine">
+			<div id="slot_title"></div>
+			<div id="slot_bg_holder">
+				<div class="slot_results_holder" id="slot_beer_holder">
+					<img id="slot_beer_image" src="" />
+					<p class="slot_name" id="slot_beer_name"></p>
+				</div>
+				<div class="slot_results_holder" id="slot_drink_holder">
+					<img id="slot_drink_image" src="" />
+					<p class="slot_name" id="slot_drink_name"></p>
+				</div>
+				<div class="slot_results_holder" id="slot_bar_holder">
+					<p id="slot_bar_name"></p>
+				</div>
+			</div>
+			<div id="slot_spin_holder"><img src="./images/mobile/slot_machine_spin.png" /></div>
+		</div>
+		<div class="hidden transparentbg" id="specials">
+			<div id="specials_title"></div>
+			<ul class="native_ul">
+                    <li><a href="#" onClick="showSpecialsList('Friday')">Friday</a><span class="native_ul_arrow"></span></li>
+                    <li><a href="#" onClick="showSpecialsList('Saturday')">Saturday</a><span class="native_ul_arrow"></span></li>
+                    <li><a href="#" onClick="showSpecialsList('Sunday')">Sunday</a><span class="native_ul_arrow"></span></li>
+                    <li><a href="#" onClick="showSpecialsList('Monday')">Monday</a><span class="native_ul_arrow"></span></li>
+                    <li><a href="#" onClick="showSpecialsList('Tuesday')">Tuesday</a><span class="native_ul_arrow"></span></li>
+                    <li><a href="#" onClick="showSpecialsList('Wednesday')">Wednesday</a><span class="native_ul_arrow"></span></li>
+                    <li><a href="#" onClick="showSpecialsList('Thursday')">Thursday</a><span class="native_ul_arrow"></span></li>
+        	</ul>
+		</div>
+		<div class="hidden transparentbg" id="specials_list_page">
+			<div id="specials_list"></div>
+		</div>
+		<div class="hidden transparentbg" id="drinks_page">
+			<a href="./beersmain.html"><img src="./images/mobile/drinks_beers.png" /></a>
+			<a href="./drinkstype.html" onClick="drinktypeClicked('Mixed Drink')"><img src="./images/mobile/drinks_drinks.png" /></a>
+			<a href="./drinkstype.html" onClick="drinktypeClicked('Bomber')"><img src="./images/mobile/drinks_bombers.png" /></a>
+			<a href="./drinkstype.html" onClick="drinktypeClicked('Shot')"><img src="./images/mobile/drinks_shots.png" /></a>
+			<a href="./beerrandom.html"><img src="./images/mobile/drinks_random_beer.png" /></a>
+			<a href="./drinkrandom.html"><img src="./images/mobile/drinks_random_drink.png" /></a>
+		</div>
+		<div class="hidden transparentbg" id="profile_page">
+			<div class="profile_width">
+				<p id="profile_name"></p>
+				<p id="profile_edit"><a href="./profilechangefavorites.html" rel="external"><img src="./images/mobile/profile_edit.png" /></a></p>
+			</div>
+			<div class="profile_width">
+				<div id="profile_image_holder"><img src="" id="profile_image" /></div>
+				<p id="profile_score_main"></p>
+			</div>
+			<div id="profile_info_holder">
+				<div id="profile_info"></div>
+			</div>
+			<img src="./images/mobile/profile_photos.png" />
+			<a href="#" onClick="showProfileScore()"><img src="./images/mobile/profile_score.png" /></a>
+			<div class="hidden" id="profile_score">
+				<p>Beer Score: <span id="beer_score"></span></p>
+				<p>Drink Score: <span id="drink_score"></span></p>
+				<p>Total Score: <span id="total_score"></span></p>
+			</div>
+			<a href="#" onClick="showProfileBeers()"><img src="./images/mobile/profile_beers.png" /></a>
+			<div class="hidden" id="profile_beers">
+				<p>Top 5 Beers:</p>
+				<ul id="mobile_profile_beers_ul"></ul>
+			</div>
+			<a href="#" onClick="showProfileDrinks()"><img src="./images/mobile/profile_drinks.png" /></a>
+			<div class="hidden" id="profile_drinks">
+				<p>Top 3 Drinks:</p>
+				<div id="add_favorite_drink_button"></div>
+				<ul id="mobile_profile_drinks_ul"></ul>
+			</div>
+			<div class="mobile_hr"></div>
+		</div>
+		<div class="hidden transparentbg" id="drinking_buddies_page">
+			<ul id="drinking_buddies_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="crawls_page">
+			<a href="./crawlcreate.html"><img src="./images/mobile/crawl_create.png" /></a>
+			<a href="#" onClick="showPublicCrawls()"><img id="crawls_public_button" src="./images/mobile/crawls_public.png" /></a>
+			<img id="crawls_upcoming" src="./images/mobile/crawls_upcoming.png" />
+			<ul id="crawls_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="crawls_public_page">
+			<p>Public Crawls for: <span id="crawls_public_dest"></span></p>
+			<img id="crawls_upcoming" src="./images/mobile/crawls_upcoming.png" />
+			<ul id="crawls_public_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="crawls_single_crawl_page">
+			<div id="crawl_top_row">
+				<div id="crawl_info">
+					<p id="crawl_info_creator_title">Creator:</p>
+					<div id="crawl_creator_photo"></div>
+					<p id="crawl_info_creator"></p>
+				</div>
+				<div id="crawl_top_right">
+					<p id="crawls_single_crawl_name"></p>
+					<p id="crawls_single_crawl_date"></p>
+					<p id="crawls_single_crawl_dest"></p>
+					<p id="crawl_info_public"></p>
+				</div>
+			</div>
+			<div id="crawls_single_stops"></div>
+			<div class="mobile_hr"></div>
+			<div id="crawls_single_crawl_add_stop"></div>
+			<div id="crawls_single_crawl_attending"></div>
+			<div id="crawl_members">
+				<p>Attending:</p>
+				<ul id="crawl_members_ul_y" class="drinking_buddies_thumb"></ul>
+				<div class="mobile_hr"></div>
+				<p>Undecided:</p>
+				<ul id="crawl_members_ul_u" class="drinking_buddies_thumb"></ul>
+				<div class="mobile_hr"></div>
+				<p>Not Attending:</p>
+				<ul id="crawl_members_ul_n" class="drinking_buddies_thumb"></ul>
+			</div>
+			<div id="crawl_edit"></div>
+		</div>
+		<div class="hidden transparentbg" id="crawl_change_status_page">
+			<p>Change Crawl Status</p>
+			<p id="crawl_change_status_title"></p>
+			<p id="crawl_change_status_rsvpstatus"></p>
+			<div class="mobile_hr"></div>
+			<p>Change Status to:</p>
+			<p><a href="#" onClick="crawlChangeStatus('y')">Attending</a></p>
+			<p><a href="#" onClick="crawlChangeStatus('u')">Undecided</a></p>
+			<p><a href="#" onClick="crawlChangeStatus('n')">Not Attending</a></p>
+		</div>
+		<div class="hidden transparentbg" id="photos_page">
+			<p><a href="#" onClick="showTakePhotoPage()"><img src="./images/mobile/AddAPicture.png" /></a></p>
+			<ul id="mobile_galleries_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="photos_gallery_page">
+			<div id="mobile_gallery_title"></div>
+			<div>
+    			<ul id="mobile_single_gallery_ul"></ul>
+			</div>
+		</div>
+		<div class="hidden transparentbg" id="photos_single_photo_page">
+			<div id="photos_photo_holder"></div>
+			<div id="photo_tagged_bar"></div>
+			<div id="photo_drinks_holder"></div>
+			<ul id="photo_drinks_tags_ul" class="drink_thumb"></ul>
+			<div id="photo_beers_holder"></div>
+			<ul id="photo_beers_tags_ul" class="drink_thumb"></ul>
+		</div>
+        <div class="hidden transparentbg" id="photos_take_photo_page">
+            <p><a href="#" onClick="photosNewCameraPhoto()"><img src="./images/mobile/camera-btn.png" /></a></p>
+            <p><a href="#" onClick="photosNewGalleryPhoto()"><img src="./images/mobile/gallery-btn.png" /></a></p>
+        </div>
+		<div class="hidden transparentbg" id="weekly_poll_page">
+		</div>
+		<div id="home_buttons_holder">
+			<img id="grid_button" class="mobile_right" src="./images/mobile/grid.png" />
+			<a href="#" onClick="showSlotMachine()"><img id="slot_button" class="mobile_left" src="./images/mobile/slot_machine.png" /></a>
+			<a href="#" onClick="upArrowClicked()"><img id="up_arrow" src="./images/mobile/uparrow.png" /></a>
+		</div>
+	</div>
 </div>
-<div id="mobile_header_title">HOME</div>
-<div id="mobile_home_left">
-<ul class="mobile_index_ul">
-        <li class="mobile_index_menu"><a href="./crawls.html"><img src="./images/mobile/crawl.png" /></a></li>
-        <li class="mobile_index_menu"><a href="./beersmain.html"><img src="./images/mobile/beers.png" /></a></li>
-        <li class="mobile_index_menu"><a href="./beerrandom.html"><img src="./images/mobile/randombeer.png" /></a></li>
-        <li class="mobile_index_menu"><a href="./profile.html"><img src="./images/mobile/profile.png" /></a></li>
-</ul>
+<div id="home_footer">
+	<div class="footer_button">
+		<a href="#" onClick="profileClicked()"><img src="./images/mobile/footer_button_profile.png" /></a>
+	</div>
+	<div class="footer_button">
+		<a href="#" onClick="showCrawls()"><img src="./images/mobile/footer_button_crawls.png" /></a>
+	</div>
+	<div class="footer_button">
+		<a href="#" onClick="showSpecials()"><img src="./images/mobile/footer_button_specials.png" /></a>
+	</div>
+	<div class="footer_button">
+		<a href="#" onClick="showDrinksPage()"><img src="./images/mobile/footer_button_drinks.png" /></a>
+	</div>
 </div>
-<div id="mobile_home_right">
-<ul class="mobile_index_ul">
-        <li class="mobile_index_menu"><a href="./photos.html"><img src="./images/mobile/picture.png" /></a></li>
-        <li class="mobile_index_menu"><a href="./drinksmain.html"><img src="./images/mobile/mixedDrink.png" /></a></li>
-        <li class="mobile_index_menu"><a href="./drinkrandom.html"><img src="./images/mobile/random.png" /></a></li>
-        <li class="mobile_index_menu"><a href="./barstates.html"><img src="./images/mobile/bars.png" /></a></li>
-</ul>
-</div>
-<div id="logout_holder"></div>
 <script>
+	// if logged in, add the logout button
 	var auth_info = localStorage.getItem("isAuthenticated");
 	if (auth_info == "1") {
 		$('#logout_holder').append('<p><a href="#" onClick="logoutbutton()"><img src="./images/mobile/logout.png" /></p>');
 	}
-	function logoutbutton(){
-		$.get("http://nationwidebarcrawl.com/m/logout/");
-		localStorage.setItem("isAuthenticated", "0");
-		localStorage.setItem("profiledbCreated", "0");
-		window.location.href="./index.html";
+	
+	// logout button click handler
+	function logoutbutton() {
+		$.get("http://nationwidebarcrawl.com/m/logout/", function() {
+			localStorage.setItem("isAuthenticated", "0");
+			window.location.href="./index.html";
+		});
+	}
+	
+	// UP ARROW
+	
+	// hide all visible pages and hide the up arrow
+	function upArrowClicked() {
+		$('.hidden').slideUp('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+		});
+		$('#up_arrow').hide();
+	}
+	
+	// THE GRID
+	
+	// display/hide the grid
+	$('#grid_button').click(function() {
+		if ($('#grid_screen').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			$('#grid_screen').slideDown('slow', function() {
+				setTimeout(function() {
+					myScroll.refresh();
+				}, 0);
+				$('#up_arrow').show();
+			});
+		}
+	});
+	
+	// SLOT MACHINE
+	
+	// display/hide the slot machine
+	function showSlotMachine() {
+		if ($('#slot_machine').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			$('#slot_machine').slideDown('slow', function() {
+				setTimeout(function() {
+					myScroll.refresh();
+				}, 0);
+			});
+			$('#up_arrow').show();
+		}
+	}
+	
+	// spin the slot machine
+	$('#slot_spin_holder').click(function() {
+		var destslug = localStorage.getItem("slotdestslug");
+		if (destslug == null) {
+			//alert('Please pick a destination before you spin');
+			navigator.notification.alert('Please pick a destination before you spin', null, '', 'Select Destination');
+			window.location.href="slotstates.html";
+		} else {
+			$.get("http://nationwidebarcrawl.com/mobilenative/spin/" + destslug + "/", function(response) {
+				var parsed_data = $.parseJSON(response);
+				// fill in random beer image and name
+				fillInSlotBeer(parsed_data[0].beerpk);
+				$('#slot_beer_name').html(parsed_data[0].beer);
+				// fill in random drink image and name
+				fillInSlotDrink(parsed_data[0].drinkpk);
+				$('#slot_drink_name').html(parsed_data[0].drink);
+				// fill in bar name
+				$('#slot_bar_name').html(parsed_data[0].bar);
+				// if bar is already linked, remove link
+				if($('#barlink').length) {
+					$('#slot_bar_name').unwrap();
+				}
+				// add bar link
+				$('#slot_bar_name').wrap('<a id="barlink" href="./bar.html" onClick="barClicked(' + parsed_data[0].barpk + ')"></a>');
+			});
+		}
+	});
+	
+	// CRAWLS
+	
+	// display/hide the crawls page
+	function showCrawls() {
+		var auth_info = localStorage.getItem("isAuthenticated");
+		if (auth_info == "0") {
+			navigator.notification.alert('Please login to see the Crawls page', null, '', 'Login');
+			window.location.href="login.html";
+		} else {
+			if ($('#crawls_page').is(':visible')) {
+				upArrowClicked();
+			} else {
+				$('.hidden:visible').slideUp('slow');
+				// clear the crawls ul
+				$('#crawls_ul').html('');
+				// fill in the crawls ul
+				$.get("http://nationwidebarcrawl.com/mobilenative/crawls/", function(response) {
+					var parsed_data = $.parseJSON(response);
+					$.each(parsed_data, function() {
+						$('#crawls_ul').append('<li><a href="#" onClick="crawlClicked(\'' + this['pk'] + '\')"><p class="crawls_list_name">' + this['title'] + '</p><p class="crawls_list_dest">' + this['destination'] + '</p><div class="crawls_list_bottom"><p class="crawls_list_status ' + this['attending'] + '">' + this['attending'] + '</p><p class="crawls_list_date">' + this['date'] + '</p></div></a></li>');
+					});
+					$('#crawls_page').slideDown('slow', function() {
+						setTimeout(function() {
+							myScroll.refresh();
+						}, 0);
+					});
+					$('#up_arrow').show();
+				});
+			}
+		}
+	}
+	
+	// crawl clicked, get info and show crawls_single_crawl_page
+	function crawlClicked(chosencrawl) {
+		window.localStorage.setItem("chosencrawl", chosencrawl);
+		var auth_info = localStorage.getItem("isAuthenticated");
+		if (auth_info == "0") {
+			navigator.notification.alert('Please login to see the Crawl page', null, '', 'Login');
+			window.location.href="login.html";
+		} else {
+			if ($('#crawls_single_crawl_page').is(':visible')) {
+				upArrowClicked();
+			} else {
+				$('.hidden:visible').slideUp('slow');
+				$('#crawl_info_creator').html('');
+				$('#crawl_info_public').html('');
+				$('#crawl_creator_photo').html('');
+				$('#crawls_single_crawl_name').html('');
+				$('#crawls_single_crawl_date').html('');
+				$('#crawls_single_crawl_dest').html('');
+				$('#crawls_single_crawl_add_stop').html('');
+				$('#crawls_single_crawl_attending').html('');
+				$('#crawl_members_ul_y').html('');
+				$('#crawl_members_ul_u').html('');
+				$('#crawl_members_ul_n').html('');
+				$('#crawl_edit').html('');
+				$.get("http://nationwidebarcrawl.com/mobilenative/crawls/" + chosencrawl + "/", function(response) {
+					var parsed_data = $.parseJSON(response);
+					crawl = parsed_data['crawl'];
+					$('#crawl_info_creator').append(crawl['creator']);
+					// if crawl is public or invite only
+					if (crawl['isPublic']) {
+						$('#crawl_info_public').append('PUBLIC CRAWL');
+					} else {
+						$('#crawl_info_public').append('INVITE ONLY');
+					}
+					
+					// get avatar for crawl creator
+					$('#crawl_creator_photo').append('<img src="http://nationwidebarcrawl.com/mobilenative/profile/avatar/' + crawl['creator'] + '/" />');
+
+					// set info for upper right on crawl page
+					$('#crawls_single_crawl_name').append(crawl['title']);
+					$('#crawls_single_crawl_date').append(crawl['date']);
+					$('#crawls_single_crawl_dest').append(crawl['destination']);
+
+					// clear bar stops from last loaded crawl
+					$('#crawls_single_stops').html('<table id="mobile_crawl_stops_table"><tr><td class="crawl_info_header">BAR</td><td class="crawl_info_header">TIME</td><td class="crawl_info_header">DURATION</td></tr></table>');
+				
+					// add bar stops
+					$.each(parsed_data['bars'], function() {
+						var timestamp = this['timestamp'];
+						timestamp = timestamp.substring(timestamp.indexOf(" "));
+						timestamp = timestamp.substring(1, timestamp.lastIndexOf(":"));
+						hours = timestamp.substring(0, timestamp.indexOf(":"));
+						if (hours == 00) {
+							hours = 12;
+							timestamp = hours + timestamp.substring(timestamp.indexOf(":")) + " AM";
+						}
+						if (hours < 12) {
+							// remove leading 0 from 1 digit hours
+							if (hours.charAt(0) == 0) {
+								hours = hours.charAt(1);
+							}
+							timestamp = hours + timestamp.substring(timestamp.indexOf(":")) + " AM";
+						}
+						if (hours > 12) {
+							hours = hours - 12;
+							timestamp = hours + timestamp.substring(timestamp.indexOf(":")) + " PM";
+						}
+						$('#mobile_crawl_stops_table').append('<tr><td>' + this['bar'] + '</td><td>' + timestamp + '</td><td>' + this['duration'] + 'min.</td></tr>');
+					});
+				
+					// if isCreator, add 'Add Another Stop' button
+					if (crawl['isCreator']) {
+						$('#crawls_single_crawl_add_stop').append('<p><a href="./crawladdstop.html" rel="external" onClick="addStopClicked(\'' + crawl['destination'] + '\')"><img src="./images/mobile/AddAnotherStop.png" /></a></p><div class="mobile_hr"></div>');
+					}
+					
+					// if RSVP object, append status and change status button
+					if (crawl['hasRSVP']) {
+						$('#crawls_single_crawl_attending').append('<p>RSVP Status: <a href="#" onClick="showCrawlChangeStatusPage(\'' + crawl['title'] + '\', \'' + crawl['hasRSVPStatus'] + '\', \'' + chosencrawl + '\')">' + crawl['hasRSVPStatus'] + '</a></p><div class="mobile_hr"></div>');
+					}
+					
+					// if no RSVP object and crawl isPublic, add join crawl button
+					if (!crawl['hasRSVP'] && crawl['isPublic']) {
+						$('#crawls_single_crawl_attending').append('<p><a href="#" onClick="crawlJoin(\'' + chosencrawl + '\')">JOIN CRAWL</a></p><div class="mobile_hr"></div>');
+					}
+								
+					// add attending members
+					$.each(parsed_data['members'], function() {
+						if(this['status'] == "y") {
+							$('#crawl_members_ul_y').append('<li><img src="http://nationwidebarcrawl.com/mobilenative/profile/avatar/' + this['member'] + '/" /></li>');
+						}
+						if(this['status'] == "u") {
+							$('#crawl_members_ul_u').append('<li><img src="http://nationwidebarcrawl.com/mobilenative/profile/avatar/' + this['member'] + '/" /></li>');
+						}
+						if(this['status'] == "n") {
+							$('#crawl_members_ul_n').append('<li><img src="http://nationwidebarcrawl.com/mobilenative/profile/avatar/' + this['member'] + '/" /></li>');
+						}
+					});
+			
+					// TODO: add in edit settings button, first must finish edit settings pages
+					// if isCreator, add 'Edit Crawl Settings' button
+					//if (crawl['isCreator']) {
+					//	$('#crawl_edit').append('<div class="hr_white"></div><p><a href="./crawledit.html" rel="external"><img src="./images/mobile/EditCrawlSettings.png" /></a></p>');
+					//}
+					
+					// show the single crawl page
+					$('#crawls_single_crawl_page').slideDown('slow', function() {
+						setTimeout(function() {
+							myScroll.refresh();
+						}, 0);
+					});
+					$('#up_arrow').show();
+				});
+			}
+		}
+	}
+	
+	// display/hide public crawls page
+	function showPublicCrawls() {
+		var auth_info = localStorage.getItem("isAuthenticated");
+		if (auth_info == "0") {
+			navigator.notification.alert('Please login to see the Crawls page', null, '', 'Login');
+			window.location.href="login.html";
+		} else {
+			if ($('#crawls_public_page').is(':visible')) {
+				upArrowClicked();
+			} else {
+				var chosendestslug = window.localStorage.getItem("chosendestslug");
+				$('.hidden:visible').slideUp('slow');
+				// clear the crawls ul
+				$('#crawls_public_ul').html('');
+				// fill in the crawls ul
+				$.get("http://nationwidebarcrawl.com/mobilenative/crawls/public/" + chosendestslug + "/", function(response) {
+					var parsed_data = $.parseJSON(response);
+					$.each(parsed_data, function() {
+						$('#crawls_public_ul').append('<li><a href="#" onClick="crawlClicked(\'' + this['pk'] + '\')"><p class="crawls_list_name">' + this['title'] + '</p><p class="crawls_list_dest">' + this['destination'] + '</p><div class="crawls_list_bottom"><p class="crawls_list_status ' + this['attending'] + '">' + this['attending'] + '</p><p class="crawls_list_date">' + this['date'] + '</p></div></a></li>');
+					});
+					$('#crawls_public_dest').html('');
+					$('#crawls_public_dest').append('<a href="crawlspublicstates.html">' + localStorage.getItem("chosendest") + '</a>');
+					$('#crawls_public_page').slideDown('slow', function() {
+						setTimeout(function() {
+							myScroll.refresh();
+						}, 0);
+					});
+					$('#up_arrow').show();
+				});
+			}
+		}
+	}
+	
+	// join a crawl, creates the RSVP object for a public crawl
+	function crawlJoin(chosencrawl) {
+		var auth_info = localStorage.getItem("isAuthenticated");
+		if (auth_info == "0") {
+			navigator.notification.alert('Please login to see the Crawl page', null, '', 'Login');
+			window.location.href="login.html";
+		} else {
+			// hide visible windows
+			upArrowClicked();
+			// create the RSVP object
+			$.get("http://nationwidebarcrawl.com/mobilenative/crawls/" + chosencrawl + "/join/", function(response) {
+				showCrawls();
+			});
+		}
+	}
+	
+	// display/hide the crawl change status page
+	function showCrawlChangeStatusPage(title, rsvpstatus, chosencrawl) {
+		window.localStorage.setItem("chosencrawl", chosencrawl);
+		var auth_info = localStorage.getItem("isAuthenticated");
+		if (auth_info == "0") {
+			navigator.notification.alert('Please login to see the Crawls page', null, '', 'Login');
+			window.location.href="login.html";
+		} else {
+			if ($('#crawl_change_status_page').is(':visible')) {
+				upArrowClicked();
+			} else {
+				$('.hidden:visible').slideUp('slow');
+				// clear current crawl status options
+				// clear current crawl status and fill in new info
+				$('#crawl_change_status_title').html('Crawl: ' + title);
+				$('#crawl_change_status_rsvpstatus').html('Current Status: ' + rsvpstatus);
+				// show crawl change status page
+				$('#crawl_change_status_page').slideDown('slow', function() {
+					setTimeout(function() {
+						myScroll.refresh();
+					}, 0);
+				});
+				$('#up_arrow').show();
+			}
+		}
+	}
+	
+	// crawl status change clicked, modify RSVP object and show the crawl page
+	function crawlChangeStatus(newstatus) {
+		var chosencrawl = window.localStorage.getItem("chosencrawl");
+		var auth_info = localStorage.getItem("isAuthenticated");
+		if (auth_info == "0") {
+			navigator.notification.alert('Please login to see the Crawls page', null, '', 'Login');
+			window.location.href="login.html";
+		} else {
+			$.post("http://nationwidebarcrawl.com/mobilenative/crawls/" + chosencrawl + "/changestatus/", { newstatus: newstatus }, function(response) {
+				crawlClicked(chosencrawl);
+			});
+		}
+	}
+	
+	// SPECIALS
+	
+	// display/hide specials
+	function showSpecials() {
+		if ($('#specials').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			$('#specials').slideDown('slow', function() {
+				setTimeout(function() {
+					myScroll.refresh();
+				}, 0);
+			});
+			$('#up_arrow').show();
+		}
+	}
+	
+	// set the day for the specials
+	function dayClicked(chosenday) {
+		window.localStorage.setItem("specialsday", chosenday);
+		return true;
+	}
+	
+	// display/hide the specials list page
+	function showSpecialsList(specialsday) {
+		if ($('#specials_list_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			// clear the specials list
+			$('#specials_list').html('');
+			// fill in the specials
+			var selecteddest = window.localStorage.getItem("specialsdestslug");
+            if (selecteddest == null) {
+				navigator.notification.alert('Please pick a destination for Drink Specials', null, '', 'Select Destination');
+				window.location.href="specialsstates.html";
+			}
+            $.get("http://nationwidebarcrawl.com/mobilenative/specials/" + selecteddest + "/" + specialsday + "/", function(response) {
+				var parsed_data = $.parseJSON(response);
+				$.each(parsed_data, function() {
+					$('#specials_list').append('<p class="specials_bar_name">' + this['bar'] + '</p><p>' + this['special'] + '</p><div class="mobile_hr"></div>');
+				});
+				$('#specials_list_page').slideDown('slow', function() {
+					setTimeout(function() {
+						myScroll.refresh();
+					}, 500);
+				});
+				$('#up_arrow').show();
+			});
+		}
+	}
+	
+	// DRINKS BUTTON ON FOOTER
+	
+	// display/hide drinks page
+	function showDrinksPage() {
+		if ($('#drinks_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			$('#drinks_page').slideDown('slow', function() {
+				setTimeout(function() {
+					myScroll.refresh();
+				}, 0);
+			});
+			$('#up_arrow').show();
+		}
+	}
+	
+	// PHOTOS
+	
+	// display/hide the photos page
+	function showPhotosPage() {
+		var auth_info = localStorage.getItem("isAuthenticated");
+		if (auth_info == "0") {
+			navigator.notification.alert('Please login to see the Photos page', null, '', 'Login');
+			window.location.href="login.html";
+		} else {
+			if ($('#photos_page').is(':visible')) {
+				upArrowClicked();
+			} else {
+				$('.hidden:visible').slideUp('slow');
+				// clear the galleries
+				$('#mobile_galleries_ul').html('');
+				// fill in the galleries ul
+				$.get("http://nationwidebarcrawl.com/mobilenative/photos/", function(response) {
+					var parsed_data = $.parseJSON(response);
+					$.each(parsed_data, function() {
+						var chosengallery = this['gallerypk'];
+						$('#mobile_galleries_ul').append('<li class="mobile_left"><a href="#" rel="external" onClick="galleryClicked(\'' + chosengallery + '\')"><img src="http://nationwidebarcrawl.com' + this['73x71'] + '" /></a><p>' + this['name'] + '</p></li>');
+					});
+					$('#photos_page').slideDown('slow', function() {
+						setTimeout(function() {
+							myScroll.refresh();
+						}, 0);
+					});
+					$('#up_arrow').show();
+				});
+			}
+		}
+	}
+	
+	// display/hide the photos gallery page
+	function galleryClicked(chosengallery) {
+		var auth_info = localStorage.getItem("isAuthenticated");
+		if (auth_info == "0") {
+			navigator.notification.alert('Please login to see the Crawls page', null, '', 'Login');
+			window.location.href="login.html";
+		} else {
+			if ($('#photos_gallery_page').is(':visible')) {
+				upArrowClicked();
+			} else {
+				$('.hidden:visible').slideUp('slow');
+				// clear the gallery and gallery title
+				$('#mobile_single_gallery_ul').html('');
+				$('#mobile_gallery_title').html('');
+				// fill in the galleries ul
+				$.get("http://nationwidebarcrawl.com/mobilenative/photos/gallery/" + chosengallery + '/', function(response) {
+					var parsed_data = $.parseJSON(response);
+					$('#mobile_gallery_title').append('<p>' + parsed_data['name'] + '</p>');
+					$.each(parsed_data['photos'], function() {
+						$('#mobile_single_gallery_ul').append('<li class="mobile_left"><a href="#" onClick="photoClicked(\'' + this['pk'] + '\')"><img src="http://nationwidebarcrawl.com' + this['mobilethumb'] + '" /></a></li>');
+					});
+					$('#photos_gallery_page').slideDown('slow', function() {
+						setTimeout(function() {
+							myScroll.refresh();
+						}, 0);
+					});
+					$('#up_arrow').show();
+				});
+			}
+		}
+	}
+	
+	// display/hide the photos single photo page
+	function photoClicked(chosenphoto) {
+		var auth_info = localStorage.getItem("isAuthenticated");
+		if (auth_info == "0") {
+			navigator.notification.alert('Please login to see the Photo page', null, '', 'Login');
+			window.location.href="login.html";
+		} else {
+			if ($('#photos_single_photo_page').is(':visible')) {
+				upArrowClicked();
+			} else {
+				$('.hidden:visible').slideUp('slow');
+				// clear the photo page
+				$('#photos_photo_holder').html('');
+				$('#photo_tagged_bar').html('');
+				$('#photo_drinks_holder').html('');
+				$('#photo_drinks_tags_ul').html('');
+				$('#photo_beers_holder').html('');
+				$('#photo_beers_tags_ul').html('');
+				
+				// set the chosen photo to pass off to database function
+				localStorage.setItem("chosenphoto", chosenphoto)
+				
+				// open the DB and fill in everything
+				var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+				db.transaction(querySinglePhotoDB, errorCB, function(){});
+				$('#photos_single_photo_page').slideDown('slow', function() {
+					setTimeout(function() {
+						myScroll.refresh();
+					}, 1000);
+				});
+				$('#up_arrow').show();
+			}				
+		}
+	}
+	
+	// remove a bar tag from a photo
+	function removeBarTag(chosenphoto) {
+		// GET to remove bar tag from chosen photo
+		$.get("http://nationwidebarcrawl.com/mobilenative/photos/removebartag/" + chosenphoto + "/", function(response) {
+			// reload the photo page
+       		photoClicked(chosenphoto);
+		});
+	}
+    
+    // display/hide the photos take photo page
+	function showTakePhotoPage() {
+		var auth_info = localStorage.getItem("isAuthenticated");
+		if (auth_info == "0") {
+			navigator.notification.alert('Please login to take a picture', null, '', 'Login');
+			window.location.href="login.html";
+		} else {
+			if ($('#photos_take_photo_page').is(':visible')) {
+				upArrowClicked();
+			} else {
+				$('.hidden:visible').slideUp('slow');
+                $('#photos_take_photo_page').slideDown('slow', function() {
+                    setTimeout(function() {
+                        myScroll.refresh();
+                    }, 0);
+                });
+                $('#up_arrow').show();
+			}
+		}
+	}
+    
+    // function to pop the camera for a new photo
+    function photosNewCameraPhoto() {
+        navigator.camera.getPicture(captureSuccess, captureError, {sourceType: Camera.PictureSourceType.CAMERA, destinationType: Camera.DestinationType.FILE_URI});
+    }
+    
+    // function to pop the gallery for a new photo
+    function photosNewGalleryPhoto() {
+        navigator.camera.getPicture(captureSuccess, captureError, {sourceType: Camera.PictureSourceType.PHOTOLIBRARY, destinationType: Camera.DestinationType.FILE_URI});
+    }
+    
+    // picture successfully captured, get link to file on filesystem
+    function captureSuccess(mediaFiles) {
+        window.resolveLocalFileSystemURI(mediaFiles, gotFilePath, null);
+    }
+    
+    // got filesystem link for photo, upload to web server
+    function gotFilePath(fileEntry) {
+        var options = new FileUploadOptions();
+        options.fileKey="image";
+        options.chunkedMode=false;
+        var ft = new FileTransfer();
+        ft.upload(fileEntry.fullPath, 'http://nationwidebarcrawl.com/mobilenative/photos/upload/', uploadSuccess, uploadFail, options);
+    }
+    
+    // picture uploaded successfully
+    function uploadSuccess() {
+        alert('Picture uploaded!');
+        showPhotosPage();
+    }
+    
+    // upload error
+    function uploadFail(error) {
+        alert('Sorry, there was an error uploading your photo, please try again.');
+        upArrowClicked();
+    }
+    
+    // error capturing the photo
+    function captureError(error) {
+        alert('Sorry, there was an error capturing your photo, please try again.');
+    }
+	
+	// WEEKLY POLL
+	
+	// display/hide the weekly poll page
+	function showWeeklyPoll(chosengallery) {
+		if ($('#weekly_poll_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			// clear the poll page
+			$('#weekly_poll_page').html('');
+			// fill in the polls
+			$.get("http://nationwidebarcrawl.com/mobilenative/weekly-polls/", function(response) {
+            	var parsed_data = $.parseJSON(response);
+                $.each(parsed_data, function() {
+                	$('#weekly_poll_page').append('<p class="weekly_poll_name">' + this['name'] + '</p><div class="weekly_poll_holder"><div class="weekly_poll_left"><img src="http://nationwidebarcrawl.com' + this['beer1image'] + '" /><p><a href="#" onClick="voteButtonClicked(' + this['pollpk' ] + ', ' + this['beer1pk'] + ')"><img src="./images/mobile/vote.png" /></a></p><p>Votes: ' + this['beer1counter'] + '</p></div><div class="weekly_poll_right"><img src="http://nationwidebarcrawl.com' + this['beer2image'] + '" /><p><a href="#" onClick="voteButtonClicked(' + this['pollpk' ] + ', ' + this['beer2pk'] + ')"><img src="./images/mobile/vote.png" /></a></p><p>Votes: ' + this['beer2counter'] + '</p></div><p class="weekly_poll_vs">VS.</p></div><div class="mobile_hr"></div>');
+                });
+				$('#weekly_poll_page').slideDown('slow', function() {
+					setTimeout(function() {
+						myScroll.refresh();
+					}, 0);
+				});
+				$('#up_arrow').show();
+            });
+		}
+	}
+	
+	// vote function for a beer on the weekly poll page
+	function voteButtonClicked(chosenpollpk, chosenbeerpk) {
+		$.post("http://nationwidebarcrawl.com/mobilenative/weekly-polls/", { pollpk: chosenpollpk, beerpk: chosenbeerpk }, function(response) {
+               var parsed_data = $.parseJSON(response);
+               // if error, display message
+               if (parsed_data[0].message != undefined) {
+                    alert(parsed_data[0].message);
+               } else {
+                    // clear the poll
+                    $('#weekly_poll_page').html('');
+                    // reload the poll page with updated vote numbers
+                    $.each(parsed_data, function() {
+                      $('#weekly_poll_page').append('<p class="weekly_poll_name">' + this['name'] + '</p><div class="weekly_poll_holder"><div class="weekly_poll_left"><img src="http://nationwidebarcrawl.com' + this['beer1image'] + '" /><p><a href="#" onClick="voteButtonClicked(' + this['pollpk' ] + ', ' + this['beer1pk'] + ')"><img src="./images/mobile/vote.png" /></a></p><p>Votes: ' + this['beer1counter'] + '</p></div><div class="weekly_poll_right"><img src="http://nationwidebarcrawl.com' + this['beer2image'] + '" /><p><a href="#" onClick="voteButtonClicked(' + this['pollpk' ] + ', ' + this['beer2pk'] + ')"><img src="./images/mobile/vote.png" /></a></p><p>Votes: ' + this['beer2counter'] + '</p></div><p class="weekly_poll_vs">VS.</p></div><div class="mobile_hr"></div>');
+                      });
+               }
+		});
+	}
+	
+	// DRINKING BUDDIES
+	
+	// display/hide the drinking buddies page
+	function showDrinkingBuddies() {
+		if ($('#drinking_buddies_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			// clear the drinking buddies page
+			$('#drinking_buddies_ul').html('');
+			// fill in the buddies list
+			$.get("http://nationwidebarcrawl.com/mobilenative/buddies/", function(response) {
+            	var parsed_data = $.parseJSON(response);
+                $.each(parsed_data, function() {
+                	$('#drinking_buddies_ul').append('<li><a href="#" onClick="profileBuddyClicked(' + this['friendpk'] + ')"><img src="http://nationwidebarcrawl.com/mobilenative/profile/avatar/' + this['friend'] + '/" /><p>' + this['friend'] + '</p></a></li>');
+                });
+				$('#drinking_buddies_page').slideDown('slow', function() {
+					setTimeout(function() {
+						myScroll.refresh();
+					}, 1000);
+				});
+				$('#up_arrow').show();
+            });
+		}
+	}
+	
+	// PROFILE
+		
+	// display/hide the beers section on the profile page
+	function showProfileBeers() {
+		$('#profile_beers').slideToggle('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+		});
+	}
+	
+	// display/hide the drinks section on the profile page
+	function showProfileDrinks() {
+		$('#profile_drinks').slideToggle('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+		});
+	}
+	
+	// display/hide the score section on the profile page
+	function showProfileScore() {
+		$('#profile_score').slideToggle('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+		});
+	}
+	
+	// ACCESSOR METHODS FOR LEAVING INDEX.HTML
+	
+	// beer clicked, set the chosen beer for beer.html to receive
+	function beerClicked(chosenbeer) {
+		window.localStorage.setItem("chosenbeer", chosenbeer);
+		return true;
+	}
+	
+	// drink clicked, set the chosen drink for drink.html to receive
+	function drinkClicked(chosendrink) {
+		window.localStorage.setItem("chosendrink", chosendrink); 
+		return true;
+	}
+	
+	// bar clicked, set chosen bar for bar.html to receive
+	function barClicked(chosenbar) {
+		window.localStorage.setItem("chosenbar", chosenbar); 
+		return true;
+	}
+	
+	// dest clicked, set chosen dest for bardest.html to receive
+	function destClicked(chosendest) {
+		window.localStorage.setItem("chosendest", chosendest);
+		return true;
+	}
+	
+	// function for clicking a drink type on the drinks page
+	function drinktypeClicked(chosentype) {
+		window.localStorage.setItem("chosendrinktype", chosentype); 
+		return true;
 	}
 </script>
 </body>

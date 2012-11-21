@@ -1,12 +1,9 @@
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.css" />
-	<link rel="stylesheet"  href="./css/mobilejquerysite.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="./css/nwbcmobilesite.css"/>
 	<script src="./js/jquery-1.7.1.min.js"></script>
-	<script src="./js/jquery.mobile-1.2.0-rc.2.min.js"></script>
+	<script src="./js/jquery.mobile-1.1.1.min.js"></script>
 	<script>
 	// variable to hold if the user is logged in or not
 var isAuthenticated = localStorage.getItem("isAuthenticated");
@@ -33,28 +30,19 @@ $(document).ready(function() {
 	</script>
 </head>
 <body>
-    <div data-role="header">
-		<a href="#" onClick="backButtonClicked()">Back</a>
-		<h1>GALLERIES</h1>
-		<a href="./index.html" data-icon="home" data-ajax="false" class="ui-btn-right">Home</a>
-	</div>
-	<div data-role="content" id="profile_content">
-        <div class="header_logo">
-            <img src="./images/mobile/mobile_header.png" />
-        </div>
-    </div>
-    <div>
-        <p><a href="./photosuploadrandom.html" rel="external"><img src="./images/mobile/AddAPicture.png" /></a></p>
-        <ul id="mobile_galleries_ul"></ul>
-    </div>
-<script>
-function galleryClicked(chosengallery) {
-	window.localStorage.setItem("chosengallery", chosengallery); 
-	return true;
-}
-function backButtonClicked() {
-    history.go(-1);
-}
-</script>
+<div id="mobile_header">
+	<img src="./images/mobile/mobile_header.png" />
+</div>
+<div id="mobile_header_title">GALLERIES</div>
+<div>
+	<p><a href="./photosuploadrandom.html" rel="external"><img src="./images/mobile/AddAPicture.png" /></a></p>
+	<ul id="mobile_galleries_ul"></ul>
+</div>
+	<script>
+	function galleryClicked(chosengallery) {
+		window.localStorage.setItem("chosengallery", chosengallery); 
+		return true;
+	}
+	</script>
 </body>
 </html>

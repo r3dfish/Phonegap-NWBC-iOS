@@ -1,0 +1,76 @@
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./js/jquery-1.7.1.min.js"></script>
+	<script src="./js/jquery.mobile-1.1.1.min.js"></script>
+</head>
+<body>
+	// THIS IS ALL TESTING SHIT REMOVED FROM LOGIN.HTML
+	<div id="test_button">
+	<input type="button" value="Get Crawls" id="crawl_button" />
+</div>
+<div id="crawl_info">
+	<p>Crawl Info goes Here</p>
+</div>
+<div id="storage_test">
+	<input type="button" value="Test STorage" id="storage_button" />
+	<p>Storate Test:</p>
+</div>
+<div id="bars_db_info">
+	<p id="barsDbs_var">barsDbs:</p>
+	<input type="button" value="get barsDbs" id="bars_dbs_get" />
+	<input type="button" value="resent barsDbs" id="bars_dbs_reset" />
+</div>
+<div id="beers_clear_database">
+	<input type="button" value="Clear Beers DB" id="beer_clear_db" />
+	<input type="button" value="Clear Drinks DB" id="drinks_clear_db" />
+</div>
+<div>
+	<input type="button" value="Clear Profile DB" id="profile_clear_db" />
+</div>
+<div>
+	<input type="button" value="Clear Crawls DB" id="crawls_clear_db" />
+</div>
+</div>
+
+
+<script>
+$('#crawl_button').click(function() {
+	$.get("http://nationwidebarcrawl.com/mobilenative/crawls/", function(response) {
+		$('#crawl_info').html(response);
+	});
+});
+</script>
+<script>
+$('#storage_button').click(function() {
+	localStorage.setItem("TestVar", "stored value");
+	var storedval = localStorage.getItem("TestVar");
+	$('#storage_test').append(storedval);
+	});
+</script>
+<script>
+$('#bars_dbs_reset').click(function() {
+	localStorage.setItem("barsDbs", "");
+	});
+$('#bars_dbs_get').click(function() {
+	var barsDbs_value = localStorage.getItem("barsDbs");
+	$('#barsDbs_var').append(barsDbs_value);
+	});
+</script>
+<script>
+$('#beer_clear_db').click(function() {
+	localStorage.setItem("dbCreated", "0");
+	});
+$('#drinks_clear_db').click(function() {
+	localStorage.setItem("drinksdbCreated", "0");
+});
+$('#profile_clear_db').click(function() {
+	localStorage.setItem("profiledbCreated", "0");
+});
+$('#crawls_clear_db').click(function() {
+	localStorage.setItem("crawlsdbCreated", "0");
+});
+</script>
+</body>
+</html>

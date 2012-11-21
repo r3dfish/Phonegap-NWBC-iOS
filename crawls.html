@@ -1,12 +1,8 @@
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.css" />
-	<link rel="stylesheet"  href="./css/mobilejquerysite.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="./css/nwbcmobilesite.css"/>
 	<script src="./js/jquery-1.7.1.min.js"></script>
-    <script src="./js/jquery.mobile-1.2.0-rc.2.min.js"></script>
 	<script>
 	// Check Login Status
 	//
@@ -33,35 +29,26 @@
 	</script>
 </head>
 <body>
-	<div data-role="header">
-		<a href="#" onClick="backButtonClicked()">Back</a>
-		<h1>CRAWLS</h1>
-		<a href="./index.html" data-icon="home" data-ajax="false" class="ui-btn-right">Home</a>
-	</div>
-	<div data-role="content">
-		<div class="header_logo">
-			<img src="./images/mobile/mobile_header.png" />
-		</div>
-    </div>
-    <div>
-        <a href="./crawlspublicstates.html" rel="external"><img src="./images/mobile/ViewPublicCrawls.png" /></a>
-    </div>
-    <div class="hr_white"></div>
-    <div>
-        <a href="./crawlcreate.html" rel="external"><img src="./images/mobile/CreateACrawl.png" /></a>
-    </div>
-    <div class="hr_white"></div>
-    <div>
+<div id="mobile_header">
+	<img src="./images/mobile/mobile_header.png" />
+</div>
+<div id="mobile_header_title">CRAWLS</div>
+<div>
+	<a href="./crawlspublicstates.html" rel="external">View Public Crawls</a>
+</div>
+<div class="hr_white"></div>
+<div>
+	<a href="./crawlcreate.html" rel="external"><img src="./images/mobile/CreateACrawl.png" /></a>
+</div>
+<div class="hr_white"></div>
+<div>
         <ul id="mobile_crawls_ul"></ul>
-    </div>
-    <div id="crawl_info"></div>
+</div>
+<div id="crawl_info"></div>
 <script>
 function crawlClicked(chosencrawl) {
 	localStorage.setItem("chosencrawl", chosencrawl); 
 	return true;
-}
-function backButtonClicked() {
-    history.go(-1);
 }
 </script>
 </body>
