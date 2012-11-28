@@ -18,6 +18,7 @@ function profileClicked() {
 	if ($('#profile_page').is(':visible')) {
 		upArrowClicked();
 	} else {
+		showSpinner();
 		// get the profile data from the server, append to the template, pass the favoritebeer and favoritedrink pks along for filesystem access
 		$.get("http://nationwidebarcrawl.com/mobilenative/profile/", function(response) {
 			// clear the profile divs for when profile is loaded more than once
@@ -36,18 +37,24 @@ function profileClicked() {
 			$('#profile_score_main').append('Member Score: <br />' + parsed_data['memberscore']);
 			// set link to display favorite beer or pick favorite beer if not already set
 			if (parsed_data['favbeerpk'] != null) {
-				var favbeerlink = '<a href="./beer.html" onClick="beerClicked(\'' + parsed_data['favbeerpk'] + '\')">';
+				var favbeerlink = '<a href="#" onClick="singleBeerClicked(\'' + parsed_data['favbeerpk'] + '\')">';
 			} else {
 				var favbeerlink = '<a href="./profilechangebeer.html">';
 			}
 			// set link to display favorite drink or pick favorite drink if not already set
 			if (parsed_data['favdrinkpk'] != null) {
-				var favdrinklink = '<a href="./drink.html" onClick="drinkClicked(\'' + parsed_data['favdrinkpk'] + '\')">';
+				var favdrinklink = '<a href="#" onClick="singleDrinkClicked(\'' + parsed_data['favdrinkpk'] + '\')">';
 			} else {
 				var favdrinklink = '<a href="./profilechangedrink.html">';
 			}
-			$('#profile_info').append('<p>Destination: <a href="./bardest.html" onClick="destClicked(\'' + parsed_data['favdest'] + '\')">' + parsed_data['favdest'] + '</a></p><p>Favorite Beer: ' + favbeerlink + parsed_data['favbeer'] + '</a></p><p>Favorite Drink: ' + favdrinklink + parsed_data['favdrink'] + '</a></p><p>Favorite Bar: <a href="./bar.html" onClick="barClicked(\'' + parsed_data['favbarpk'] + '\')">' + parsed_data['favbar'] + '</a></p>');
-			$('#profile_image_holder').append('<img id="profile_user_avatar" src="http://nationwidebarcrawl.com' + parsed_data['image'] + '" />');
+			// set link to display favorite bar or pick favorite bar if not already set
+			if (parsed_data['favbarpk'] != null) {
+				var favbarlink = '<a href="#" onClick="singleBarClicked(\'' + parsed_data['favbarpk'] + '\')">';
+			} else {
+				var favbarlink = '<a href="./profilechangebarstate.html">';
+			}
+			$('#profile_info').append('<p>Destination: <a href="#" onClick="showBarDestList(\'' + parsed_data['favdest'] + '\')">' + parsed_data['favdest'] + '</a></p><p>Favorite Beer: ' + favbeerlink + parsed_data['favbeer'] + '</a></p><p>Favorite Drink: ' + favdrinklink + parsed_data['favdrink'] + '</a></p><p>Favorite Bar: ' + favbarlink + parsed_data['favbar'] + '</a></p>');
+			$('#profile_image_holder').append('<a href="#" onClick="profileChangeImageClicked()"><img id="profile_user_avatar" src="http://nationwidebarcrawl.com' + parsed_data['image'] + '" /></a>');
 			$('#beer_score').append(parsed_data['beerscore']);
 			$('#drink_score').append(parsed_data['drinkscore']);
 			$('#total_score').append(parsed_data['memberscore']);
@@ -56,6 +63,7 @@ function profileClicked() {
 			$('#profile_page').slideDown('slow', function() {
 				setTimeout(function() {
 					myScroll.refresh();
+					hideSpinner();
 				}, 500);
 			});
 			$('#up_arrow').show();
@@ -75,6 +83,7 @@ function profileBuddyClicked(clickedbuddypk) {
 	if ($('#profile_page').is(':visible')) {
 		upArrowClicked();
 	} else {
+		showSpinner();
 		// get the profile data from the server, append to the template, pass the favoritebeer and favoritedrink pks along for filesystem access
 		$.post("http://nationwidebarcrawl.com/mobilenative/profilebuddy/", { buddypk: clickedbuddypk }, function(response) {
 			// clear the profile divs for when profile is loaded more than once
@@ -91,7 +100,7 @@ function profileBuddyClicked(clickedbuddypk) {
 			var parsed_data = $.parseJSON(response);
 			$('#profile_name').append(parsed_data['username']);
 			$('#profile_score_main').append('Member Score: <br />' + parsed_data['memberscore']);
-			$('#profile_info').append('<p>Destination: <a href="./bardest.html" onClick="destClicked(\'' + parsed_data['favdest'] + '\')">' + parsed_data['favdest'] + '</a></p><p>Favorite Beer: <a href="./beer.html" onClick="beerClicked(\'' + parsed_data['favbeerpk'] + '\')">' + parsed_data['favbeer'] + '</a></p><p>Favorite Drink: <a href="./drink.html" onClick="drinkClicked(\'' + parsed_data['favdrinkpk'] + '\')">' + parsed_data['favdrink'] + '</a></p><p>Favorite Bar: <a href="./bar.html" onClick="barClicked(\'' + parsed_data['favbarpk'] + '\')">' + parsed_data['favbar'] + '</a></p>');
+			$('#profile_info').append('<p>Destination: <a href="#" onClick="showBarDestList(\'' + parsed_data['favdest'] + '\')">' + parsed_data['favdest'] + '</a></p><p>Favorite Beer: <a href="#" onClick="singleBeerClicked(\'' + parsed_data['favbeerpk'] + '\')">' + parsed_data['favbeer'] + '</a></p><p>Favorite Drink: <a href="./drink.html" onClick="drinkClicked(\'' + parsed_data['favdrinkpk'] + '\')">' + parsed_data['favdrink'] + '</a></p><p>Favorite Bar: <a href="#" onClick="singleBarClicked(\'' + parsed_data['favbarpk'] + '\')">' + parsed_data['favbar'] + '</a></p>');
 			$('#profile_image_holder').append('<img id="profile_user_avatar" src="http://nationwidebarcrawl.com' + parsed_data['image'] + '" />');
 			$('#beer_score').append(parsed_data['beerscore']);
 			$('#drink_score').append(parsed_data['drinkscore']);
@@ -101,6 +110,7 @@ function profileBuddyClicked(clickedbuddypk) {
 			$('#profile_page').slideDown('slow', function() {
 				setTimeout(function() {
 					myScroll.refresh();
+					hideSpinner();
 				}, 500);
 			});
 			$('#up_arrow').show();

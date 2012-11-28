@@ -180,7 +180,7 @@ $('#login_form').submit(function(event) {
             }
             // form did not validate
             if (auth_info['status'] == 7) {
-            	alert('Sorry Buddy, you\'re missing a field.  Are you sure you\'re using a valid registration code?');
+            	alert('Sorry Buddy, you\'re missing a required field.  Are you sure you\'re using a valid registration code?');
             }
             // did not accept TOS
             if (auth_info['status'] == 8) {

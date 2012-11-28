@@ -22,21 +22,27 @@
 	</script>
 </head>
 <body>
-<div id="header_logo"><img src="./images/mobile/header_logo.png" /></div>
+
+<!-- HEADER -->
+
+<div id="header_logo"><img id="header_logo_loading" src="./images/mobile/header_logo_solid.png" /><img src="./images/mobile/header_logo_text.png" /></div>
 <div id="wrapper">
 	<div id="scroller">
+	
+		<!-- GRID SCREEN -->
+		
 		<div class="hidden transparentbg" id="grid_screen">
 			<ul class="mobile_index_ul">
     		    <li class="mobile_index_menu"><a href="#" onClick="showCrawls()"><img src="./images/mobile/grid/crawls.png" /></a></li>
  			    <li class="mobile_index_menu"><a href="#" onClick="profileClicked()"><img src="./images/mobile/grid/profile.png" /></a></li>
 				<li class="mobile_index_menu"><a href="#" onClick="showPhotosPage()"><img src="./images/mobile/grid/photos.png" /></a></li>
-		    	<li class="mobile_index_menu"><a href="./barstates.html"><img src="./images/mobile/grid/bars.png" /></a></li>
+		    	<li class="mobile_index_menu"><a href="#" onClick="showBarStates()"><img src="./images/mobile/grid/bars.png" /></a></li>
 			</ul>
 			<ul class="mobile_index_ul">
-    		    <li class="mobile_index_menu"><a href="./beersmain.html"><img src="./images/mobile/grid/beers.png" /></a></li>
-		     	<li class="mobile_index_menu"><a href="./drinksmain.html"><img src="./images/mobile/grid/mixed_drinks.png" /></a></li>
-	  		    <li class="mobile_index_menu"><a href="./beerrandom.html"><img src="./images/mobile/grid/random_beer.png" /></a></li>
- 		    	<li class="mobile_index_menu"><a href="./drinkrandom.html"><img src="./images/mobile/grid/random_drink.png" /></a></li>
+    		    <li class="mobile_index_menu"><a href="#" onClick="beersMainClicked()"><img src="./images/mobile/grid/beers.png" /></a></li>
+		     	<li class="mobile_index_menu"><a href="#" onClick="drinksMainClicked()"><img src="./images/mobile/grid/mixed_drinks.png" /></a></li>
+	  		    <li class="mobile_index_menu"><a href="#" onClick="randomBeerClicked()"><img src="./images/mobile/grid/random_beer.png" /></a></li>
+ 		    	<li class="mobile_index_menu"><a href="#" onClick="randomDrinkClicked()"><img src="./images/mobile/grid/random_drink.png" /></a></li>
 			</ul>
 			<ul class="mobile_index_ul">
     		    <li class="mobile_index_menu"><a href="#" onClick="showSlotMachine()"><img src="./images/mobile/grid/slot_machine.png" /></a></li>
@@ -46,6 +52,9 @@
 			</ul>
 			<div id="logout_holder"></div>
 		</div>
+		
+		<!-- SLOT MACHINE -->
+		
 		<div class="hidden transparentbg" id="slot_machine">
 			<div id="slot_title"></div>
 			<div id="slot_bg_holder">
@@ -63,6 +72,17 @@
 			</div>
 			<div id="slot_spin_holder"><img src="./images/mobile/slot_machine_spin.png" /></div>
 		</div>
+		<div class="hidden transparentbg" id="slot_states_page">
+			<p>PICK A STATE</p>
+			<ul class="native_ul" id="slot_states_list_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="slot_state_page">
+			<p>PICK A DESTINATION</p>
+			<ul class="native_ul" id="slot_state_list_ul"></ul>
+		</div>
+		
+		<!-- SPECIALS -->
+		
 		<div class="hidden transparentbg" id="specials">
 			<div id="specials_title"></div>
 			<ul class="native_ul">
@@ -76,20 +96,26 @@
         	</ul>
 		</div>
 		<div class="hidden transparentbg" id="specials_list_page">
+			<p id="specials_dest"></p>
+			<p id="specials_day"></p>
+			<div class="mobile_hr"></div>
 			<div id="specials_list"></div>
 		</div>
-		<div class="hidden transparentbg" id="drinks_page">
-			<a href="./beersmain.html"><img src="./images/mobile/drinks_beers.png" /></a>
-			<a href="./drinkstype.html" onClick="drinktypeClicked('Mixed Drink')"><img src="./images/mobile/drinks_drinks.png" /></a>
-			<a href="./drinkstype.html" onClick="drinktypeClicked('Bomber')"><img src="./images/mobile/drinks_bombers.png" /></a>
-			<a href="./drinkstype.html" onClick="drinktypeClicked('Shot')"><img src="./images/mobile/drinks_shots.png" /></a>
-			<a href="./beerrandom.html"><img src="./images/mobile/drinks_random_beer.png" /></a>
-			<a href="./drinkrandom.html"><img src="./images/mobile/drinks_random_drink.png" /></a>
+		<div class="hidden transparentbg" id="specials_states_page">
+			<p>PICK A STATE</p>
+			<ul class="native_ul" id="specials_states_list_ul"></ul>
 		</div>
+		<div class="hidden transparentbg" id="specials_state_page">
+			<p>PICK A DESTINATION</p>
+			<ul class="native_ul" id="specials_state_list_ul"></ul>
+		</div>
+		
+		<!-- PROFILE -->
+		
 		<div class="hidden transparentbg" id="profile_page">
 			<div class="profile_width">
 				<p id="profile_name"></p>
-				<p id="profile_edit"><a href="./profilechangefavorites.html" rel="external"><img src="./images/mobile/profile_edit.png" /></a></p>
+				<p id="profile_edit"><a href="#" onClick="showProfileEditPage()"><img src="./images/mobile/profile_edit.png" /></a></p>
 			</div>
 			<div class="profile_width">
 				<div id="profile_image_holder"><img src="" id="profile_image" /></div>
@@ -98,7 +124,11 @@
 			<div id="profile_info_holder">
 				<div id="profile_info"></div>
 			</div>
-			<img src="./images/mobile/profile_photos.png" />
+			<a href="#" onClick="showProfileGalleries()"><img src="./images/mobile/profile_photos.png" /></a>
+			<div class="hidden" id="profile_galleries">
+				<p><a href="#" onClick="showTakePhotoPage()"><img src="./images/mobile/AddAPicture.png" /></a></p>
+				<ul id="profile_galleries_ul"></ul>
+			</div>
 			<a href="#" onClick="showProfileScore()"><img src="./images/mobile/profile_score.png" /></a>
 			<div class="hidden" id="profile_score">
 				<p>Beer Score: <span id="beer_score"></span></p>
@@ -118,11 +148,26 @@
 			</div>
 			<div class="mobile_hr"></div>
 		</div>
+		<div class="hidden transparentbg" id="profile_edit_page">
+			<div id="profile_edit_info"></div>
+			<p><a href="#" onClick="profileChangeImageClicked()"><img src="./images/mobile/ChangeImage.png" /></a></p>
+		</div>
+		<div class="hidden transparentbg" id="profile_change_image_page">
+			<p>New Profile Image</p>
+			<p><a href="#" onClick="profileNewCameraPhoto()"><img src="./images/mobile/camera-btn.png" /></a></p>
+			<p><a href="#" onClick="profileNewGalleryPhoto()"><img src="./images/mobile/gallery-btn.png" /></a></p>
+		</div>
+		
+		<!-- DRINKING BUDDIES -->
+		
 		<div class="hidden transparentbg" id="drinking_buddies_page">
 			<ul id="drinking_buddies_ul"></ul>
 		</div>
+		
+		<!-- CRAWLS -->
+		
 		<div class="hidden transparentbg" id="crawls_page">
-			<a href="./crawlcreate.html"><img src="./images/mobile/crawl_create.png" /></a>
+			<a href="#" onClick="showCreateCrawlStatesPage()"><img src="./images/mobile/crawl_create.png" /></a>
 			<a href="#" onClick="showPublicCrawls()"><img id="crawls_public_button" src="./images/mobile/crawls_public.png" /></a>
 			<img id="crawls_upcoming" src="./images/mobile/crawls_upcoming.png" />
 			<ul id="crawls_ul"></ul>
@@ -172,6 +217,148 @@
 			<p><a href="#" onClick="crawlChangeStatus('u')">Undecided</a></p>
 			<p><a href="#" onClick="crawlChangeStatus('n')">Not Attending</a></p>
 		</div>
+		<div class="hidden transparentbg" id="crawl_add_stop_page">
+			<p>ADD A BAR STOP</p>
+			<ul class="native_ul" id="crawl_add_stop_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="crawls_create_crawl_states_page">
+			<p>NEW CRAWL: PICK A STATE</p>
+			<ul class="native_ul" id="crawls_create_crawl_states_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="crawls_create_crawl_state_page">
+			<p>NEW CRAWL: PICK A DESTINATION</p>
+			<ul class="native_ul" id="crawls_create_crawl_state_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="crawls_create_crawl_dest_page">
+			<p>FIRST STOP: PICK A BAR</p>
+			<ul class="native_ul" id="crawls_create_crawl_dest_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="crawls_create_crawl_final_page">
+			<p id="crawl_destination">Destination: </p>
+			<p id="crawl_first_stop">First Stop: </p>
+			<form action="" method="POST" data-ajax="false" id="crawl_form" data-ajax="false">
+				<label for="name">Title: </label>
+				<input type="text" name="title" id="id_title" value="" />
+				<label for="select-choice-0" class="select">Crawl Type:</label>
+				<select name="type" id="id_type">
+					<option value="b">Birthday</option>
+					<option value="t">Team Building Exercise</option>
+					<option value="o">Other</option>
+				</select>
+				<fieldset data-role="controlgroup" data-type="horizontal">
+				<legend>Date:</legend>
+			
+				<label for="select-choice-month">Month</label>
+				<select name="select-choice-month" id="select-choice-month">
+					<option value="01">January</option>
+					<option value="02">February</option>
+					<option value="03">March</option>
+					<option value="04">April</option>
+					<option value="05">May</option>
+					<option value="06">June</option>
+					<option value="07">July</option>
+					<option value="08">August</option>
+					<option value="09">September</option>
+					<option value="10">October</option>
+					<option value="11">November</option>
+					<option value="12">December</option>
+				</select>			
+
+				<label for="select-choice-day">Day</label>
+				<select name="select-choice-day" id="select-choice-day">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">13</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+					<option value="24">24</option>
+					<option value="25">25</option>
+					<option value="26">26</option>
+					<option value="27">27</option>
+					<option value="28">28</option>
+					<option value="29">29</option>
+					<option value="30">30</option>
+					<option value="31">31</option>
+				</select>		
+
+				<label for="select-choice-year">Year</label>
+				<select name="select-choice-year" id="select-choice-year">
+					<option value="2012">2012</option>
+					<option value="2013">2013</option>
+				</select>
+				</fieldset>
+				<fieldset data-role="controlgroup" data-type="horizontal">
+				<legend>Start Time:</legend>
+				
+				<label for="select-choice-month">Hour</label>
+				<select name="select-choice-hour" id="select-choice-hour">
+					<option value="01">1</option>
+					<option value="02">2</option>
+					<option value="03">3</option>
+					<option value="04">4</option>	
+					<option value="05">5</option>
+					<option value="06">6</option>
+					<option value="07">7</option>
+					<option value="08">8</option>
+					<option value="09">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+				</select>
+
+				<label for="select-choice-day">Minutes</label>
+				<select name="select-choice-minute" id="select-choice-minute">
+					<option value="00">00</option>
+					<option value="15">15</option>
+					<option value="30">30</option>
+					<option value="45">45</option>
+				</select>	
+
+				<label for="select-choice-ampm">AM/PM</label>
+				<select name="select-choice-ampm" id="select-choice-ampm">
+					<option value="pm">PM</option>
+					<option value="am">AM</option>
+				</select>
+			</fieldset>
+			<label for="flip-1">Make Crawl Public or Invite Only:</label>
+			<select name="isPublic" id="id_isPublic" data-role="slider">
+				<option value="i">Invite Only</option>
+				<option value="p">Public</option>
+			</select>
+			<input value="Create Crawl" type="submit">
+			<p style="display:none;"><input id="id_date" type="text" name="date" /></p>
+			<p style="display:none;"><input id="id_barpk" type="text" name="barpk" /></p>
+			</form>
+		</div>
+		<div class="hidden transparentbg" id="crawls_public_states_page">
+			<p>PICK A STATE</p>
+			<ul class="native_ul" id="crawls_public_states_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="crawls_public_state_page">
+			<p>PICK A DESTINATION</p>
+			<ul class="native_ul" id="crawls_public_state_ul"></ul>
+		</div>
+		
+		<!-- PHOTOS -->
+		
 		<div class="hidden transparentbg" id="photos_page">
 			<p><a href="#" onClick="showTakePhotoPage()"><img src="./images/mobile/AddAPicture.png" /></a></p>
 			<ul id="mobile_galleries_ul"></ul>
@@ -190,12 +377,151 @@
 			<div id="photo_beers_holder"></div>
 			<ul id="photo_beers_tags_ul" class="drink_thumb"></ul>
 		</div>
-        <div class="hidden transparentbg" id="photos_take_photo_page">
-            <p><a href="#" onClick="photosNewCameraPhoto()"><img src="./images/mobile/camera-btn.png" /></a></p>
-            <p><a href="#" onClick="photosNewGalleryPhoto()"><img src="./images/mobile/gallery-btn.png" /></a></p>
-        </div>
-		<div class="hidden transparentbg" id="weekly_poll_page">
+		<div class="hidden transparentbg" id="photos_take_photo_page">
+			<p><a href="#" onClick="photosNewCameraPhoto()"><img src="./images/mobile/camera-btn.png" /></a></p>
+			<p><a href="#" onClick="photosNewGalleryPhoto()"><img src="./images/mobile/gallery-btn.png" /></a></p>
 		</div>
+		
+		<!-- WEEKLY POLL -->
+		
+		<div class="hidden transparentbg" id="weekly_poll_page"></div>
+		
+		<!-- DRINKS PAGE FROM FOOTER -->
+		
+		<div class="hidden transparentbg" id="drinks_footer_button_page">
+			<a href="#" onClick="beersMainClicked()"><img src="./images/mobile/drinks_beers.png" /></a>
+			<a href="#" onClick="drinksTypeClicked('Mixed Drink')"><img src="./images/mobile/drinks_drinks.png" /></a>
+			<a href="#" onClick="drinksTypeClicked('Bomber')"><img src="./images/mobile/drinks_bombers.png" /></a>
+			<a href="#" onClick="drinksTypeClicked('Shot')"><img src="./images/mobile/drinks_shots.png" /></a>
+			<a href="#" onClick="randomBeerClicked()"><img src="./images/mobile/drinks_random_beer.png" /></a>
+			<a href="#" onClick="randomDrinkClicked()"><img src="./images/mobile/drinks_random_drink.png" /></a>
+		</div>
+		
+		<!-- DRINKS -->
+		
+		<div class="hidden transparentbg" id="drinks_main_page">
+			<ul class="native_ul">
+				<li><a href="#" onClick="drinksABCClicked()">Alphabetical</a><span class="native_ul_arrow"></span></li>
+				<li><a href="#" onClick="drinksTypesClicked()">Types</a><span class="native_ul_arrow"></span></li>
+				<li><a href="#" onClick="randomDrinkClicked()">Random Drink</a><span class="native_ul_arrow"></span></li>
+			</ul>
+		</div>
+		<div class="hidden transparentbg" id="drinks_abc_page">
+			<p>ALL DRINKS</p>
+			<ul class="native_ul" id="drinks_abc_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="drinks_types_page">
+			<p>DRINK TYPES</p>
+			<ul class="native_ul" id="drinks_types_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="drinks_type_page">
+			<ul class="native_ul" id="drinks_type_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="drinks_random_drink_page">
+			<div id="drinks_random_drink_image"><img src="" id="random_drink_image_img" /></div>
+			<div id="randomDrink_float_left"></div>
+			<div id="random_drink_photos_holder"></div>
+			<ul id="random_drink_photos" class="drinking_buddies_thumb"></ul>
+			<div id="random_drink_members_holder"></div>
+			<ul id="random_drink_members" class="drinking_buddies_thumb"></ul>
+			<div class="mobile_hr"></div>
+		</div>
+		<div class="hidden transparentbg" id="drinks_single_drink_page">
+			<div id="drinks_single_image"><img src="" id="drinks_single_image_img" /></div>
+			<div id="drinks_single_float_left"></div>
+			<div id="drinks_single_photos_holder"></div>
+			<ul id="drinks_single_photos" class="drinking_buddies_thumb"></ul>
+			<div id="drinks_single_members_holder"></div>
+			<ul id="drinks_single_members" class="drinking_buddies_thumb"></ul>
+			<div class="mobile_hr"></div>
+		</div>
+		
+		<!-- BEERS -->
+		
+		<div class="hidden transparentbg" id="beers_main_page">
+			<ul class="native_ul">
+				<li><a href="#" onClick="beersABCClicked()">Alphabetical</a><span class="native_ul_arrow"></span></li>
+				<li><a href="#" onClick="beersBreweriesClicked()">Breweries</a><span class="native_ul_arrow"></span></li>
+				<li><a href="#" onClick="beersTypesClicked()">Types</a><span class="native_ul_arrow"></span></li>
+				<li><a href="#" onClick="beersDomesticsClicked()">Domestics</a><span class="native_ul_arrow"></span></li>
+				<li><a href="#" onClick="beersImportsClicked()">Imports</a><span class="native_ul_arrow"></span></li>
+				<li><a href="#" onClick="randomBeerClicked()">Random Beer</a><span class="native_ul_arrow"></span></li>
+			</ul>
+		</div>
+		<div class="hidden transparentbg" id="beers_abc_page">
+			<p>ALL BEERS</p>
+			<ul class="native_ul" id="beers_abc_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="beers_breweries_page">
+			<p>BREWERIES</p>
+			<ul class="native_ul" id="beers_breweries_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="beers_brewery_page">
+			<ul class="native_ul" id="beers_brewery_beer_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="beers_types_page">
+			<p>BEER TYPES</p>
+			<ul class="native_ul" id="beers_types_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="beers_type_page">
+			<ul class="native_ul" id="beers_type_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="beers_domestics_page">
+			<p>DOMESTIC BEERS</p>
+			<ul class="native_ul" id="beers_domestics_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="beers_imports_page">
+			<p>IMPORT BEERS</p>
+			<ul class="native_ul" id="beers_imports_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="beers_random_beer_page">
+			<div id="beer_image"><img src="" id="random_beer_image_img" /></div>
+			<div id="randomBeer_float_left"></div>
+			<div id="random_beer_tagged_photos_holder"></div>
+			<ul id="random_beer_photos" class="drinking_buddies_thumb"></ul>
+			<div id="random_beer_favorite_members_holder"></div>
+			<ul id="random_beer_members" class="drinking_buddies_thumb"></ul>
+			<div class="mobile_hr"></div>
+		</div>
+		<div class="hidden transparentbg" id="beers_single_beer_page">
+			<div id="single_beer_image"><img src="" id="beers_single_image_img" /></div>
+			<div id="single_beer_float_left"></div>
+			<div id="single_beer_tagged_photos_holder"></div>
+			<ul id="single_beer_photos" class="drinking_buddies_thumb"></ul>
+			<div id="single_beer_favorite_members_holder"></div>
+			<ul id="single_beer_members" class="drinking_buddies_thumb"></ul>
+			<div class="mobile_hr"></div>
+		</div>
+		
+		<!-- BARS -->
+		
+		<div class="hidden transparentbg" id="single_bar_page">
+			<div id="bar_info"></div>
+			<div id="bar_tap_info_holder"></div>
+			<ul id="bar_beerlist_ul"></ul>
+			<div id="bar_bottle_info_holder"></div>
+			<ul id="bar_bottlelist_ul"></ul>
+			<div id="bar_photos_holder"></div>
+			<ul id="bar_photos" class="drinking_buddies_thumb"></ul>
+			<div id="bar_members_holder"></div>
+			<ul id="bar_members" class="drinking_buddies_thumb"></ul>
+			<div class="mobile_hr"></div>
+		</div>
+		<div class="hidden transparentbg" id="bar_states_page">
+			<p>PICK A STATE</p>
+			<ul class="native_ul" id="bar_states_list_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="bar_state_page">
+			<p>PICK A DESTINATION</p>
+			<ul class="native_ul" id="bar_state_list_ul"></ul>
+		</div>
+		<div class="hidden transparentbg" id="bar_dest_page">
+			<p>PICK A BAR</p>
+			<ul class="native_ul" id="bar_dest_list_ul"></ul>
+		</div>
+				
+		<!-- HOME SCREEN -->
+		
 		<div id="home_buttons_holder">
 			<img id="grid_button" class="mobile_right" src="./images/mobile/grid.png" />
 			<a href="#" onClick="showSlotMachine()"><img id="slot_button" class="mobile_left" src="./images/mobile/slot_machine.png" /></a>
@@ -203,6 +529,9 @@
 		</div>
 	</div>
 </div>
+
+<!-- FOOTER -->
+
 <div id="home_footer">
 	<div class="footer_button">
 		<a href="#" onClick="profileClicked()"><img src="./images/mobile/footer_button_profile.png" /></a>
@@ -218,6 +547,35 @@
 	</div>
 </div>
 <script>
+
+	//************************************************************
+	//
+	// GLOBAL VARIABLES AND SETTINGS
+	//
+	//************************************************************
+
+	// Variable to pass Data Directory between functions for DB access
+	var DATADIR;
+	
+	// Variables to pass favorite beers and drinks from db to filesystem
+	var BEERPK;
+	var DRINKPK;
+	
+	// Single Bar Variables for filling out bottle and tap lists
+	var tapBeersAdded = false;
+	var bottleBeersAdded = false;
+	
+	// click listener for all native_ul li clicks
+	$('.native_ul li').click(function() {
+		$(this).addClass('li_clicked');
+	});
+
+	//************************************************************
+	//
+	// INITIALIZATION FUNCTIONS, ADD LOGOUT BUTTON IF LOGGED IN
+	//
+	//************************************************************
+	
 	// if logged in, add the logout button
 	var auth_info = localStorage.getItem("isAuthenticated");
 	if (auth_info == "1") {
@@ -232,7 +590,11 @@
 		});
 	}
 	
+	//************************************************************
+	//
 	// UP ARROW
+	//
+	//************************************************************
 	
 	// hide all visible pages and hide the up arrow
 	function upArrowClicked() {
@@ -244,7 +606,11 @@
 		$('#up_arrow').hide();
 	}
 	
+	//************************************************************
+	//
 	// THE GRID
+	//
+	//************************************************************
 	
 	// display/hide the grid
 	$('#grid_button').click(function() {
@@ -261,7 +627,11 @@
 		}
 	});
 	
+	//************************************************************
+	//
 	// SLOT MACHINE
+	//
+	//************************************************************
 	
 	// display/hide the slot machine
 	function showSlotMachine() {
@@ -269,6 +639,13 @@
 			upArrowClicked();
 		} else {
 			$('.hidden:visible').slideUp('slow');
+			// fill in slot machine info
+			if (localStorage.getItem("slotdest") == null) {
+				$('#slot_title').html('<p><a href="#" onClick="showSlotStates()">Choose Destination to Spin for</a></p>');
+			} else {
+				$('#slot_title').html('<p>Spinning for <a href="#" onClick="showSlotStates()">' + localStorage.getItem("slotdest") + '</a></p>');
+			}
+			// show the slot machine
 			$('#slot_machine').slideDown('slow', function() {
 				setTimeout(function() {
 					myScroll.refresh();
@@ -286,6 +663,7 @@
 			navigator.notification.alert('Please pick a destination before you spin', null, '', 'Select Destination');
 			window.location.href="slotstates.html";
 		} else {
+			showSpinner();
 			$.get("http://nationwidebarcrawl.com/mobilenative/spin/" + destslug + "/", function(response) {
 				var parsed_data = $.parseJSON(response);
 				// fill in random beer image and name
@@ -301,12 +679,265 @@
 					$('#slot_bar_name').unwrap();
 				}
 				// add bar link
-				$('#slot_bar_name').wrap('<a id="barlink" href="./bar.html" onClick="barClicked(' + parsed_data[0].barpk + ')"></a>');
+				$('#slot_bar_name').wrap('<a id="barlink" href="#" onClick="singleBarClicked(' + parsed_data[0].barpk + ')"></a>');
+				hideSpinner();
 			});
 		}
 	});
 	
+	// fill in the beer image for the slot machine
+	function fillInSlotBeer(beerpk) {
+		// set global var to hold beer pk to get image from filesystem
+		BEERPK = beerpk;	
+		// get filesystem access for beer images
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSlotBeerFSSuccess, errorHandler);
+	}
+
+	// fill in the drink image for the slot machine
+	function fillInSlotDrink(drinkpk) {
+		// set global var to hold drink pk to get image from filesystem
+		DRINKPK = drinkpk;
+		// get filesystem access for beer images
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSlotDrinkFSSuccess, errorHandler);
+	}
+
+	// got filesystem access for beer images
+	function onSlotBeerFSSuccess(fileSystem) {
+		fileSystem.root.getDirectory("NWBC",{create:true},function(){},function(){});
+		fileSystem.root.getDirectory("NWBC/beers",{create:true},gotSlotBeersDir,onError);
+	}
+
+	// got filesystem access for drink images
+	function onSlotDrinkFSSuccess(fileSystem) {
+		fileSystem.root.getDirectory("NWBC",{create:true},function(){},function(){});
+		fileSystem.root.getDirectory("NWBC/drinks",{create:true},gotSlotDrinksDir,onError);
+	}
+
+	// got filesystem directory for beer images
+	function gotSlotBeersDir(d){
+		BEERSDATADIR = d;
+		// query the database to get beer image names
+		var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+		db.transaction(querySlotBeersDB, errorCB, function(){});
+	}
+
+	// got filesystem directory for drink images
+	function gotSlotDrinksDir(d){
+		DRINKSDATADIR = d;
+		// query the database to get drink image names
+		var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+		db.transaction(querySlotDrinksDB, errorCB, function(){});
+	}
+
+	// Query the beers database
+	function querySlotBeersDB(tx) {
+		tx.executeSql('SELECT * FROM beers WHERE id = ' + BEERPK, [], querySlotBeersSuccess, errorCB);
+	}
+
+	// Query the drinks database
+	function querySlotDrinksDB(tx) {
+		tx.executeSql('SELECT * FROM drinks WHERE id = ' + DRINKPK, [], querySlotDrinksSuccess, errorCB);
+	}
+
+	// beers database query success callback
+	function querySlotBeersSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var beer = results.rows.item(i);
+			addSlotFavoriteBeer(beer.imagename, beer.imageurl, beer.id);
+		}
+	}
+
+	// drinks database query success callback
+	function querySlotDrinksSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var drink = results.rows.item(i);
+			addSlotFavoriteDrink(drink.imagename, drink.imageurl, drink.id);
+		}
+	}
+
+	// add a beer to the template
+	function addSlotFavoriteBeer(imagename, imageurl, id) {
+		// get beer files
+		BEERSDATADIR.getFile(imagename, {create: false}, function(fileEntry){gotSlotBeerFile(fileEntry, id);}, function(){noSlotBeerFile(imageurl, id);});
+	}
+
+	// add a drink to the template
+	function addSlotFavoriteDrink(imagename, imageurl, id) {
+		// get drink files
+		DRINKSDATADIR.getFile(imagename, {create: false}, function(fileEntry){gotSlotDrinkFile(fileEntry, id);}, function(){noSlotDrinkFile(imageurl, id);});
+	}
+
+	// add a beer to the favorite beer list in the template
+	function gotSlotBeerFile(fileEntry, id) {
+		$('#slot_beer_image').attr("src", fileEntry.fullPath);
+		// if beer is already linked, remove link
+		if($('#beerlink').length) {
+			$('#slot_beer_image').unwrap();
+		}
+		// add beer link to beer image
+		$('#slot_beer_image').wrap('<a id="beerlink" href="#" onClick="singleBeerClicked(' + id + ')"></a>');
+	}
+
+	// add a drink to the favorite drink list in the template
+	function gotSlotDrinkFile(fileEntry, id) {
+		$('#slot_drink_image').attr("src", fileEntry.fullPath);
+		// if drink is already linked, remove link
+		if($('#drinklink').length) {
+			$('#slot_drink_image').unwrap();
+		}
+		// add drink link to drink image
+		$('#slot_drink_image').wrap('<a id="drinklink" href="#" onClick="singleDrinkClicked(' + id + ')"></a>');
+	}
+
+	// get thumbnail for a beer
+	function noSlotBeerFile(imageurl) {
+		// create fileTransfer object
+		var ft = new FileTransfer();
+		var dlPath = BEERSDATADIR.fullPath + "/" + imageurl.substring(imageurl.lastIndexOf('/')+1);
+		ft.download("http://nationwidebarcrawl.com" + imageurl, dlPath, function(fileEntry) {$('#slot_beer_image').attr("src", fileEntry.fullPath);}, null);
+		$('#slot_beer_image').wrap('<a id="beerlink" href="#" onClick="singleBeerClicked(' + id + ')"></a>');
+	}
+
+	// get thumbnail for a drink
+	function noSlotDrinkFile(imageurl) {
+		// create fileTransfer object
+		var ft = new FileTransfer();
+		var dlPath = DRINKSDATADIR.fullPath + "/" + imageurl.substring(imageurl.lastIndexOf('/')+1);
+		ft.download("http://nationwidebarcrawl.com" + imageurl, dlPath, function(fileEntry) {$('#slot_drink_image').attr("src", fileEntry.fullPath);}, null);
+		$('#slot_drink_image').wrap('<a id="drinklink" href="#" onClick="singleDrinkClicked(' + id + ')"></a>');
+	}
+	
+	// display/hide the state list for setting the destination for the Slot Machine
+	function showSlotStates() {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
+		if ($('#slot_states_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			showSpinner();
+			// clear the states list
+			$('#slot_states_list_ul').html('');
+			// get the states list
+			$.get("http://nationwidebarcrawl.com/mobilenative/destinationstatelist/", function(response) {
+				var parsed_data = $.parseJSON(response);
+				$.each(parsed_data, function() {
+					var chosenstate = this['state'] + '';
+					$('#slot_states_list_ul').append('<li><a href="#" onClick="showSlotState(\'' + chosenstate + '\')">' + this['name'] + '</a><span class="native_ul_arrow"></span></li>');
+				});
+				// add click event listener to highlight clicked li
+				$('#specials ul li').click(function() {
+					$(this).addClass('li_clicked');
+				});
+				// show the specials states page
+				$('#slot_states_page').slideDown('slow', function() {
+					setTimeout(function() {
+						hideSpinner();
+						myScroll.refresh();
+					}, 0);
+				});
+				$('#up_arrow').show();
+			});
+		}
+	}
+	
+	// display/hide the destination list for selectedstate the destination for the Slot Machine
+	function showSlotState(selectedstate) {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
+		if ($('#slot_state_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			// set chosen state
+			window.localStorage.setItem("chosenstate", selectedstate);
+			$('.hidden:visible').slideUp('slow');
+			showSpinner();
+			// variable to hold database connection
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			// variable for when bars db has been created
+			var barsDbs = localStorage.getItem("barsDbs");
+			barsDbs = String(barsDbs);
+			if (barsDbs && barsDbs != "") {
+				if (barsDbs.search(selectedstate)!=-1) {
+					db.transaction(querySlotStateDB, errorCB, function(){});
+				} else {
+					db.transaction(populateSlotStateDB, errorCB, querySlotStateSuccess);
+				}
+			} else {
+				db.transaction(populateSlotStateDB, errorCB, querySlotStateSuccess);
+			}
+		}
+	}
+	
+	// Populate the database with bars if db table not already created
+	function populateSlotStateDB(tx) {
+		tx.executeSql('CREATE TABLE IF NOT EXISTS bars(id INTEGER, name, slug, location, address, destination, destination_slug, phone, city, state, statekey, website)');
+		$.ajaxSetup({async: false});
+		// get chosen state
+		var selectedstate = window.localStorage.getItem("chosenstate");
+		$.get("http://nationwidebarcrawl.com/mobilenative/barstatelist/" + selectedstate + "/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			var len = parsed_data.length
+			var remaining_length = parsed_data.length;
+			var begin_counter = 0;
+			while (remaining_length > 0) {
+				addRowsToSlotStateTable(parsed_data.slice(begin_counter, begin_counter+500), tx);
+				begin_counter += 500;
+				remaining_length -= 500;
+			}
+			localStorage.setItem("barsDbCreated", "1");
+			var donedbs = localStorage.getItem("barsDbs");
+			donedbs += ", " + selectedstate;
+			localStorage.setItem("barsDbs", donedbs);
+		});
+	}
+	
+	// Add rows to the table for each bar
+	function addRowsToSlotStateTable(bars, tx) {
+		for(var i=0;i<bars.length;i++){
+			var bar = bars[i];
+			barVarString = [bar['pk'], bar['name'], bar['slug'], bar['location'], bar['address'], bar['destination'], bar['destination_slug'], bar['phone'], bar['city'], bar['state'], bar['statekey'], bar['website']];
+			tx.executeSql('INSERT INTO bars (id, name, slug, location, address, destination, destination_slug, phone, city, state, statekey, website) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', barVarString);
+		}
+	}
+	
+	// Query the database for destination information for slot_state_page
+	function querySlotStateDB(tx) {
+		var selectedstate = window.localStorage.getItem("chosenstate");
+		tx.executeSql('SELECT DISTINCT destination, city, destination_slug FROM bars WHERE statekey = ?', [selectedstate], querySlotStateSuccess, errorCB);
+	}
+	
+	// Slot State Query Success Callback
+	function querySlotStateSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var bar = results.rows.item(i);
+			$('#slot_state_list_ul').append('<li><a href="#" onClick="newSlotDest(\'' + bar.destination + '\', \'' + bar.destination_slug + '\')">' + bar.destination + ' - ' + bar.city + '</a></li>');
+		}
+		// show the slot state page
+		$('#slot_state_page').slideDown('slow', function() {
+			setTimeout(function() {
+				hideSpinner();
+				myScroll.refresh();
+			}, 100);
+		});
+		$('#up_arrow').show();
+	}
+	
+	// accessor method to set the new destination for the specials
+	function newSlotDest(chosendest, chosendestslug) {
+		window.localStorage.setItem("slotdest", chosendest);
+		window.localStorage.setItem("slotdestslug", chosendestslug); 
+		showSlotMachine();
+	}
+	
+	//************************************************************
+	//
 	// CRAWLS
+	//
+	//************************************************************
 	
 	// display/hide the crawls page
 	function showCrawls() {
@@ -318,6 +949,7 @@
 			if ($('#crawls_page').is(':visible')) {
 				upArrowClicked();
 			} else {
+				showSpinner();
 				$('.hidden:visible').slideUp('slow');
 				// clear the crawls ul
 				$('#crawls_ul').html('');
@@ -327,9 +959,14 @@
 					$.each(parsed_data, function() {
 						$('#crawls_ul').append('<li><a href="#" onClick="crawlClicked(\'' + this['pk'] + '\')"><p class="crawls_list_name">' + this['title'] + '</p><p class="crawls_list_dest">' + this['destination'] + '</p><div class="crawls_list_bottom"><p class="crawls_list_status ' + this['attending'] + '">' + this['attending'] + '</p><p class="crawls_list_date">' + this['date'] + '</p></div></a></li>');
 					});
+					// add the click listener to highlight li blue when clicked
+					$('#crawls_ul li').click(function() {
+						$(this).addClass('li_clicked');
+					});
 					$('#crawls_page').slideDown('slow', function() {
 						setTimeout(function() {
 							myScroll.refresh();
+							hideSpinner();
 						}, 0);
 					});
 					$('#up_arrow').show();
@@ -349,6 +986,7 @@
 			if ($('#crawls_single_crawl_page').is(':visible')) {
 				upArrowClicked();
 			} else {
+				showSpinner();
 				$('.hidden:visible').slideUp('slow');
 				$('#crawl_info_creator').html('');
 				$('#crawl_info_public').html('');
@@ -405,12 +1043,12 @@
 							hours = hours - 12;
 							timestamp = hours + timestamp.substring(timestamp.indexOf(":")) + " PM";
 						}
-						$('#mobile_crawl_stops_table').append('<tr><td>' + this['bar'] + '</td><td>' + timestamp + '</td><td>' + this['duration'] + 'min.</td></tr>');
+						$('#mobile_crawl_stops_table').append('<tr><td><a href="#" onClick="singleBarClicked(\'' + this['barpk'] + '\')">' + this['bar'] + '</a></td><td>' + timestamp + '</td><td>' + this['duration'] + 'min.</td></tr>');
 					});
 				
 					// if isCreator, add 'Add Another Stop' button
 					if (crawl['isCreator']) {
-						$('#crawls_single_crawl_add_stop').append('<p><a href="./crawladdstop.html" rel="external" onClick="addStopClicked(\'' + crawl['destination'] + '\')"><img src="./images/mobile/AddAnotherStop.png" /></a></p><div class="mobile_hr"></div>');
+						$('#crawls_single_crawl_add_stop').append('<p><a href="#" onClick="showCrawlAddStopPage(\'' + chosencrawl + '\', \'' + crawl['destination'] + '\')"><img src="./images/mobile/AddAnotherStop.png" /></a></p><div class="mobile_hr"></div>');
 					}
 					
 					// if RSVP object, append status and change status button
@@ -446,39 +1084,7 @@
 					$('#crawls_single_crawl_page').slideDown('slow', function() {
 						setTimeout(function() {
 							myScroll.refresh();
-						}, 0);
-					});
-					$('#up_arrow').show();
-				});
-			}
-		}
-	}
-	
-	// display/hide public crawls page
-	function showPublicCrawls() {
-		var auth_info = localStorage.getItem("isAuthenticated");
-		if (auth_info == "0") {
-			navigator.notification.alert('Please login to see the Crawls page', null, '', 'Login');
-			window.location.href="login.html";
-		} else {
-			if ($('#crawls_public_page').is(':visible')) {
-				upArrowClicked();
-			} else {
-				var chosendestslug = window.localStorage.getItem("chosendestslug");
-				$('.hidden:visible').slideUp('slow');
-				// clear the crawls ul
-				$('#crawls_public_ul').html('');
-				// fill in the crawls ul
-				$.get("http://nationwidebarcrawl.com/mobilenative/crawls/public/" + chosendestslug + "/", function(response) {
-					var parsed_data = $.parseJSON(response);
-					$.each(parsed_data, function() {
-						$('#crawls_public_ul').append('<li><a href="#" onClick="crawlClicked(\'' + this['pk'] + '\')"><p class="crawls_list_name">' + this['title'] + '</p><p class="crawls_list_dest">' + this['destination'] + '</p><div class="crawls_list_bottom"><p class="crawls_list_status ' + this['attending'] + '">' + this['attending'] + '</p><p class="crawls_list_date">' + this['date'] + '</p></div></a></li>');
-					});
-					$('#crawls_public_dest').html('');
-					$('#crawls_public_dest').append('<a href="crawlspublicstates.html">' + localStorage.getItem("chosendest") + '</a>');
-					$('#crawls_public_page').slideDown('slow', function() {
-						setTimeout(function() {
-							myScroll.refresh();
+							hideSpinner();
 						}, 0);
 					});
 					$('#up_arrow').show();
@@ -494,10 +1100,12 @@
 			navigator.notification.alert('Please login to see the Crawl page', null, '', 'Login');
 			window.location.href="login.html";
 		} else {
+			showSpinner();
 			// hide visible windows
 			upArrowClicked();
 			// create the RSVP object
 			$.get("http://nationwidebarcrawl.com/mobilenative/crawls/" + chosencrawl + "/join/", function(response) {
+				hideSpinner();
 				showCrawls();
 			});
 		}
@@ -538,20 +1146,462 @@
 			navigator.notification.alert('Please login to see the Crawls page', null, '', 'Login');
 			window.location.href="login.html";
 		} else {
+			showSpinner();
 			$.post("http://nationwidebarcrawl.com/mobilenative/crawls/" + chosencrawl + "/changestatus/", { newstatus: newstatus }, function(response) {
+				hideSpinner();
 				crawlClicked(chosencrawl);
 			});
 		}
 	}
 	
+	// display/hide the crawl add stop page
+	function showCrawlAddStopPage(chosencrawl, selecteddest) {
+		window.localStorage.setItem("chosencrawl", chosencrawl);
+		window.localStorage.setItem("chosendest", selecteddest);
+		var auth_info = localStorage.getItem("isAuthenticated");
+		if (auth_info == "0") {
+			navigator.notification.alert('Please login to see the Crawls page', null, '', 'Login');
+			window.location.href="login.html";
+		} else {
+			if ($('#crawl_add_stop_page').is(':visible')) {
+				upArrowClicked();
+			} else {
+				$('.hidden:visible').slideUp('slow');
+				// clear current crawl add ul
+				$('#crawl_add_stop_ul').html('');
+				// variable to hold database
+				var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+				db.transaction(queryAddStopDB, errorCB, function(){});
+			}
+		}
+	}
+	
+	// Query the database for bars list to add stop to crawl
+	function queryAddStopDB(tx) {
+		var selecteddest = window.localStorage.getItem("chosendest");
+		tx.executeSql('SELECT name, id FROM bars WHERE destination = ?', [selecteddest], queryAddStopSuccess, errorCB);
+	}
+	
+	// Add Stop DB Query Success Callback
+	function queryAddStopSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var bar = results.rows.item(i);
+			$('#crawl_add_stop_ul').append('<li><a href="#" onClick="addStopBarClicked(\'' + bar.id + '\')">' + bar.name + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		// show the add stop page
+		$('#crawl_add_stop_page').slideDown('slow', function() {
+			setTimeout(function() {
+				hideSpinner();
+				myScroll.refresh();
+			}, 0);
+		});
+		$('#up_arrow').show();
+	}
+	
+	// Stop Chosen, add the stop to the bar crawl
+	function addStopBarClicked(chosenbar) {
+		// variable to hold selected crawl for URL
+		var selectedCrawl = localStorage.getItem("chosencrawl");
+		// GET to add the stop to the crawl
+		$.get("http://nationwidebarcrawl.com/mobilenative/crawls/addstop/" + selectedCrawl + "/" + chosenbar + "/", function(response) {
+            //parse the response string into an object
+            var crawl_info = $.parseJSON(response);
+            localStorage.setItem("chosencrawl", crawl_info['crawlpk']);
+            crawlClicked(crawl_info['crawlpk']);
+		});
+	}
+	
+	// display/hide public crawls page
+	function showPublicCrawls() {
+		var auth_info = localStorage.getItem("isAuthenticated");
+		if (auth_info == "0") {
+			navigator.notification.alert('Please login to see the Crawls page', null, '', 'Login');
+			window.location.href="login.html";
+		} else {
+			if ($('#crawls_public_page').is(':visible')) {
+				upArrowClicked();
+			} else {
+				showSpinner();
+				var chosendestslug = window.localStorage.getItem("chosendestslug");
+				$('.hidden:visible').slideUp('slow');
+				// clear the crawls ul
+				$('#crawls_public_ul').html('');
+				// fill in the crawls ul
+				$.get("http://nationwidebarcrawl.com/mobilenative/crawls/public/" + chosendestslug + "/", function(response) {
+					var parsed_data = $.parseJSON(response);
+					$.each(parsed_data, function() {
+						$('#crawls_public_ul').append('<li><a href="#" onClick="crawlClicked(\'' + this['pk'] + '\')"><p class="crawls_list_name">' + this['title'] + '</p><p class="crawls_list_dest">' + this['destination'] + '</p><div class="crawls_list_bottom"><p class="crawls_list_status ' + this['attending'] + '">' + this['attending'] + '</p><p class="crawls_list_date">' + this['date'] + '</p></div></a></li>');
+					});
+					$('#crawls_public_dest').html('');
+					$('#crawls_public_dest').append('<a href="#" onClick="showPublicCrawlsStatesPage()">' + localStorage.getItem("chosendest") + '</a>');
+					$('#crawls_public_page').slideDown('slow', function() {
+						setTimeout(function() {
+							myScroll.refresh();
+							hideSpinner();
+						}, 0);
+					});
+					$('#up_arrow').show();
+				});
+			}
+		}
+	}
+	
+	// display/hide the public crawls states page
+	function showPublicCrawlsStatesPage() {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
+		if ($('#crawls_public_states_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			showSpinner();
+			// clear the states list
+			$('#crawls_public_states_ul').html('');
+			$.get("http://nationwidebarcrawl.com/mobilenative/destinationstatelist/", function(response) {
+				var parsed_data = $.parseJSON(response);
+				$.each(parsed_data, function() {
+					var chosenstate = this['state'] + '';
+					$('#crawls_public_states_ul').append('<li><a href="#" onClick="showPublicCrawlsStatePage(\'' + chosenstate + '\')">' + this['name'] + '</a><span class="native_ul_arrow"></span></li>');
+				});
+				$('#crawls_public_states_page').slideDown('slow', function() {
+					setTimeout(function() {
+						hideSpinner();
+						myScroll.refresh();
+					}, 0);
+				});
+				$('#up_arrow').show();
+			});
+		}
+	}
+	
+	// display/hide the public crawls destination page
+	function showPublicCrawlsStatePage(selectedstate) {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
+		if ($('#crawls_public_state_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			window.localStorage.setItem("chosenstate", selectedstate);
+			$('.hidden:visible').slideUp('slow');
+			showSpinner();
+			// clear the state list
+			$('#crawls_public_state_ul').html('');
+			// variable to set once bars db has been created
+			var barsDbs = localStorage.getItem("barsDbs");
+			barsDbs = String(barsDbs);
+			// variable to hold database
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			// check if barsDbs is empty
+			if (barsDbs && barsDbs != "") {
+				if (barsDbs.search(selectedstate)!=-1) {
+					db.transaction(queryPublicCrawlsDB, errorCB, function(){});
+				} else {
+					db.transaction(populateCrawlsPublicDB, errorCB, successPublicCrawlsCB);
+    			}
+			} else {
+				db.transaction(populateCrawlsPublicDB, errorCB, successPublicCrawlsCB);
+			}
+		}
+	}
+	
+	// Populate the database with bars for public crawls
+	function populateCrawlsPublicDB(tx) {
+		tx.executeSql('CREATE TABLE IF NOT EXISTS bars(id INTEGER, name, slug, location, address, destination, destination_slug, phone, city, state, statekey, website)');
+		$.ajaxSetup({async: false});
+		// get variable for selectedstate
+		var selectedstate = window.localStorage.getItem("chosenstate");
+		$.get("http://nationwidebarcrawl.com/mobilenative/barstatelist/" + selectedstate + "/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			var len = parsed_data.length
+			var remaining_length = parsed_data.length;
+			var begin_counter = 0;
+			while (remaining_length > 0) {
+				addRowsToPublicCrawlsTable(parsed_data.slice(begin_counter, begin_counter+500), tx);
+				begin_counter += 500;
+				remaining_length -= 500;
+			}
+			localStorage.setItem("dbCreated", "1");
+			localStorage.setItem("barsDbCreated", "1");
+			var donedbs = localStorage.getItem("barsDbs");
+			donedbs += ", " + selectedstate;
+			localStorage.setItem("barsDbs", donedbs);
+		});
+	}
+	
+	// Add rows to the table for each bar for public crawls
+	function addRowsToPublicCrawlsTable(bars, tx) {
+		for(var i=0;i<bars.length;i++) {
+			var bar = bars[i];
+			barVarString = [bar['pk'], bar['name'], bar['slug'], bar['location'], bar['address'], bar['destination'], bar['destination_slug'], bar['phone'], bar['city'], bar['state'], bar['statekey'], bar['website']];
+			tx.executeSql('INSERT INTO bars (id, name, slug, location, address, destination, destination_slug, phone, city, state, statekey, website) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', barVarString);
+		}
+	}
+	
+	// Public Crawls DB Transaction success callback
+	function successPublicCrawlsCB() {
+		var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+		db.transaction(queryPublicCrawlsDB, errorCB);
+	}
+	
+	// Query the database for bars for public crawls page
+	function queryPublicCrawlsDB(tx) {
+		// get variable for selectedstate
+		var selectedstate = window.localStorage.getItem("chosenstate");
+		tx.executeSql('SELECT DISTINCT destination, city, destination_slug FROM bars WHERE statekey = ?', [selectedstate], queryPublicCrawlsSuccess, errorCB);
+	}
+	
+	// Public Crawls DB Query Success Callback
+	function queryPublicCrawlsSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var bar = results.rows.item(i);
+			$('#crawls_public_state_ul').append('<li><a href="#" onClick="publicCrawlsNewDest(\'' + bar.destination + '\', \'' + bar.destination_slug + '\')">' + bar.destination + ' - ' + bar.city + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		$('#crawls_public_state_page').slideDown('slow', function() {
+			setTimeout(function() {
+				hideSpinner();
+				myScroll.refresh();
+			}, 0);
+		});
+		$('#up_arrow').show();
+	}
+	
+	// set new destination for public crawls page
+	function publicCrawlsNewDest(chosendest, chosendestslug) {
+		window.localStorage.setItem("chosendest", chosendest); 
+		window.localStorage.setItem("chosendestslug", chosendestslug);
+		showPublicCrawls();
+	}
+	
+	// display/hide the create a crawl states page
+	function showCreateCrawlStatesPage() {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
+		if ($('#crawls_create_crawl_states_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			showSpinner();
+			// clear the states list
+			$('#crawls_create_crawl_states_ul').html('');
+			$.get("http://nationwidebarcrawl.com/mobilenative/destinationstatelist/", function(response) {
+				var parsed_data = $.parseJSON(response);
+				$.each(parsed_data, function() {
+					var chosenstate = this['state'] + '';
+					$('#crawls_create_crawl_states_ul').append('<li><a href="#" onClick="showCreateCrawlStatePage(\'' + chosenstate + '\')">' + this['name'] + '</a><span class="native_ul_arrow"></span></li>');
+				});
+				$('#crawls_create_crawl_states_page').slideDown('slow', function() {
+					setTimeout(function() {
+						hideSpinner();
+						myScroll.refresh();
+					}, 0);
+				});
+				$('#up_arrow').show();
+			});
+		}
+	}
+	
+	// display/hide the create a crawl state page
+	function showCreateCrawlStatePage(selectedstate) {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
+		if ($('#crawls_create_crawl_state_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			// set variable for selected state
+			window.localStorage.setItem("chosenstate", selectedstate);
+			showSpinner();
+			// clear the states list
+			$('#crawls_create_crawl_state_ul').html('');
+			// variable to hold database
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			// variable for when bars db has been created
+			var barsDbs = localStorage.getItem("barsDbs");
+			barsDbs = String(barsDbs);
+			// check if barsDbs is empty
+			if (barsDbs && barsDbs != "") {
+				if (barsDbs.search(selectedstate)!=-1) {
+					db.transaction(queryCrawlsCreateDB, errorCB, function(){});
+				} else {
+					db.transaction(populateCreateCrawlDB, errorCB, successCrawlsCreateCB);
+				}
+			} else {
+				db.transaction(populateCreateCrawlDB, errorCB, successCrawlsCreateCB);
+			}
+		}
+	}
+	
+	// Populate the database with bars for create crawl state list
+	function populateCreateCrawlDB(tx) {
+		// get selected state
+		var selectedstate = window.localStorage.getItem("chosenstate");
+		tx.executeSql('CREATE TABLE IF NOT EXISTS bars(id INTEGER, name, slug, location, address, destination, destination_slug, phone, city, state, statekey, website)');
+		$.ajaxSetup({async: false});
+		$.get("http://nationwidebarcrawl.com/mobilenative/barstatelist/" + selectedstate + "/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			var len = parsed_data.length
+			var remaining_length = parsed_data.length;
+			var begin_counter = 0;
+			while (remaining_length > 0) {
+				addRowsToCrawlsCreateTable(parsed_data.slice(begin_counter, begin_counter+500), tx);
+				begin_counter += 500;
+				remaining_length -= 500;
+			}
+			localStorage.setItem("dbCreated", "1");
+			localStorage.setItem("barsDbCreated", "1");
+			var donedbs = localStorage.getItem("barsDbs");
+			donedbs += ", " + selectedstate;
+			localStorage.setItem("barsDbs", donedbs);
+		});
+	}
+	
+	// Add rows to the table for each bar for crawls create state
+	function addRowsToCrawlsCreateTable(bars, tx) {
+		for(var i=0;i<bars.length;i++) {
+			var bar = bars[i];
+			barVarString = [bar['pk'], bar['name'], bar['slug'], bar['location'], bar['address'], bar['destination'], bar['destination_slug'], bar['phone'], bar['city'], bar['state'], bar['statekey'], bar['website']];
+			tx.executeSql('INSERT INTO bars (id, name, slug, location, address, destination, destination_slug, phone, city, state, statekey, website) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', barVarString);
+		}
+	}
+	
+	// Crawls Create DB Query Success Callback
+	function successCrawlsCreateCB() {
+		var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+		db.transaction(queryCrawlsCreateDB, errorCB);
+	}
+	
+	// Query the database for crawls create state page
+	function queryCrawlsCreateDB(tx) {
+		var selectedstate = window.localStorage.getItem("chosenstate");
+		tx.executeSql('SELECT DISTINCT destination, city FROM bars WHERE statekey = ?', [selectedstate], queryCrawlsCreateSuccess, errorCB);
+	}
+	
+	// Create Crawl DB Query Success Callback
+	function queryCrawlsCreateSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++) {
+			var bar = results.rows.item(i);
+			$('#crawls_create_crawl_state_ul').append('<li><a href="#" onClick="showCreateCrawlDestPage(\'' + bar.destination + '\')">' + bar.destination + ' - ' + bar.city + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		$('#crawls_create_crawl_state_page').slideDown('slow', function() {
+			setTimeout(function() {
+				hideSpinner();
+				myScroll.refresh();
+			}, 0);
+		});
+		$('#up_arrow').show();
+	}
+	
+	// display/hide the create a crawl dest page
+	function showCreateCrawlDestPage(selecteddest) {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
+		if ($('#crawls_create_crawl_dest_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			// set variable for selected state
+			window.localStorage.setItem("chosendest", selecteddest);
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			db.transaction(queryCrawlCreateDestDB, errorCB, function(){});
+		}
+	}
+	
+	// Query the database for the list of bars in a destination to use as a first stop on a new crawl
+	function queryCrawlCreateDestDB(tx) {
+		var selecteddest = window.localStorage.getItem("chosendest");
+		tx.executeSql('SELECT name, id FROM bars WHERE destination = ?', [selecteddest], queryCrawlCreateDestSuccess, errorCB);
+	}
+	
+	// Crawl Create bars for dest DB Query Success Callback
+	function queryCrawlCreateDestSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var bar = results.rows.item(i);
+			$('#crawls_create_crawl_dest_ul').append('<li><a href="crawlcreatefinal.html" onClick="crawlCreateBarFinal(\'' + bar.id + '\')">' + bar.name + '</a></li>');
+		}
+		$('#crawls_create_crawl_dest_page').slideDown('slow', function() {
+			setTimeout(function() {
+				hideSpinner();
+				myScroll.refresh();
+			}, 0);
+		});
+		$('#up_arrow').show();
+	}
+	
+	// TODO: this function should be replaced by the one below it
+	// need to figure out how to deal with iscroll and form fields
+	function crawlCreateBarFinal(chosenbar) {
+		window.localStorage.setItem("crawlfirststop", chosenbar); 
+		return true;
+	}
+	
+	// Crawl Create final, the form page to create a new crawl
+	function crawlCreateFinal(crawlfirststop) {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
+		if ($('#crawls_create_crawl_final_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			// variable to set once the bars database has been created
+			window.localStorage.setItem("crawlfirststop", crawlfirststop);
+			showSpinner();
+			// variable to hold the database
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+    		db.transaction(queryCreateCrawlFinalDB, errorCB, function(){});
+    	}
+    }
+    
+    // Query the database to get bar information for first stop in new crawl for crate crawl final
+	function queryCreateCrawlFinalDB(tx) {
+		// variable to set once the bars database has been created
+		var crawlfirststop = window.localStorage.getItem("crawlfirststop");
+		tx.executeSql('SELECT * FROM bars WHERE id = ?', [crawlfirststop], queryCrawlFinalSuccess, errorCB);
+	}
+	
+	// Crawl Create Final DB Query Success Callback
+	function queryCrawlFinalSuccess(tx, results) {
+		var bar = results.rows.item(0);
+		$('#crawl_destination').html(bar.destination);
+		$('#crawl_first_stop').html(bar.name);
+		$("#id_barpk").val(bar.id);
+		$('#crawls_create_crawl_final_page').slideDown('slow', function() {
+			setTimeout(function() {
+				hideSpinner();
+				myScroll.refresh();
+			}, 0);
+		});
+		$('#up_arrow').show();
+	}
+	
+	//************************************************************
+	//
 	// SPECIALS
+	//
+	//************************************************************
 	
 	// display/hide specials
 	function showSpecials() {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
 		if ($('#specials').is(':visible')) {
 			upArrowClicked();
 		} else {
 			$('.hidden:visible').slideUp('slow');
+			// fill in specials info
+			if (localStorage.getItem("specialsdest") == null) {
+				$('#specials_title').html('<p><a href="#" onClick="showSpecialsStates()">Choose a Destination for Specials</a></p>');
+			} else {
+				$('#specials_title').html('<p>Specials for <a href="#" onClick="showSpecialsStates()">' + localStorage.getItem("specialsdest") + '</a></p>');
+			}
+			// add click event listener to highlight clicked li
+			$('#specials ul li').click(function() {
+				$(this).addClass('li_clicked');
+			});
+			// show the specials page
 			$('#specials').slideDown('slow', function() {
 				setTimeout(function() {
 					myScroll.refresh();
@@ -572,23 +1622,29 @@
 		if ($('#specials_list_page').is(':visible')) {
 			upArrowClicked();
 		} else {
+			showSpinner();
 			$('.hidden:visible').slideUp('slow');
-			// clear the specials list
+			// clear the specials info
+			$('#specials_day').html('');
+			$('#specials_dest').html('');
 			$('#specials_list').html('');
 			// fill in the specials
 			var selecteddest = window.localStorage.getItem("specialsdestslug");
             if (selecteddest == null) {
 				navigator.notification.alert('Please pick a destination for Drink Specials', null, '', 'Select Destination');
-				window.location.href="specialsstates.html";
+				showSpecialsStates();
 			}
+			$('#specials_dest').html('Specials for <a href="./bardest.html" onClick="destClicked(\'' + window.localStorage.getItem("specialsdest") + '\')">' + window.localStorage.getItem("specialsdest") + '</a>');
+			$('#specials_day').html('on ' + specialsday); 
             $.get("http://nationwidebarcrawl.com/mobilenative/specials/" + selecteddest + "/" + specialsday + "/", function(response) {
 				var parsed_data = $.parseJSON(response);
 				$.each(parsed_data, function() {
-					$('#specials_list').append('<p class="specials_bar_name">' + this['bar'] + '</p><p>' + this['special'] + '</p><div class="mobile_hr"></div>');
+					$('#specials_list').append('<p class="specials_bar_name"><a href="#" onClick="singleBarClicked(\'' + this['barpk'] + '\')">' + this['bar'] + '</a></p><p>' + this['special'] + '</p><div class="mobile_hr"></div>');
 				});
 				$('#specials_list_page').slideDown('slow', function() {
 					setTimeout(function() {
 						myScroll.refresh();
+						hideSpinner();
 					}, 500);
 				});
 				$('#up_arrow').show();
@@ -596,24 +1652,140 @@
 		}
 	}
 	
-	// DRINKS BUTTON ON FOOTER
-	
-	// display/hide drinks page
-	function showDrinksPage() {
-		if ($('#drinks_page').is(':visible')) {
+	// display/hide the state list for setting specials destination
+	function showSpecialsStates() {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
+		if ($('#specials_states_page').is(':visible')) {
 			upArrowClicked();
 		} else {
 			$('.hidden:visible').slideUp('slow');
-			$('#drinks_page').slideDown('slow', function() {
-				setTimeout(function() {
-					myScroll.refresh();
-				}, 0);
+			showSpinner();
+			// clear the states list
+			$('#specials_states_list_ul').html('');
+			// get the states list
+			$.get("http://nationwidebarcrawl.com/mobilenative/destinationstatelist/", function(response) {
+				var parsed_data = $.parseJSON(response);
+				$.each(parsed_data, function() {
+					var chosenstate = this['state'] + '';
+					$('#specials_states_list_ul').append('<li><a href="#" onClick="showSpecialsState(\'' + chosenstate + '\')">' + this['name'] + '</a><span class="native_ul_arrow"></span></li>');
+				});
+				// add click event listener to highlight clicked li
+				$('#specials ul li').click(function() {
+					$(this).addClass('li_clicked');
+				});
+				// show the specials states page
+				$('#specials_states_page').slideDown('slow', function() {
+					setTimeout(function() {
+						hideSpinner();
+						myScroll.refresh();
+					}, 0);
+				});
+				$('#up_arrow').show();
 			});
-			$('#up_arrow').show();
 		}
 	}
 	
+	// display/hide the destination list for setting specials destination
+	function showSpecialsState(selectedstate) {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
+		if ($('#specials_state_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			window.localStorage.setItem("chosenstate", selectedstate);
+			$('.hidden:visible').slideUp('slow');
+			showSpinner();
+			// clear the destination list
+			$('#specials_state_list_ul').html('');
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			// check if barsDbs is empty
+			var barsDbs = localStorage.getItem("barsDbs");
+			barsDbs = String(barsDbs);
+			if (barsDbs && barsDbs != "") {
+				if (barsDbs.search(selectedstate)!=-1) {
+					db.transaction(querySpecialsStateDB, errorCB, function(){});
+				} else {
+					db.transaction(populateSpecialsStateDB, errorCB, successSpecialsStateCB);
+				}
+			} else {
+				db.transaction(populateSpecialsStateDB, errorCB, successSpecialsStateCB);
+			}
+		}
+	}
+	
+	// Populate the database with bar information for bars in selectedstate
+	function populateSpecialsStateDB(tx) {
+		tx.executeSql('CREATE TABLE IF NOT EXISTS bars(id INTEGER, name, slug, location, address, destination, destination_slug, phone, city, state, statekey, website)');
+		$.ajaxSetup({async: false});
+		var selectedstate = window.localStorage.getItem("chosenstate");
+		$.get("http://nationwidebarcrawl.com/mobilenative/barstatelist/" + selectedstate + "/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			var len = parsed_data.length
+			var remaining_length = parsed_data.length;
+			var begin_counter = 0;
+			while (remaining_length > 0) {
+				addRowsToSpecialsStateTable(parsed_data.slice(begin_counter, begin_counter+500), tx);
+				begin_counter += 500;
+				remaining_length -= 500;
+			}
+			window.localStorage.setItem("barsDbCreated", "1");
+			var donedbs = window.localStorage.getItem("barsDbs");
+			donedbs += ", " + selectedstate;
+			window.localStorage.setItem("barsDbs", donedbs);
+		});
+	}
+	
+	// Add rows to the table with bar info for Specials State
+	function addRowsToSpecialsStateTable(bars, tx) {
+		for(var i=0;i<bars.length;i++) {
+			var bar = bars[i];
+			barVarString = [bar['pk'], bar['name'], bar['slug'], bar['location'], bar['address'], bar['destination'], bar['destination_slug'], bar['phone'], bar['city'], bar['state'], bar['statekey'], bar['website']];
+			tx.executeSql('INSERT INTO bars (id, name, slug, location, address, destination, destination_slug, phone, city, state, statekey, website) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', barVarString);
+		}
+	}
+	
+	// Specials State DB Query Success Callback
+	function successSpecialsStateCB() {
+		var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+		db.transaction(querySpecialsStateDB, errorCB);
+	}
+	
+	// Query the database for destination list for selectedstate for Specials State page
+	function querySpecialsStateDB(tx) {
+		var selectedstate = window.localStorage.getItem("chosenstate");
+		tx.executeSql('SELECT DISTINCT destination, city, destination_slug FROM bars WHERE statekey = ?', [selectedstate], querySpecialsStateSuccess, errorCB);
+	}
+	
+	// got destination list from DB, fill it in to the template
+	function querySpecialsStateSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++) {
+			var bar = results.rows.item(i);
+			$('#specials_state_list_ul').append('<li><a href="#" onClick="newSpecialsDest(\'' + bar.destination + '\', \''+ bar.destination_slug + '\')">' + bar.destination + ' - ' + bar.city + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		// show the specials state page
+		$('#specials_state_page').slideDown('slow', function() {
+			setTimeout(function() {
+				hideSpinner();
+				myScroll.refresh();
+			}, 100);
+		});
+		$('#up_arrow').show();
+	}
+	
+	// accessor method to set the new destination for the specials
+	function newSpecialsDest(chosendest, chosendestslug) {
+		window.localStorage.setItem("specialsdest", chosendest);
+		window.localStorage.setItem("specialsdestslug", chosendestslug); 
+		showSpecials();
+	}
+	
+	//************************************************************
+	//
 	// PHOTOS
+	//
+	//************************************************************
 	
 	// display/hide the photos page
 	function showPhotosPage() {
@@ -625,6 +1797,7 @@
 			if ($('#photos_page').is(':visible')) {
 				upArrowClicked();
 			} else {
+				showSpinner();
 				$('.hidden:visible').slideUp('slow');
 				// clear the galleries
 				$('#mobile_galleries_ul').html('');
@@ -638,6 +1811,7 @@
 					$('#photos_page').slideDown('slow', function() {
 						setTimeout(function() {
 							myScroll.refresh();
+							hideSpinner();
 						}, 0);
 					});
 					$('#up_arrow').show();
@@ -656,6 +1830,7 @@
 			if ($('#photos_gallery_page').is(':visible')) {
 				upArrowClicked();
 			} else {
+				showSpinner();
 				$('.hidden:visible').slideUp('slow');
 				// clear the gallery and gallery title
 				$('#mobile_single_gallery_ul').html('');
@@ -670,6 +1845,7 @@
 					$('#photos_gallery_page').slideDown('slow', function() {
 						setTimeout(function() {
 							myScroll.refresh();
+							hideSpinner();
 						}, 0);
 					});
 					$('#up_arrow').show();
@@ -688,6 +1864,7 @@
 			if ($('#photos_single_photo_page').is(':visible')) {
 				upArrowClicked();
 			} else {
+				showSpinner();
 				$('.hidden:visible').slideUp('slow');
 				// clear the photo page
 				$('#photos_photo_holder').html('');
@@ -706,6 +1883,7 @@
 				$('#photos_single_photo_page').slideDown('slow', function() {
 					setTimeout(function() {
 						myScroll.refresh();
+						hideSpinner();
 					}, 1000);
 				});
 				$('#up_arrow').show();
@@ -715,82 +1893,115 @@
 	
 	// remove a bar tag from a photo
 	function removeBarTag(chosenphoto) {
+		showSpinner();
 		// GET to remove bar tag from chosen photo
 		$.get("http://nationwidebarcrawl.com/mobilenative/photos/removebartag/" + chosenphoto + "/", function(response) {
+			hideSpinner();
 			// reload the photo page
        		photoClicked(chosenphoto);
 		});
 	}
-    
-    // display/hide the photos take photo page
+	
+	// remove a beer tag from a photo
+	function removeBeerTag(chosenbeer, chosenphoto) {
+		showSpinner();
+		// GET to remove beer tag from chosen photo
+		$.get("http://nationwidebarcrawl.com/mobilenative/photos/removebeertag/" + chosenphoto + "/" + chosenbeer + "/", function(response) {
+			hideSpinner();
+			// reload the photo page
+        	photoClicked(chosenphoto);
+		});
+	}
+	
+	// remove a drink tag from a photo
+	function removeDrinkTag(chosendrink, chosenphoto) {
+		showSpinner();
+		// GET to remove beer tag from chosen photo
+		$.get("http://nationwidebarcrawl.com/mobilenative/photos/removedrinktag/" + chosenphoto + "/" + chosendrink + "/", function(response) {
+			hideSpinner();
+			// redirect to photo page
+			photoClicked(chosenphoto);
+		});
+	}
+	
+	// display/hide the photos take photo page
 	function showTakePhotoPage() {
 		var auth_info = localStorage.getItem("isAuthenticated");
 		if (auth_info == "0") {
-			navigator.notification.alert('Please login to take a picture', null, '', 'Login');
+			navigator.notification.alert('Please login to see the Photo page', null, '', 'Login');
 			window.location.href="login.html";
 		} else {
 			if ($('#photos_take_photo_page').is(':visible')) {
 				upArrowClicked();
 			} else {
 				$('.hidden:visible').slideUp('slow');
-                $('#photos_take_photo_page').slideDown('slow', function() {
-                    setTimeout(function() {
-                        myScroll.refresh();
-                    }, 0);
-                });
-                $('#up_arrow').show();
+				$('#photos_take_photo_page').slideDown('slow', function() {
+					setTimeout(function() {
+						myScroll.refresh();
+					}, 0);
+				});
+				$('#up_arrow').show();
 			}
 		}
 	}
-    
-    // function to pop the camera for a new photo
-    function photosNewCameraPhoto() {
-        navigator.camera.getPicture(captureSuccess, captureError, {sourceType: Camera.PictureSourceType.CAMERA, destinationType: Camera.DestinationType.FILE_URI});
-    }
-    
-    // function to pop the gallery for a new photo
-    function photosNewGalleryPhoto() {
-        navigator.camera.getPicture(captureSuccess, captureError, {sourceType: Camera.PictureSourceType.PHOTOLIBRARY, destinationType: Camera.DestinationType.FILE_URI});
-    }
-    
-    // picture successfully captured, get link to file on filesystem
-    function captureSuccess(mediaFiles) {
-        window.resolveLocalFileSystemURI(mediaFiles, gotFilePath, null);
-    }
-    
-    // got filesystem link for photo, upload to web server
-    function gotFilePath(fileEntry) {
-        var options = new FileUploadOptions();
-        options.fileKey="image";
-        options.chunkedMode=false;
-        var ft = new FileTransfer();
-        ft.upload(fileEntry.fullPath, 'http://nationwidebarcrawl.com/mobilenative/photos/upload/', uploadSuccess, uploadFail, options);
-    }
-    
-    // picture uploaded successfully
-    function uploadSuccess() {
-        alert('Picture uploaded!');
-        showPhotosPage();
-    }
-    
-    // upload error
-    function uploadFail(error) {
-        alert('Sorry, there was an error uploading your photo, please try again.');
-        upArrowClicked();
-    }
-    
-    // error capturing the photo
-    function captureError(error) {
-        alert('Sorry, there was an error capturing your photo, please try again.');
-    }
 	
+	// function to pop the camera for a new photo
+	function photosNewCameraPhoto() {
+		navigator.camera.getPicture(captureSuccess, captureError, {sourceType: Camera.PictureSourceType.CAMERA, destinationType: Camera.DestinationType.FILE_URI});
+	}
+	
+	// function to pop the gallery for a new photo
+	function photosNewGalleryPhoto() {
+		navigator.camera.getPicture(captureSuccess, captureError, {sourceType: Camera.PictureSourceType.PHOTOLIBRARY, destinationType: Camera.DestinationType.FILE_URI});
+	}
+
+	// picture successfully captured, get link to file on filesystem
+	function captureSuccess(mediaFiles) {
+		window.resolveLocalFileSystemURI(mediaFiles, gotFilePath, null);
+	}
+
+	// got filesystem link for photo, upload to web server
+	function gotFilePath(fileEntry) {
+		showSpinner();
+		var options = new FileUploadOptions();
+		options.fileKey="image";
+		options.chunkedMode=false;
+		var ft = new FileTransfer();
+		ft.upload(fileEntry.fullPath, 'http://nationwidebarcrawl.com/mobilenative/photos/upload/', uploadSuccess, uploadFail, options);
+	}
+
+	// picture uploaded successfully
+	function uploadSuccess() {
+		alert('Picture uploaded!');
+		hideSpinner();
+		showPhotosPage();
+	}
+
+	// upload error
+	function uploadFail(error) {
+		alert('Sorry, there was an error uploading your photo, please try again.');
+		hideSpinner();
+		upArrowClicked();
+	}
+
+	// error capturing the photo
+	function captureError(error) {
+		alert('Sorry, there was an error capturing your photo, please try again.');
+		hideSpinner();
+	}
+	
+	//************************************************************
+	//
 	// WEEKLY POLL
+	//
+	//************************************************************
 	
 	// display/hide the weekly poll page
 	function showWeeklyPoll(chosengallery) {
 		if ($('#weekly_poll_page').is(':visible')) {
 			upArrowClicked();
 		} else {
+			showSpinner();
 			$('.hidden:visible').slideUp('slow');
 			// clear the poll page
 			$('#weekly_poll_page').html('');
@@ -803,6 +2014,7 @@
 				$('#weekly_poll_page').slideDown('slow', function() {
 					setTimeout(function() {
 						myScroll.refresh();
+						hideSpinner();
 					}, 0);
 				});
 				$('#up_arrow').show();
@@ -812,29 +2024,36 @@
 	
 	// vote function for a beer on the weekly poll page
 	function voteButtonClicked(chosenpollpk, chosenbeerpk) {
+		showSpinner();
 		$.post("http://nationwidebarcrawl.com/mobilenative/weekly-polls/", { pollpk: chosenpollpk, beerpk: chosenbeerpk }, function(response) {
-               var parsed_data = $.parseJSON(response);
-               // if error, display message
-               if (parsed_data[0].message != undefined) {
-                    alert(parsed_data[0].message);
-               } else {
-                    // clear the poll
-                    $('#weekly_poll_page').html('');
-                    // reload the poll page with updated vote numbers
-                    $.each(parsed_data, function() {
-                      $('#weekly_poll_page').append('<p class="weekly_poll_name">' + this['name'] + '</p><div class="weekly_poll_holder"><div class="weekly_poll_left"><img src="http://nationwidebarcrawl.com' + this['beer1image'] + '" /><p><a href="#" onClick="voteButtonClicked(' + this['pollpk' ] + ', ' + this['beer1pk'] + ')"><img src="./images/mobile/vote.png" /></a></p><p>Votes: ' + this['beer1counter'] + '</p></div><div class="weekly_poll_right"><img src="http://nationwidebarcrawl.com' + this['beer2image'] + '" /><p><a href="#" onClick="voteButtonClicked(' + this['pollpk' ] + ', ' + this['beer2pk'] + ')"><img src="./images/mobile/vote.png" /></a></p><p>Votes: ' + this['beer2counter'] + '</p></div><p class="weekly_poll_vs">VS.</p></div><div class="mobile_hr"></div>');
-                      });
-               }
+			var parsed_data = $.parseJSON(response);
+			hideSpinner();
+			// if error, display message
+			if (parsed_data[0].message != undefined) {
+				alert(parsed_data[0].message);
+			} else {
+				// clear the poll page
+				$('#weekly_poll_page').html('');
+				// reload the poll page with updated vote numbers
+				$.each(parsed_data, function() {
+                	$('#weekly_poll_page').append('<p class="weekly_poll_name">' + this['name'] + '</p><div class="weekly_poll_holder"><div class="weekly_poll_left"><img src="http://nationwidebarcrawl.com' + this['beer1image'] + '" /><p><a href="#" onClick="voteButtonClicked(' + this['pollpk' ] + ', ' + this['beer1pk'] + ')"><img src="./images/mobile/vote.png" /></a></p><p>Votes: ' + this['beer1counter'] + '</p></div><div class="weekly_poll_right"><img src="http://nationwidebarcrawl.com' + this['beer2image'] + '" /><p><a href="#" onClick="voteButtonClicked(' + this['pollpk' ] + ', ' + this['beer2pk'] + ')"><img src="./images/mobile/vote.png" /></a></p><p>Votes: ' + this['beer2counter'] + '</p></div><p class="weekly_poll_vs">VS.</p></div><div class="mobile_hr"></div>');
+                });
+			}
 		});
 	}
 	
+	//************************************************************
+	//
 	// DRINKING BUDDIES
+	//
+	//************************************************************
 	
 	// display/hide the drinking buddies page
 	function showDrinkingBuddies() {
 		if ($('#drinking_buddies_page').is(':visible')) {
 			upArrowClicked();
 		} else {
+			showSpinner();
 			$('.hidden:visible').slideUp('slow');
 			// clear the drinking buddies page
 			$('#drinking_buddies_ul').html('');
@@ -847,6 +2066,7 @@
 				$('#drinking_buddies_page').slideDown('slow', function() {
 					setTimeout(function() {
 						myScroll.refresh();
+						hideSpinner();
 					}, 1000);
 				});
 				$('#up_arrow').show();
@@ -854,8 +2074,41 @@
 		}
 	}
 	
+	//************************************************************
+	//
 	// PROFILE
-		
+	//
+	//************************************************************
+	
+	// display/hide the photos section on the profile page
+	function showProfileGalleries() {
+		if ($('#profile_galleries').is(':visible')) {
+			$('#profile_galleries').slideToggle('slow', function() {
+				setTimeout(function() {
+					myScroll.refresh();
+				}, 0);
+			});
+		} else {
+			showSpinner();
+			// clear the galleries
+			$('#profile_galleries_ul').html('');
+			// fill in the galleries ul
+			$.get("http://nationwidebarcrawl.com/mobilenative/photos/", function(response) {
+				var parsed_data = $.parseJSON(response);
+				$.each(parsed_data, function() {
+					var chosengallery = this['gallerypk'];
+					$('#profile_galleries_ul').append('<li class="mobile_left"><a href="#" rel="external" onClick="galleryClicked(\'' + chosengallery + '\')"><img src="http://nationwidebarcrawl.com' + this['73x71'] + '" /></a><p>' + this['name'] + '</p></li>');
+				});
+				$('#profile_galleries').slideToggle('slow', function() {
+					setTimeout(function() {
+						myScroll.refresh();
+						hideSpinner();
+					}, 0);
+				});
+			});
+		}
+	}
+	
 	// display/hide the beers section on the profile page
 	function showProfileBeers() {
 		$('#profile_beers').slideToggle('slow', function() {
@@ -883,7 +2136,1271 @@
 		});
 	}
 	
+	// display/hide the edit profile page
+	function showProfileEditPage() {
+		if ($('#profile_edit_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			showSpinner();
+			$('.hidden:visible').slideUp('slow');
+			// clear the drinking buddies page
+			$('#profile_edit_info').html('');
+			// get the profile data from the server, append to the template, pass the favoritebeer and favoritedrink pks along for filesystem access
+			$.get("http://nationwidebarcrawl.com/mobilenative/profile/", function(response) {
+				var parsed_data = $.parseJSON(response);
+				// set link to display favorite beer or pick favorite beer if not already set
+				if (parsed_data['favbeerpk'] != null) {
+					var favbeerlink = '<a href="#" onClick="singleBeerClicked(\'' + parsed_data['favbeerpk'] + '\')">';
+				} else {
+					var favbeerlink = '<a href="./profilechangebeer.html">';
+				}
+				// set link to display favorite drink or pick favorite drink if not already set
+				if (parsed_data['favdrinkpk'] != null) {
+					var favdrinklink = '<a href="#" onClick="singleDrinkClicked(\'' + parsed_data['favdrinkpk'] + '\')">';
+				} else {
+					var favdrinklink = '<a href="./profilechangedrink.html">';
+				}
+				$('#profile_edit_info').append('<p>Destination: <a href="./bardest.html" onClick="destClicked(\'' + parsed_data['favdest'] + '\')">' + parsed_data['favdest'] + '</a></p><p><a href="./profilechangedest.html" rel="external">Change Destination</a></p>');
+				$('#profile_edit_info').append('<p>Favorite Bar: <a href="#" onClick="singleBarClicked(\'' + parsed_data['favbarpk'] + '\')">' + parsed_data['favbar'] + '</a></p><p><a href="./profilechangebar.html" rel="external">Change Favorite Bar</a></p>');
+				$('#profile_edit_info').append('<p>Favorite Beer: ' + favbeerlink + parsed_data['favbeer'] + '</a></p><p><a href="./profilechangebeer.html" rel="external">Change Favorite Beer</a></p>');
+				$('#profile_edit_info').append('<p>Favorite Drink: ' + favdrinklink + parsed_data['favdrink'] + '</a></p><p><a href="./profilechangedrink.html" rel="external">Change Favorite Drink</a></p>');
+				// show the profile edit page
+				$('#profile_edit_page').slideDown('slow', function() {
+					setTimeout(function() {
+						myScroll.refresh();
+						hideSpinner();
+					}, 0);
+				});
+				$('#up_arrow').show();
+            });
+		}
+	}
+	
+	// display/hide the profile change image page
+	function profileChangeImageClicked() {
+		var auth_info = localStorage.getItem("isAuthenticated");
+		if (auth_info == "0") {
+			navigator.notification.alert('Please login to change your profile image', null, '', 'Login');
+			window.location.href="login.html";
+		} else {
+			if ($('#profile_change_image_page').is(':visible')) {
+				upArrowClicked();
+			} else {
+				$('.hidden:visible').slideUp('slow');
+				$('#profile_change_image_page').slideDown('slow', function() {
+					setTimeout(function() {
+						myScroll.refresh();
+					}, 0);
+				});
+				$('#up_arrow').show();
+			}
+		}
+	}
+	
+	// function to pop the camera for a new profile image
+	function profileNewCameraPhoto() {
+		showSpinner();
+		navigator.camera.getPicture(captureProfileImageSuccess, captureError, {sourceType: Camera.PictureSourceType.CAMERA, destinationType: Camera.DestinationType.FILE_URI});
+	}
+
+	// function to pop the gallery for a new profile image
+	function profileNewGalleryPhoto() {
+		showSpinner();
+		navigator.camera.getPicture(captureProfileImageSuccess, captureError, {sourceType: Camera.PictureSourceType.PHOTOLIBRARY, destinationType: Camera.DestinationType.FILE_URI});
+	}
+	
+	// got new profile image, resolve the file URI
+	function captureProfileImageSuccess(mediaFiles) {
+		window.resolveLocalFileSystemURI(mediaFiles, gotProfileImageFilePath, null);
+	}
+	
+	// got the file URI, upload the new profile image
+	function gotProfileImageFilePath(fileEntry) {
+		var options = new FileUploadOptions();
+		options.fileKey="image";
+		options.chunkedMode=false;
+		var ft = new FileTransfer();
+		ft.upload(fileEntry.fullPath, 'http://nationwidebarcrawl.com/mobilenative/profile/changeimage/', uploadProfileImageSuccess, uploadFail, options);
+	}
+	
+	// new profile image successfully uploaded
+	function uploadProfileImageSuccess() {
+		alert('Profile Image Changed');
+		hideSpinner();
+		profileClicked();
+	}
+	
+	//************************************************************
+	//
+	// DRINKS BUTTON ON FOOTER
+	//
+	//************************************************************
+	
+	// display/hide drinks page
+	function showDrinksPage() {
+		if ($('#drinks_footer_button_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			$('#drinks_footer_button_page').slideDown('slow', function() {
+				setTimeout(function() {
+					myScroll.refresh();
+				}, 0);
+			});
+			$('#up_arrow').show();
+		}
+	}
+	
+	//************************************************************
+	//
+	// DRINKS
+	// 
+	//************************************************************
+	
+	// display/hide the drinks main page
+	function drinksMainClicked() {
+		if ($('#drinks_main_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			$('#drinks_main_page').slideDown('slow', function() {
+				setTimeout(function() {
+					myScroll.refresh();
+				}, 0);
+			});
+			$('#up_arrow').show();
+		}
+	}
+	
+	// display/hide the drinks abc page
+	function drinksABCClicked() {
+		if ($('#drinks_abc_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			showSpinner();
+			// clear the drinks abc ul
+			$('#drinks_abc_ul').html('');
+			// query the db for drinks abc list
+			db.transaction(queryDrinksABCDB, errorCB);
+		}
+	}
+	
+	// Query the database for the drinks list for drinks_abc_page
+	function queryDrinksABCDB(tx) {
+		tx.executeSql('SELECT * FROM drinks', [], queryDrinksABCSuccess, errorCB);
+	}
+	
+	// Drinks ABC DB Query Success Callback
+	function queryDrinksABCSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var drink = results.rows.item(i);
+			$('#drinks_abc_ul').append('<li><a href="#" onClick="singleDrinkClicked(\'' + drink.id + '\')">' + drink.name + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		$('#drinks_abc_page').slideDown('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+			hideSpinner();
+		});
+		$('#up_arrow').show();
+	}
+	
+	// display/hide the drinks types page
+	function drinksTypesClicked() {
+		if ($('#drinks_types_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			showSpinner();
+			// clear the drinks types ul
+			$('#drinks_types_ul').html('');
+			// query the db for drink types list
+			db.transaction(queryDrinksTypesDB, errorCB);
+		}
+	}
+	
+	// Query the database to get the list of drink types for drinks_types_page
+	function queryDrinksTypesDB(tx) {
+		tx.executeSql('SELECT DISTINCT type FROM drinks', [], queryDrinksTypesSuccess, errorCB);
+	}
+	
+	// Drinks Types DB Query Success Callback
+	function queryDrinksTypesSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var drink = results.rows.item(i);
+			$('#drinks_types_ul').append('<li><a href="#" onClick="drinksTypeClicked(\'' + drink.type + '\')">' + drink.type + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		$('#drinks_types_page').slideDown('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+			hideSpinner();
+		});
+		$('#up_arrow').show();
+	}
+	
+	// display/hide the drinks type page
+	function drinksTypeClicked(chosendrinktype) {
+		if ($('#drinks_type_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			window.localStorage.setItem("chosendrinktype", chosendrinktype);
+			$('.hidden:visible').slideUp('slow');
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			showSpinner();
+			// clear the drinks type ul
+			$('#drinks_type_ul').html('');
+			// query the db for drink type list
+			db.transaction(queryDrinksTypeDB, errorCB);
+		}
+	}
+	
+	// Query the database for all the drinks of chosen drink type for drinks_type_page
+	function queryDrinksTypeDB(tx) {
+		var chosendrinktype = window.localStorage.getItem("chosendrinktype");
+		tx.executeSql('SELECT * FROM drinks WHERE type=?', [chosendrinktype], queryDrinksTypeSuccess, errorCB);
+	}
+	
+	// Drinks Type DB Query Success Callback
+	function queryDrinksTypeSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var drink = results.rows.item(i);
+			$('#drinks_type_ul').append('<li><a href="#" onClick="singleDrinkClicked(\'' + drink.id + '\')">' + drink.name + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		$('#drinks_type_page').slideDown('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+			hideSpinner();
+		});
+		$('#up_arrow').show();
+	}
+	
+	// display/hide the random drink page
+	function randomDrinkClicked() {
+		if ($('#drinks_random_drink_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			showSpinner();
+			// clear random drink info
+			$('#randomDrink_float_left').html('');
+			$('#random_drink_photos_holder').html('');
+			$('#random_drink_photos').html('');
+			$('#random_drink_members_holder').html('');
+			$('#random_drink_members').html('');
+			$('.hidden:visible').slideUp('slow');	
+			// get random drink from db
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			db.transaction(queryRandomDrinkDB, errorCB, function(){});
+		}
+	}
+	
+	// Query the drinks database for a random drink
+	function queryRandomDrinkDB(tx) {
+		tx.executeSql('SELECT * FROM drinks', [], queryRandomDrinkSuccess, errorCB);
+	}
+	
+	// Query Random Drink DB Success Callback
+	function queryRandomDrinkSuccess(tx, results) {
+		var len = results.rows.length;
+		var randomid = Math.floor(Math.random() * len) + 1;
+		var drink = results.rows.item(randomid);
+		getRandomDrinkFavoritesAndPhotos(drink.id);
+		window.localStorage.setItem("drinkimagename", drink.imagename);
+		window.localStorage.setItem("drinkimageurl", drink.imageurl);
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onRandomDrinkFSSuccess, errorHandler);
+		$('#randomDrink_float_left').append('<p>' + drink.name + '</p>');
+		$('#randomDrink_float_left').append('<p>Glass:<br />' + drink.glass + '</p>');
+		$('#randomDrink_float_left').append('<p>Type:<br /><a href="#" onClick="drinksTypeClicked(\'' + drink.type + '\')">' + drink.type + '</a></p>');
+	}
+	
+	// Function to get favorite people and recent images for a random drink
+	function getRandomDrinkFavoritesAndPhotos(selecteddrink) {
+		$.get("http://nationwidebarcrawl.com/mobilenative/drinks/pk/" + selecteddrink + "/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			if(parsed_data['drinkphotos'].length > 0) {
+				$('#random_drink_photos_holder').append('<div class="mobile_hr"></div><h1>Recently Tagged Photos:</h1>');
+			}
+			$.each(parsed_data['drinkphotos'], function() {
+				$('#random_drink_photos').append('<li><img src="http://nationwidebarcrawl.com' + this['imageurl'] + '" /></li>');
+			});
+			if(parsed_data['members'].length > 0) {
+				$('#random_drink_members_holder').append('<div class="mobile_hr"></div><h1>Favorite Drink For:</h1>');
+			}
+			$.each(parsed_data['members'], function() {
+				$('#random_drink_members').append('<li><img src="http://nationwidebarcrawl.com' + this['profileimage'] + '" /></li>');
+			});
+			$('#drinks_random_drink_page').slideDown('slow', function() {
+				setTimeout(function() {
+					myScroll.refresh();
+					hideSpinner();
+				}, 1000);
+			});
+			$('#up_arrow').show();
+		});
+	}
+	
+	// got filesystem for random drink image
+	function onRandomDrinkFSSuccess(fileSystem) {
+		fileSystem.root.getDirectory("NWBC",{create:true},function(){},function(){});
+		fileSystem.root.getDirectory("NWBC/drinks",{create:true},gotRandomDrinkDir,onError);
+	}
+	
+	// got filesystem directory for random drink image
+	function gotRandomDrinkDir(d){
+		DATADIR = d;
+		d.getFile(window.localStorage.getItem("drinkimagename"), {create: false}, gotRandomDrinkFile, noRandomDrinkFile);
+	}
+	
+	// got file for random drink image
+	function gotRandomDrinkFile(fileEntry) {
+		$('#random_drink_image_img').attr("src", fileEntry.fullPath);
+	}
+	
+	// drink image file not found, download it and cache it on the filesystem
+	function noRandomDrinkFile() {
+		// get drink image url from local storage
+		var drinkimageurl = window.localStorage.getItem("drinkimageurl");
+		// create fileTransfer object
+		var ft = new FileTransfer();
+		var dlPath = DATADIR.fullPath + "/" + drinkimageurl.substring(drinkimageurl.lastIndexOf('/')+1);
+		ft.download("http://nationwidebarcrawl.com" + drinkimageurl, dlPath, function(entry) {$('#random_drink_image_img').attr("src", entry.fullPath);}, null);
+	}
+	
+	// display/hide the single drink page
+	function singleDrinkClicked(selecteddrink) {
+		if ($('#drinks_single_drink_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			window.localStorage.setItem("selecteddrink", selecteddrink);
+			showSpinner();
+			// clear single drink info
+			$('#drinks_single_float_left').html('');
+			$('#drinks_single_photos_holder').html('');
+			$('#drinks_single_photos').html('');
+			$('#drinks_single_members_holder').html('');
+			$('#drinks_single_members').html('');
+			$('.hidden:visible').slideUp('slow');
+			// get single drink from db
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			db.transaction(querySingleDrinkDB, errorCB, function(){});
+		}
+	}
+	
+	// Query the database for a single drink info for drinks_single_drink_page
+	function querySingleDrinkDB(tx) {
+		var selecteddrink = window.localStorage.getItem("selecteddrink");
+		tx.executeSql('SELECT * FROM drinks WHERE id = ?', [selecteddrink], querySingleDrinkSuccess, errorCB);
+	}
+	
+	// Single Drink DB Query Success Callback
+	function querySingleDrinkSuccess(tx, results) {
+		var drink = results.rows.item(0);
+		getSingleDrinkFavoritesAndPhotos(drink.id);
+		window.localStorage.setItem("drinkimagename", drink.imagename);
+		window.localStorage.setItem("drinkimageurl", drink.imageurl);
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSingleDrinkFSSuccess, errorHandler);
+		$('#drinks_single_float_left').append('<p>' + drink.name + '</p>');
+		$('#drinks_single_float_left').append('<p>Glass:<br />' + drink.glass + '</p>');
+		$('#drinks_single_float_left').append('<p>Type:<br /><a href="#" onClick="drinksTypeClicked(\'' + drink.type + '\')">' + drink.type + '</a></p>');
+	}
+	
+	// Got FileSystem for Single Drink Image, get image directory
+	function onSingleDrinkFSSuccess(fileSystem) {
+		fileSystem.root.getDirectory("NWBC",{create:false},function(){},function(){});
+		fileSystem.root.getDirectory("NWBC/drinks",{create:false},gotSingleDrinkDir,onError);
+	}
+	
+	// Got FileSystem Directory for single image, get image file
+	function gotSingleDrinkDir(d){
+		DATADIR = d;
+		var drinkimagename = window.localStorage.getItem("drinkimagename");
+		d.getFile(drinkimagename, {create: false}, gotSingleDrinkFile, noSingleDrinkFile);
+	}
+	
+	// Got file for image for Single Drink, set img src in the template
+	function gotSingleDrinkFile(fileEntry) {
+		$('#drinks_single_image_img').attr("src", fileEntry.fullPath);
+	}
+
+	// Image file for Single Drink not found, download it, cache it to the SD card and display it in the template
+	function noSingleDrinkFile() {
+		var drinkimageurl = window.localStorage.getItem("drinkimageurl");
+		// create fileTransfer object
+		var ft = new FileTransfer();
+		var dlPath = DATADIR.fullPath + "/" + drinkimageurl.substring(drinkimageurl.lastIndexOf('/')+1);
+		ft.download("http://nationwidebarcrawl.com" + drinkimageurl, dlPath, function(entry) {$('#drinks_single_image_img').attr("src", entry.fullPath);}, null);
+	}
+	
+	// get Favorite People and Recent Images for drinks_single_drink_page
+	function getSingleDrinkFavoritesAndPhotos(selecteddrink) {
+		$.get("http://nationwidebarcrawl.com/mobilenative/drinks/pk/" + selecteddrink + "/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			if(parsed_data['drinkphotos'].length > 0) {
+				$('#drinks_single_photos_holder').append('<div class="mobile_hr"></div><h1>Recently Tagged Photos:</h1>');
+			}
+			$.each(parsed_data['drinkphotos'], function() {
+				$('#drinks_single_photos').append('<li><img src="http://nationwidebarcrawl.com' + this['imageurl'] + '" /></li>');
+			});
+			if(parsed_data['members'].length > 0) {
+				$('#drinks_single_members_holder').append('<div class="mobile_hr"></div><h1>Favorite Drink For:</h1>');
+				$.each(parsed_data['members'], function() {
+					$('#drinks_single_members').append('<li><img src="http://nationwidebarcrawl.com' + this['profileimage'] + '" /></li>');
+				});
+			}
+			$('#drinks_single_drink_page').slideDown('slow', function() {
+				setTimeout(function() {
+					myScroll.refresh();
+					hideSpinner();
+				}, 1000);
+			});
+			$('#up_arrow').show();
+		});
+	}
+	
+	//************************************************************
+	//
+	// BEERS
+	// 
+	//************************************************************
+	
+	// display/hide the beers main page
+	function beersMainClicked() {
+		if ($('#beers_main_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			$('#beers_main_page').slideDown('slow', function() {
+				setTimeout(function() {
+					myScroll.refresh();
+				}, 0);
+			});
+			$('#up_arrow').show();
+		}
+	}
+	
+	// display/hide the beers abc page
+	function beersABCClicked() {
+		if ($('#beers_abc_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			showSpinner();
+			// clear the beers abc ul
+			$('#beers_abc_ul').html('');
+			// query the db for beers list
+			db.transaction(queryBeersABCDB, errorCB);
+		}
+	}
+	
+	// Query the beers database to get the alphabetical listing of beers
+	function queryBeersABCDB(tx) {
+		tx.executeSql('SELECT * FROM beers', [], queryBeersABCSuccess, errorCB);
+	}
+	
+	// beers ABC databse query success callback
+	function queryBeersABCSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++) {
+			var beer = results.rows.item(i);
+			$('#beers_abc_ul').append('<li><a href="#" onClick="singleBeerClicked(\'' + beer.id + '\')">' + beer.name + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		$('#beers_abc_page').slideDown('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+			hideSpinner();
+		});
+		$('#up_arrow').show();
+	}
+	
+	// display/hide the beers breweries page
+	function beersBreweriesClicked() {
+		if ($('#beers_breweries_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			showSpinner();
+			// clear the beers breweries ul
+			$('#beers_breweries_ul').html('');
+			// query the db for beers list
+			db.transaction(queryBeersBreweriesDB, errorCB);
+		}
+	}
+	
+	// Query the database for a list of unique breweries for beers_breweries_page
+	function queryBeersBreweriesDB(tx) {
+		tx.executeSql('SELECT DISTINCT brewery, brewerypk FROM beers', [], queryBeersBreweriesSuccess, errorCB);
+	}
+	
+	// Beers Breweries DB success callback
+	function queryBeersBreweriesSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var beer = results.rows.item(i);
+			$('#beers_breweries_ul').append('<li><a href="#" onClick="beersBreweryClicked(\'' + beer.brewerypk + '\')">' + beer.brewery + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		$('#beers_breweries_page').slideDown('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+			hideSpinner();
+		});
+		$('#up_arrow').show();
+	}
+	
+	// display/hide the beers brewery page
+	function beersBreweryClicked(chosenbrewerypk) {
+		if ($('#beers_brewery_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			window.localStorage.setItem("chosenbrewery", chosenbrewerypk);
+			$('.hidden:visible').slideUp('slow');
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			showSpinner();
+			// clear the beers brewery ul
+			$('#beers_brewery_beer_ul').html('');
+			// query the db for beers list
+			db.transaction(queryBeersBreweryDB, errorCB);
+		}
+	}
+
+	// Query the database to get the beers list for a chosen brewery
+	function queryBeersBreweryDB(tx) {
+		var chosenbrewerypk = window.localStorage.getItem("chosenbrewery");
+		tx.executeSql('SELECT * FROM beers WHERE brewerypk=?', [chosenbrewerypk], queryBeersBrewerySuccess, errorCB);
+	}
+
+	// Beers Brewery DB Success Callback
+	function queryBeersBrewerySuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var beer = results.rows.item(i);
+			$('#beers_brewery_beer_ul').append('<li><a href="#" onClick="singleBeerClicked(\'' + beer.id + '\')">' + beer.name + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		$('#beers_brewery_page').slideDown('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+			hideSpinner();
+		});
+		$('#up_arrow').show();
+	}
+	
+	// display/hide the beers types page
+	function beersTypesClicked() {
+		if ($('#beers_types_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			showSpinner();
+			// clear the beers types ul
+			$('#beers_types_ul').html('');
+			// query the db for beers list
+			db.transaction(queryBeersTypesDB, errorCB);
+		}
+	}
+	
+	// Query the database for the list of beer types for beers_types_page
+	function queryBeersTypesDB(tx) {
+		tx.executeSql('SELECT DISTINCT type FROM beers', [], queryBeersTypesSuccess, errorCB);
+	}
+	
+	// Beers Types DB Success Callback
+	function queryBeersTypesSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var beer = results.rows.item(i);
+			$('#beers_types_ul').append('<li><a href="#" onClick="beersTypeClicked(\'' + beer.type + '\')">' + beer.type + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		$('#beers_types_page').slideDown('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+			hideSpinner();
+		});
+		$('#up_arrow').show();
+	}
+
+	// display/hide the beers type page
+	function beersTypeClicked(chosenbeertype) {
+		if ($('#beers_type_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			window.localStorage.setItem("chosenbeertype", chosenbeertype);
+			$('.hidden:visible').slideUp('slow');
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			showSpinner();
+			// clear the beers type ul
+			$('#beers_type_ul').html('');
+			// query the db for beers list
+			db.transaction(queryBeersTypeDB, errorCB);
+		}
+	}
+	
+	// Query the database for all the beers of a chosen type
+	function queryBeersTypeDB(tx) {
+		var chosentype = window.localStorage.getItem("chosenbeertype");
+		tx.executeSql('SELECT * FROM beers WHERE type=?', [chosentype], queryBeersTypeSuccess, errorCB);
+	}
+	
+	// Beers Type DB Query Success Callback
+	function queryBeersTypeSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var beer = results.rows.item(i);
+			$('#beers_type_ul').append('<li><a href="#" onClick="singleBeerClicked(\'' + beer.id + '\')">' + beer.name + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		$('#beers_type_page').slideDown('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+			hideSpinner();
+		});
+		$('#up_arrow').show();
+	}
+	
+	// display/hide the beers domestics page
+	function beersDomesticsClicked() {
+		if ($('#beers_domestics_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			showSpinner();
+			// clear the beers brewery ul
+			$('#beers_domestics_ul').html('');
+			// query the db for beers list
+			db.transaction(queryBeersDomesticsDB, errorCB);
+		}
+	}
+	
+	// Query the database for the domestic beers for beers_domestics_page
+	function queryBeersDomesticsDB(tx) {
+		tx.executeSql('SELECT * FROM beers WHERE locality=?', ['Domestic'], queryBeersDomesticsSuccess, errorCB);
+	}
+
+	// Beers Domestics DB Success Callback
+	function queryBeersDomesticsSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var beer = results.rows.item(i);
+			$('#beers_domestics_ul').append('<li><a href="#" onClick="singleBeerClicked(\'' + beer.id + '\')">' + beer.name + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		$('#beers_domestics_page').slideDown('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+			hideSpinner();
+		});
+		$('#up_arrow').show();
+	}
+	
+	// display/hide the beers imports page
+	function beersImportsClicked() {
+		if ($('#beers_imports_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			showSpinner();
+			// clear the beers brewery ul
+			$('#beers_imports_ul').html('');
+			// query the db for beers list
+			db.transaction(queryBeersImportsDB, errorCB);
+		}
+	}
+	
+	// Query the database for the import beer list for beers_imports_page
+	function queryBeersImportsDB(tx) {
+		tx.executeSql('SELECT * FROM beers WHERE locality=?', ['Import'], queryBeersImportsSuccess, errorCB);
+	}
+	
+	// Beers Imports DB Query Success Callback
+	function queryBeersImportsSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var beer = results.rows.item(i);
+			$('#beers_imports_ul').append('<li><a href="#" onClick="singleBeerClicked(\'' + beer.id + '\')">' + beer.name + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		$('#beers_imports_page').slideDown('slow', function() {
+			setTimeout(function() {
+				myScroll.refresh();
+			}, 0);
+			hideSpinner();
+		});
+		$('#up_arrow').show();
+	}
+
+	// display/hide the random beer page
+	function randomBeerClicked() {
+		if ($('#beers_random_beer_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			showSpinner();
+			// clear random beer info
+			$('#randomBeer_float_left').html('');
+			$('#random_beer_tagged_photos_holder').html('');
+			$('#random_beer_photos').html('');
+			$('#random_beer_favorite_members_holder').html('');
+			$('#random_beer_members').html('');
+			$('.hidden:visible').slideUp('slow');	
+			// get random beer from db
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			db.transaction(queryRandomBeerDB, errorCB, function(){});
+		}
+	}
+	
+	// Query the beers database for a random beer
+	function queryRandomBeerDB(tx) {
+		tx.executeSql('SELECT * FROM beers', [], queryRandomBeerSuccess, errorCB);
+	}
+	
+	// Query random beer db success callback
+	function queryRandomBeerSuccess(tx, results) {
+		var len = results.rows.length;
+		var randomid = Math.floor(Math.random() * len) + 1;
+		var beer = results.rows.item(randomid);
+		getRandomBeerFavoritesAndPhotos(beer.id);
+		window.localStorage.setItem("beerimagename", beer.imagename);
+		window.localStorage.setItem("beerimageurl", beer.imageurl);
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onRandomBeerFSSuccess, errorHandler);
+		$('#randomBeer_float_left').append('<p>' + beer.name + '</p>');
+		$('#randomBeer_float_left').append('<p>Brewery:<br /><a href="#" onClick="beersBreweryClicked(\'' + beer.brewerypk + '\')">' + beer.brewery + '</a></p>');
+		if (beer.locality == "Domestic") {
+			$('#randomBeer_float_left').append('<p>Locality:<br /><a href="#" onClick="beersDomesticsClicked()">' + beer.locality + '</a></p>');
+		} else {
+			$('#randomBeer_float_left').append('<p>Locality:<br /><a href="#" onClick="beersImportsClicked()">' + beer.locality + '</a></p>');
+		}
+		$('#randomBeer_float_left').append('<p>Type:<br /><a href="#" onClick="beersTypeClicked(\'' + beer.type + '\')">' + beer.type + '</a></p>');
+	}
+	
+	// Function to get random beer favorite people and recent images
+	function getRandomBeerFavoritesAndPhotos(selectedbeer) {
+		$.get("http://nationwidebarcrawl.com/mobilenative/beers/pk/" + selectedbeer + "/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			if(parsed_data['taggedphotos'].length > 0) {
+				$('#random_beer_tagged_photos_holder').append('<div class="mobile_hr"></div><h1>Recently Tagged Photos:</h1>');
+			}
+			$.each(parsed_data['taggedphotos'], function() {
+				$('#random_beer_photos').append('<li><img src="http://nationwidebarcrawl.com' + this['imageurl'] + '" /></li>');
+			});
+			if(parsed_data['members'].length > 0) {
+				$('#random_beer_favorite_members_holder').append('<div class="mobile_hr"></div><h1>Favorite Beer For:</h1>');
+			}
+			$.each(parsed_data['members'], function() {
+				$('#random_beer_members').append('<li><img src="http://nationwidebarcrawl.com' + this['profileimage'] + '" /></li>');
+			});
+			$('#beers_random_beer_page').slideDown('slow', function() {
+				setTimeout(function() {
+					myScroll.refresh();
+					hideSpinner();
+				}, 1000);
+			});
+			$('#up_arrow').show();
+		});
+	}
+	
+	// got filesystem for random beer image
+	function onRandomBeerFSSuccess(fileSystem) {
+		fileSystem.root.getDirectory("NWBC",{create:true},function(){},function(){});
+		fileSystem.root.getDirectory("NWBC/beers",{create:true},gotRandomBeerDir,onError);
+	}
+	
+	// got filesystem for random beer image, get random beer image file
+	function gotRandomBeerDir(d){
+		DATADIR = d;
+		d.getFile(window.localStorage.getItem("beerimagename"), {create: false}, gotRandomBeerFile, noRandomBeerFile);
+	}
+	
+	// got file for random beer image, add it to the template
+	function gotRandomBeerFile(fileEntry) {
+		$('#random_beer_image_img').attr("src", fileEntry.fullPath);
+	}
+	
+	// random beer image file not found, download it, cache it and add it to the template
+	function noRandomBeerFile() {
+		// create fileTransfer object
+		var ft = new FileTransfer();
+		var beerimageurl = window.localStorage.getItem("beerimageurl");
+		var dlPath = DATADIR.fullPath + "/" + beerimageurl.substring(beerimageurl.lastIndexOf('/')+1);
+		ft.download("http://nationwidebarcrawl.com" + beerimageurl, dlPath, function(entry) {$('#random_beer_image_img').attr("src", entry.fullPath);}, null);
+	}
+	
+	// display/hide the single beer page
+	function singleBeerClicked(selectedbeer) {
+		if ($('#beers_single_beer_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			window.localStorage.setItem("selectedbeer", selectedbeer);
+			showSpinner();
+			// clear single beer info
+			$('#single_beer_float_left').html('');
+			$('#single_beer_tagged_photos_holder').html('');
+			$('#single_beer_photos').html('');
+			$('#single_beer_favorite_members_holder').html('');
+			$('#single_beer_members').html('');
+			$('.hidden:visible').slideUp('slow');	
+			// get single beer from db
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			db.transaction(querySingleBeerDB, errorCB, function(){});
+		}
+	}
+	
+	// Query the database for a single beer
+	function querySingleBeerDB(tx) {
+		var selectedbeer = window.localStorage.getItem("selectedbeer");
+		tx.executeSql('SELECT * FROM beers WHERE id = ?', [selectedbeer], querySingleBeerSuccess, errorCB);
+	}
+	
+	// Single Beer DB Querry Success Callback
+	function querySingleBeerSuccess(tx, results) {
+		var beer = results.rows.item(0);
+		getSingleBeerFavoritesAndPhotos(beer.id);
+		window.localStorage.setItem("beerimagename", beer.imagename);
+		window.localStorage.setItem("beerimageurl", beer.imageurl);
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSingleBeerFSSuccess, errorHandler);
+		$('#single_beer_float_left').append('<p>' + beer.name + '</p>');
+		$('#single_beer_float_left').append('<p>Brewery:<br /><a href="#" onClick="beersBreweryClicked(\'' + beer.brewerypk + '\')">' + beer.brewery + '</a></p>');
+		if (beer.locality == "Domestic") {
+			$('#single_beer_float_left').append('<p>Locality:<br /><a href="#" onClick="beersDomesticsClicked()">' + beer.locality + '</a></p>');
+		} else {
+			$('#single_beer_float_left').append('<p>Locality:<br /><a href="#" onClick="beersImportsClicked()">' + beer.locality + '</a></p>');
+		}
+		$('#single_beer_float_left').append('<p>Type:<br /><a href="#" onClick="beersTypeClicked(\'' + beer.type + '\')">' + beer.type + '</a></p>');
+	}
+	
+	// Got FS, get directory for single beer image
+	function onSingleBeerFSSuccess(fileSystem) {
+		fileSystem.root.getDirectory("NWBC",{create:false},function(){},function(){});
+		fileSystem.root.getDirectory("NWBC/beers",{create:false},gotSingleBeerDir,onError);
+	}
+	
+	// Got DIR for single beer image file, get file
+	function gotSingleBeerDir(d) {
+		DATADIR = d;
+		var beerimagename = window.localStorage.getItem("beerimagename");
+		d.getFile(beerimagename, {create: false}, gotSingleBeerFile, noSingleBeerFile);
+	}
+	
+	// Got file on filesystem, add to template
+	function gotSingleBeerFile(fileEntry) {
+		$('#beers_single_image_img').attr("src", fileEntry.fullPath);
+	}
+	
+	// No file for single beer, download image file, cache to SD and display in template
+	function noSingleBeerFile() {
+		var beerimageurl = window.localStorage.getItem("beerimageurl");
+		// create fileTransfer object
+		var ft = new FileTransfer();
+		var dlPath = DATADIR.fullPath + "/" + beerimageurl.substring(beerimageurl.lastIndexOf('/')+1);
+		ft.download("http://nationwidebarcrawl.com" + beerimageurl, dlPath, function(entry) {$('#beers_single_image_img').attr("src", entry.fullPath);}, null);
+	}
+	
+	// Get Favorite People and Recent Images for selected beer
+	function getSingleBeerFavoritesAndPhotos(selectedbeer) {
+		$.get("http://nationwidebarcrawl.com/mobilenative/beers/pk/" + selectedbeer + "/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			if(parsed_data['taggedphotos'].length > 0) {
+				$('#single_beer_tagged_photos_holder').append('<div class="mobile_hr"></div><h1>Recently Tagged Photos:</h1>');
+			}
+			$.each(parsed_data['taggedphotos'], function() {
+				$('#single_beer_photos').append('<li><img src="http://nationwidebarcrawl.com' + this['imageurl'] + '" /></li>');
+			});
+			if(parsed_data['members'].length > 0) {
+				$('#single_beer_favorite_members_holder').append('<div class="mobile_hr"></div><h1>Favorite Beer For:</h1>');
+			}
+			$.each(parsed_data['members'], function() {
+				$('#single_beer_members').append('<li><img src="http://nationwidebarcrawl.com' + this['profileimage'] + '" /></li>');
+			});
+			$('#beers_single_beer_page').slideDown('slow', function() {
+				setTimeout(function() {
+					myScroll.refresh();
+					hideSpinner();
+				}, 1000);
+			});
+			$('#up_arrow').show();
+		});
+	}
+	
+	//************************************************************
+	//
+	// BARS
+	//
+	//************************************************************
+	
+	// display/hide the single bar page
+	function singleBarClicked(selectedbar) {
+		if ($('#single_bar_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			// set selected bar for retreival later
+			window.localStorage.setItem("chosenbar", selectedbar);
+			showSpinner();
+			// clear single bar info
+			$('#bar_info').html('');
+			$('#bar_tap_info_holder').html('');
+			$('#bar_beerlist_ul').html('');
+			$('#bar_bottle_info_holder').html('');
+			$('#bar_bottlelist_ul').html('');
+			$('#bar_photos_holder').html('');
+			$('#bar_photos').html('');
+			$('#bar_members_holder').html('');
+			$('#bar_members').html('');			
+			$('.hidden:visible').slideUp('slow');	
+			// make sure the beers database has been created first, if not redirect to beersmain.html to create it
+			var dbCreated = localStorage.getItem("dbCreated");
+			if (dbCreated != 1) {
+				alert('Beers database must be created before viewing a bar page.  Redirecting you to create the beers database');
+				window.location.href="beersmain.html";
+			}
+			// get file system access
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSingleBarFSSuccess, errorHandler);
+			// fire ajax requests at the same time, no db, no need to wait
+			getSingleBarFavoritesAndPhotos();
+		}
+	}
+	
+	// got filesystem for single bar, get directory for beer images
+	function onSingleBarFSSuccess(fileSystem) {
+		// get beers directory
+		fileSystem.root.getDirectory("NWBC",{create:true},function(){},function(){});
+		fileSystem.root.getDirectory("NWBC/beers",{create:true},gotSingleBarDir,onError);
+	}
+	
+	// got beers directory, get list of beers for bar
+	function gotSingleBarDir(d){
+		DATADIR = d;
+		// variable to hold selected bar
+		var selectedbar = window.localStorage.getItem("chosenbar");
+		// variable for bar beers list
+		var barbeerslistcreated = window.localStorage.getItem("barbeerslistcreated");
+		// got beers directory for images, get database
+		var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+		if (!barbeerslistcreated || barbeerslistcreated == "") {
+			db.transaction(populateSingleBarDB, errorCB, function(){successSingleBarCB();});
+		} else {
+			if (barbeerslistcreated.search(selectedbar) == "-1") {
+    			db.transaction(populateSingleBarDB, errorCB, function(){successSingleBarCB();});
+    		} else {
+    			db.transaction(querySingleBarDB, errorCB, function(){});
+    		}
+   		}
+	}
+	
+	// Query the database for the beer list for a single bar
+	function querySingleBarDB(tx) {
+		// variable to hold the selected bar
+		var selectedbar = window.localStorage.getItem("chosenbar");
+		tx.executeSql('SELECT * FROM bars WHERE id = ?', [selectedbar], querySingleBarSuccess, errorCB);
+		tx.executeSql('SELECT imagename, imageurl, id, isTap FROM beers INNER JOIN barbeerslist ON beers.id=barbeerslist.beerid WHERE barbeerslist.barid = ?', [selectedbar], beerslistSingleBarquerySuccess, errorCB);
+	}
+	
+	// Single Bar DB Query Success Callback
+	function querySingleBarSuccess(tx, results) {
+		var bar = results.rows.item(0);
+		$('#bar_info').append('<p id="bar_detail_name">' + bar.name + '</p>');
+		$('#bar_info').append('<p id="bar_detail_address">' + bar.address + '</p>');
+		$('#bar_info').append('<p id="bar_detail_phone"><a href="tel:' + bar.phone + '">' + bar.phone + '</a></p>');
+		$('#bar_info').append('<p id="bar_detail_website"><a href="' + bar.website + '">' + bar.website + '</a></p>');
+	}
+	
+	// Single Bar DB Query for Beers List Success Callback
+	function beerslistSingleBarquerySuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++) {
+			var beer = results.rows.item(i);
+			if (beer.isTap == "true") {
+				if (tapBeersAdded == false) {
+					$('#bar_tap_info_holder').append('<div class="mobile_hr"></div><h1 id="bar_tap_title">Beers on Tap:</h1>');
+					tapBeersAdded=true;
+				}
+				addSingleBarTapBeer(beer.imagename, beer.imageurl, beer.id);
+			} else {
+				if (bottleBeersAdded == false) {
+					$('#bar_bottle_info_holder').append('<div class="mobile_hr"></div><h1 id="bar_bottle_title">Beers in Bottle:</h1>');
+					bottleBeersAdded=true;
+				}
+				addSingleBarBottleBeer(beer.imagename, beer.imageurl, beer.id);
+			}
+    	}
+    	// clear variables so they are reset when viewing the next bar
+    	tapBeersAdded=false;
+    	bottleBeersAdded=false;
+	}
+	
+	// add a beer to the Single Bar Tap List
+	function addSingleBarTapBeer(imagename, imageurl, id) {
+		DATADIR.getFile(imagename,{create: false},function(fileEntry){gotSingleBarTapFile(fileEntry, id);},function(){noSingleBarTapFile(imageurl);});
+	}
+	
+	// add a beer to the Single Bar Bottle List
+	function addSingleBarBottleBeer(imagename, imageurl, id) {
+		DATADIR.getFile(imagename,{create: false},function(fileEntry){gotSingleBarBottleFile(fileEntry, id);},function(){noSingleBarBottleFile(imageurl);});
+	}
+	
+	// add a beer to the Single Bar Tap List in the template
+	function gotSingleBarTapFile(fileEntry, id) {
+		$('#bar_beerlist_ul').append('<li><a href="#" onClick="singleBeerClicked(' + id + ')"><img src="' + fileEntry.fullPath + '" /></a></li>');
+	}
+	
+	// add a beer to the Single Bar Bottle List in the template
+	function gotSingleBarBottleFile(fileEntry, id) {
+		$('#bar_bottlelist_ul').append('<li><a href="#" onClick="singleBeerClicked(' + id + ')"><img src="' + fileEntry.fullPath + '" /></a></li>');
+	}
+	
+	// get thumbnail for a Single Bar tap beer
+	function noSingleBarTapFile(imageurl) {
+		// create fileTransfer object
+		var ft = new FileTransfer();
+		var dlPath = DATADIR.fullPath + "/" + imageurl.substring(imageurl.lastIndexOf('/')+1);
+		ft.download("http://nationwidebarcrawl.com" + imageurl, dlPath, function(entry) {$('#bar_beerlist_ul').append('<li><img src="' + entry.fullPath + '" /></li>');}, null);
+	}
+	
+	// get thumbnail for a Single Bar bottle beer
+	function noSingleBarBottleFile(imageurl) {
+		// create fileTransfer object
+		var ft = new FileTransfer();
+		var dlPath = DATADIR.fullPath + "/" + imageurl.substring(imageurl.lastIndexOf('/')+1);
+		ft.download("http://nationwidebarcrawl.com" + imageurl, dlPath, function(entry) {$('#bar_bottlelist_ul').append('<li><img src="' + entry.fullPath + '" /></li>');}, null);
+	}
+	
+	// Populate the bars database 
+	function populateSingleBarDB(tx) {
+		// variable to hold selected bar
+		var selectedbar = window.localStorage.getItem("chosenbar");
+		tx.executeSql('CREATE TABLE IF NOT EXISTS barbeerslist(barid, beerid, isTap)');
+		$.ajaxSetup({async: false});
+		$.get("http://nationwidebarcrawl.com/mobilenative/barbeerlist/" + selectedbar + "/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			var len = parsed_data.length;
+			for(var i=0;i<parsed_data.length;i++) {
+				var beer = parsed_data[i];
+				beerVarString = [selectedbar, beer['beerpk'], beer['isTap']];
+				tx.executeSql('INSERT INTO barbeerslist (barid, beerid, isTap) VALUES (?, ?, ?)', beerVarString);
+			}
+			var donedbs = localStorage.getItem("barbeerslistcreated");
+			donedbs += ", " + selectedbar;
+			localStorage.setItem("barbeerslistcreated", donedbs);
+		});
+	}
+	
+	// Transaction success callback for Single Bar
+	function successSingleBarCB() {
+		var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+		db.transaction(querySingleBarDB, errorCB, function(){});
+	}
+	
+	// Single Bar get favorite people and recent images
+	function getSingleBarFavoritesAndPhotos() {
+		var selectedbar = window.localStorage.getItem("chosenbar");
+		$.get("http://nationwidebarcrawl.com/mobilenative/bar/pk/" + selectedbar + "/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			if(parsed_data['barphotos'].length > 0) {
+				$('#bar_photos_holder').append('<div class="mobile_hr"></div><h1>Recently Tagged Photos:</h1>');
+			}
+			$.each(parsed_data['barphotos'], function() {
+				$('#bar_photos').append('<li><img src="http://nationwidebarcrawl.com' + this['imageurl'] + '" /></li>');
+			});
+			if(parsed_data['members'].length > 0) {
+				$('#bar_members_holder').append('<div class="mobile_hr"></div><h1>Favorite Bar for:</h1>');
+			}
+			$.each(parsed_data['members'], function() {
+				$('#bar_members').append('<li><img src="http://nationwidebarcrawl.com' + this['profileimage'] + '" /></li>');
+			});
+			$('#single_bar_page').slideDown('slow', function() {
+				setTimeout(function() {
+					myScroll.refresh();
+					hideSpinner();
+				}, 2000);
+			});
+			$('#up_arrow').show();
+		});
+	}
+	
+	// display/hide the state list for the bars button
+	function showBarStates() {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
+		if ($('#bar_states_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			showSpinner();
+			// clear the states list
+			$('#bar_states_list_ul').html('');
+			// get the states list
+			$.get("http://nationwidebarcrawl.com/mobilenative/destinationstatelist/", function(response) {
+				var parsed_data = $.parseJSON(response);
+				$.each(parsed_data, function() {
+					var chosenstate = this['state'] + '';
+					$('#bar_states_list_ul').append('<li><a href="#" onClick="showBarState(\'' + chosenstate + '\')">' + this['name'] + '</a><span class="native_ul_arrow"></span></li>');
+				});
+				// add click event listener to highlight clicked li
+				$('#specials ul li').click(function() {
+					$(this).addClass('li_clicked');
+				});
+				// show the specials states page
+				$('#bar_states_page').slideDown('slow', function() {
+					setTimeout(function() {
+						hideSpinner();
+						myScroll.refresh();
+					}, 0);
+				});
+				$('#up_arrow').show();
+			});
+		}
+	}
+	
+	// display/hide the destination list for selectedstate for the bars button
+	function showBarState(selectedstate) {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
+		if ($('#bar_state_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			// set chosen state
+			window.localStorage.setItem("chosenstate", selectedstate);
+			$('.hidden:visible').slideUp('slow');
+			// clear bar state list
+			$('#bar_state_list_ul').html('');
+			showSpinner();
+			// variable to access database
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			// variable for when bars db has been created
+			var barsDbs = localStorage.getItem("barsDbs");
+			barsDbs = String(barsDbs);
+			// check if barsDbs is empty
+			if (barsDbs && barsDbs != "") {
+				if (barsDbs.search(selectedstate)!=-1) {
+					db.transaction(queryBarStateDB, errorCB, function(){});
+				} else {
+					db.transaction(populateBarsStateDB, errorCB, successBarStateCB);
+				}
+			} else {
+				db.transaction(populateBarsStateDB, errorCB, successBarStateCB);
+			}
+		}
+	}
+	
+	// Populate the database with bar info if bars table not yet created
+	function populateBarsStateDB(tx) {
+		tx.executeSql('CREATE TABLE IF NOT EXISTS bars(id INTEGER, name, slug, location, address, destination, destination_slug, phone, city, state, statekey, website)');
+		$.ajaxSetup({async: false});
+		// variable to hold selected state
+		var selectedstate = window.localStorage.getItem("chosenstate");
+		$.get("http://nationwidebarcrawl.com/mobilenative/barstatelist/" + selectedstate + "/", function(response) {
+			var parsed_data = $.parseJSON(response);
+			var len = parsed_data.length
+			var remaining_length = parsed_data.length;
+			var begin_counter = 0;
+			while (remaining_length > 0) {
+				addRowsToBarStateTable(parsed_data.slice(begin_counter, begin_counter+500), tx);
+				begin_counter += 500;
+				remaining_length -= 500;
+			}
+			localStorage.setItem("barsDbCreated", "1");
+			var donedbs = localStorage.getItem("barsDbs");
+			donedbs += ", " + selectedstate;
+			localStorage.setItem("barsDbs", donedbs);
+		});
+	}
+	
+	// Add rows to the table for each bar
+	function addRowsToBarStateTable(bars, tx) {
+		for(var i=0;i<bars.length;i++) {
+			var bar = bars[i];
+			barVarString = [bar['pk'], bar['name'], bar['slug'], bar['location'], bar['address'], bar['destination'], bar['destination_slug'], bar['phone'], bar['city'], bar['state'], bar['statekey'], bar['website']];
+			tx.executeSql('INSERT INTO bars (id, name, slug, location, address, destination, destination_slug, phone, city, state, statekey, website) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', barVarString);
+		}
+	}
+	
+	// Bar State DB Success Callback
+	function successBarStateCB() {
+		var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+		db.transaction(queryBarStateDB, errorCB);
+	}
+	
+	// Query the database for bars for bar state list in bars button
+	function queryBarStateDB(tx) {
+		var selectedstate = window.localStorage.getItem("chosenstate");
+		tx.executeSql('SELECT DISTINCT destination, city FROM bars WHERE statekey = ?', [selectedstate], queryBarStateSuccess, errorCB);
+	}
+	
+	// Bar State DB Query Success Callback
+	function queryBarStateSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var bar = results.rows.item(i);
+			$('#bar_state_list_ul').append('<li><a href="#" onClick="showBarDestList(\'' + bar.destination + '\')">' + bar.destination + ' - ' + bar.city + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		// show the bar state page
+		$('#bar_state_page').slideDown('slow', function() {
+			setTimeout(function() {
+				hideSpinner();
+				myScroll.refresh();
+			}, 100);
+		});
+		$('#up_arrow').show();
+	}
+	
+	// display/hide the bar list for the chosen destination on the bars button
+	function showBarDestList(selecteddest) {
+		// remove the highlighting from any clicked element
+		$('#specials ul li').removeClass('li_clicked');
+		if ($('#bar_dest_page').is(':visible')) {
+			upArrowClicked();
+		} else {
+			$('.hidden:visible').slideUp('slow');
+			// set the selected destination
+			window.localStorage.setItem("chosendest", selecteddest);
+			// clear the bar dest list
+			$('#bar_dest_list_ul').html('');
+			showSpinner();
+			// variable for db access
+			var db = window.openDatabase("BEERSDBV4", "1.0", "Beers Database", 500000);
+			db.transaction(queryBarDestListDB, errorCB, function(){});
+		}
+	}
+	
+	// Query the database for the bars list for selected destination
+	function queryBarDestListDB(tx) {
+		var selecteddest = window.localStorage.getItem("chosendest");
+		tx.executeSql('SELECT name, id FROM bars WHERE destination = ?', [selecteddest], queryBarDestListSuccess, errorCB);
+	}
+	
+	// Bars List Query Success Callback for bars button
+	function queryBarDestListSuccess(tx, results) {
+		var len = results.rows.length;
+		for (var i=0; i<len; i++){
+			var bar = results.rows.item(i);
+			$('#bar_dest_list_ul').append('<li><a href="#" onClick="singleBarClicked(\'' + bar.id + '\')">' + bar.name + '</a><span class="native_ul_arrow"></span></li>');
+		}
+		// show the bar destination page
+		$('#bar_dest_page').slideDown('slow', function() {
+			setTimeout(function() {
+				hideSpinner();
+				myScroll.refresh();
+			}, 100);
+		});
+		$('#up_arrow').show();
+	}
+	
+
+	//************************************************************
+	//
 	// ACCESSOR METHODS FOR LEAVING INDEX.HTML
+	//
+	//************************************************************
 	
 	// beer clicked, set the chosen beer for beer.html to receive
 	function beerClicked(chosenbeer) {
@@ -913,6 +3430,22 @@
 	function drinktypeClicked(chosentype) {
 		window.localStorage.setItem("chosendrinktype", chosentype); 
 		return true;
+	}
+	
+	//************************************************************
+	//
+	// SPINNER IN HEADER FOR LOADING
+	//
+	//************************************************************
+	
+	// show the spinner
+	function showSpinner() {
+		$('#header_logo_loading').attr('src', './images/mobile/header_logo_spinner.gif');
+	}
+	
+	// hide the spinner
+	function hideSpinner() {
+		$('#header_logo_loading').attr('src', './images/mobile/header_logo_solid.png');
 	}
 </script>
 </body>

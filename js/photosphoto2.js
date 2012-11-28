@@ -143,13 +143,13 @@ function addSinglePhotoTaggedDrink(imagename, imageurl, id) {
 // add a beer to the tagged beer list in the template
 //
 function gotSinglePhotoBeerFile(fileEntry, id) {
-	$('#photo_beers_tags_ul').append('<li><img src="' + fileEntry.fullPath + '" /><p><a href="#" onClick="removeBeerTag(\'' + id + '\')"><img src="./images/mobile/deleteicon.gif" /></a></p></li>');
+	$('#photo_beers_tags_ul').append('<li><img src="' + fileEntry.fullPath + '" /><p><a href="#" onClick="removeBeerTag(\'' + id + '\', \'' + localStorage.getItem("chosenphoto") + '\')"><img src="./images/mobile/deleteicon.gif" /></a></p></li>');
 }
 
 // add a drink to the tagged drink list in the template
 //
 function gotSinglePhotoDrinkFile(fileEntry, id) {
-	$('#photo_drinks_tags_ul').append('<li><img src="' + fileEntry.fullPath + '" /><p><a href="#" onClick="removeDrinkTag(\'' + id + '\')"><img src="./images/mobile/deleteicon.gif" /></a></p></li>');
+	$('#photo_drinks_tags_ul').append('<li><img src="' + fileEntry.fullPath + '" /><p><a href="#" onClick="removeDrinkTag(\'' + id + '\', \'' + + localStorage.getItem("chosenphoto") + '\')"><img src="./images/mobile/deleteicon.gif" /></a></p></li>');
 }
 
 // get thumbnail for a beer
@@ -158,7 +158,7 @@ function noSinglePhotoBeerFile(imageurl, id) {
 	// create fileTransfer object
 	var ft = new FileTransfer();
 	var dlPath = SINGLEPHOTOBEERSDATADIR.fullPath + "/" + imageurl.substring(imageurl.lastIndexOf('/')+1);
-	ft.download("http://nationwidebarcrawl.com" + imageurl, dlPath, function(fileEntry) {$('#photo_beers_tags_ul').append('<li><img src="' + fileEntry.fullPath + '" /><p><a href="#" onClick="removeBeerTag(\'' + id + '\')"><img src="./images/mobile/deleteicon.gif" /></a></p></li>');}, null);
+	ft.download("http://nationwidebarcrawl.com" + imageurl, dlPath, function(fileEntry) {$('#photo_beers_tags_ul').append('<li><img src="' + fileEntry.fullPath + '" /><p><a href="#" onClick="removeBeerTag(\'' + id + '\', \'' + localStorage.getItem("chosenphoto") + '\')"><img src="./images/mobile/deleteicon.gif" /></a></p></li>');}, null);
 }
 
 // get thumbnail for a drink
@@ -167,7 +167,7 @@ function noSinglePhotoDrinkFile(imageurl, id) {
 	// create fileTransfer object
 	var ft = new FileTransfer();
 	var dlPath = SINGLEPHOTODRINKSDATADIR.fullPath + "/" + imageurl.substring(imageurl.lastIndexOf('/')+1);
-	ft.download("http://nationwidebarcrawl.com" + imageurl, dlPath, function(fileEntry) {$('#photo_drinks_tags_ul').append('<li><img src="' + fileEntry.fullPath + '" /><p><a href="#" onClick="removeDrinkTag(\'' + id + '\')"><img src="./images/mobile/deleteicon.gif" /></a></p></li>');}, null);
+	ft.download("http://nationwidebarcrawl.com" + imageurl, dlPath, function(fileEntry) {$('#photo_drinks_tags_ul').append('<li><img src="' + fileEntry.fullPath + '" /><p><a href="#" onClick="removeDrinkTag(\'' + id + '\', \'' + localStorage.getItem("chosenphoto") + '\')"><img src="./images/mobile/deleteicon.gif" /></a></p></li>');}, null);
 }
 
 
